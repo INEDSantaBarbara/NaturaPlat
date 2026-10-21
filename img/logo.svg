@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="NaturaPlát">
+  <circle cx="24" cy="24" r="22" fill="#1C3B2C"/>
+  <path d="M24 31c-4.5-2.5-7.5-6.5-7.5-11a8 8 0 0 1 15.5 2.6c0 4.5-3.4 8.6-8 8.4Z" fill="#8FA37A"/>
+  <path d="M24 31c2.8-2.3 4.6-5.6 4.8-9.4a8 8 0 0 1-9.3 3.6C21.5 27.4 22.6 29.6 24 31Z" fill="#47724F"/>
+  <path d="M24 31c4-2.4 6.8-5.9 7-10.2 2.3 2.4 3.2 5.4 2 8-.9 2.2-2.8 3.4-5 4.3Z" fill="#E6D9B8" opacity="0.9"/>
+  <circle cx="24" cy="32.5" r="2.6" fill="#C9993B"/>
+</svg>

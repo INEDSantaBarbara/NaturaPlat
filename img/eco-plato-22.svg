@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="NaturaPlát 22, plato redondo de hoja de plátano">
+  <defs>
+    <linearGradient id="surf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFF3E3"/>
+      <stop offset="0.55" stop-color="#DFE7CF"/>
+      <stop offset="1" stop-color="#C4D0AE"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="200" cy="330" rx="132" ry="18" fill="#1C3B2C" opacity="0.16"/>
+  <ellipse cx="200" cy="196" rx="154" ry="148" fill="url(#surf)"/>
+  <ellipse cx="200" cy="196" rx="154" ry="148" fill="none" stroke="#A8B88C" stroke-width="2"/>
+  <g fill="none" stroke="#A9B98E" opacity="0.6" stroke-width="1.4">
+    <ellipse cx="200" cy="196" rx="132" ry="127"/>
+    <ellipse cx="200" cy="196" rx="110" ry="106"/>
+    <ellipse cx="200" cy="196" rx="88" ry="85"/>
+    <ellipse cx="200" cy="196" rx="66" ry="64"/>
+    <ellipse cx="200" cy="196" rx="44" ry="42"/>
+    <ellipse cx="200" cy="196" rx="22" ry="21"/>
+  </g>
+  <circle cx="200" cy="196" r="142" fill="none" stroke="#8FA37A" stroke-width="13" stroke-dasharray="1 26" stroke-linecap="round" opacity="0.4"/>
+  <ellipse cx="200" cy="196" rx="154" ry="148" fill="none" stroke="#5E7350" stroke-width="3" stroke-dasharray="1 12" stroke-linecap="round" opacity="0.95"/>
+  <ellipse cx="166" cy="150" rx="74" ry="54" fill="#FFFFFF" opacity="0.32"/>
+</svg>

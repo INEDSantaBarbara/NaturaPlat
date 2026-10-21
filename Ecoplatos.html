@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturaPlát · Platos biodegradables de hoja de plátano</title>
+  <meta name="description" content="NaturaPlát fabrica platos biodegradables y libres de plástico, hechos a mano con hojas de plátano en Suchitepéquez, Guatemala. Compostables en semanas.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,620&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#productos">Saltar a productos</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <img src="img/logo/logo.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="" width="40" height="40">
+        <span class="brand-name">NaturaPlát</span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="Principal">
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+        <button class="cart-open" id="cartOpen" aria-haspopup="dialog" aria-label="Abrir carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-count" id="cartCount" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="inicio">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="kicker">La hoja de plátano vuelve a la mesa</p>
+          <h1>Platos desechables que regresan a la tierra</h1>
+          <p class="hero-sub">
+            NaturaPlát elabora vajillas 100 % biodegradables a partir de hoja de plátano.
+            Resistentes al uso diario, libres de plástico y compostables en semanas.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn--pea" href="#productos">Ver productos</a>
+            <a class="btn btn--ghost" href="#nosotros">Nuestra misión</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>100 %</dt><dd>biodegradable</dd></div>
+            <div><dt>0</dt><dd>plástico virgen</dd></div>
+            <div><dt>≈ 45 días</dt><dd>para compostar</dd></div>
+          </dl>
+        </div>
+        <div class="hero-art">
+          <img src="img/hero-platos.svg" alt="NaturaPlát 22 y NaturaPlát Bandeja 25" width="560" height="520">
+        </div>
+      </div>
+    </section>
+
+    <section class="section beneficios" id="beneficios">
+      <div class="container">
+        <h2 class="section-title">Por qué NaturaPlát</h2>
+        <ul class="beneficios-grid">
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+            </span>
+            <h3>Hoja de plátano real</h3>
+            <p>Cada plato se prensa con fibra de hoja de plátano recolectada tras la cosecha del fruto. Sin plásticos, ceras ni aditivos.</p>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>
+              </svg>
+            </span>
+            <h3>Resistente en la mesa</h3>
+            <p>Aguanta comidas calientes, grasas y líquidos durante horas de uso real, sin reblandecerse ni filtrar.</p>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/>
+                <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/>
+                <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>
+              </svg>
+            </span>
+            <h3>Regresa a la tierra</h3>
+            <p>En condiciones de compostaje se desintegra en alrededor de 45 días. No lo descartes: devuélvelo al suelo.</p>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <h3>Artesanía que impulsa</h3>
+            <p>Una cadena de producción que apoya a recolectores y talleres locales con condiciones justas y trazables.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section nosotros" id="nosotros">
+      <div class="container">
+        <p class="kicker kiss">Por qué existe NaturaPlát</p>
+        <h2 class="section-title">Misión y visión</h2>
+        <div class="nosotros-grid">
+          <article class="card">
+            <h3>Nuestra misión</h3>
+            <p>
+              Desarrollar y comercializar platos biodegradables elaborados a partir de hojas de plátano,
+              mediante procesos responsables, innovadores y sostenibles que permitan aprovechar los recursos
+              naturales de manera eficiente. Nuestro propósito es ofrecer productos de calidad alternativa
+              que constituyan una alternativa viable frente a los materiales desechables convencionales,
+              contribuyendo a la reducción de residuos y al cuidado y conservación del medio ambiente.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Nuestra visión</h3>
+            <p>
+              Consolidarnos como un emprendimiento reconocido en el departamento de Suchitepéquez por la
+              elaboración y comercialización de productos biodegradables, destacándonos por nuestra
+              innovación, calidad y compromiso con la sostenibilidad. Aspiramos a ampliar nuestra presencia
+              en el mercado y generar conciencia ambiental en la sociedad, promoviendo el uso responsable
+              de los recursos naturales y contribuyendo a la construcción de comunidades más limpias y
+              sostenibles.
+            </p>
+          </article>
+        </div>
+        <p class="nosotros-line">
+          Trabajamos guiados por el uso responsable de los recursos, la innovación y el compromiso con la sostenibilidad.
+        </p>
+      </div>
+    </section>
+
+    <section class="section proceso" id="proceso">
+      <div class="container">
+        <p class="kicker kiss">De la planta a tu mesa</p>
+        <h2 class="section-title">Cómo se hace un NaturaPlát</h2>
+        <ol class="proceso-list">
+          <li>
+            <span class="paso-num" aria-hidden="true">1</span>
+            <h3>Recolección</h3>
+            <p>Las hojas se recogen después de la cosecha de plátano, sin talar una sola planta.</p>
+          </li>
+          <li>
+            <span class="paso-num" aria-hidden="true">2</span>
+            <h3>Lavado y selección</h3>
+            <p>Se limpian a mano y se eligen únicamente las hojas con la textura ideal.</p>
+          </li>
+          <li>
+            <span class="paso-num" aria-hidden="true">3</span>
+            <h3>Termoprensado</h3>
+            <p>Calor y presión le dan forma y firmeza, sin pegamentos ni aditivos.</p>
+          </li>
+          <li>
+            <span class="paso-num" aria-hidden="true">4</span>
+            <h3>Control y empaque</h3>
+            <p>Cada lote se revisa por pieza y se empaca listo para tu mesa.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section productos" id="productos">
+      <div class="container">
+        <p class="kicker kiss">Los prototipos</p>
+        <h2 class="section-title">Elige tu NaturaPlát</h2>
+
+        <div class="productos-grid">
+          <article class="card producto" data-product="1" data-name="NaturaPlát 22">
+            <div class="producto-visual">
+              <img src="img/eco-plato-22.svg" alt="Plato redondo de 22 cm hecho de hoja de plátano" width="400" height="400">
+            </div>
+            <div class="producto-body">
+              <p class="producto-tag">Prototipo 01</p>
+              <h3>NaturaPlát 22</h3>
+              <p class="producto-desc">
+                Plato redondo de 22 cm para sólidos, parrilladas y catering. Su borde reforzado lo hace
+                cómodo de sostener.
+              </p>
+              <div class="variantes" role="radiogroup" aria-label="Presentación de NaturaPlát 22">
+                <button class="variante" data-variant="pack25" aria-pressed="true">
+                  <span>Pack × 25</span>
+                  <strong>Q119</strong>
+                </button>
+                <button class="variante" data-variant="pack100" aria-pressed="false">
+                  <span>Pack × 100</span>
+                  <strong>Q390</strong>
+                </button>
+              </div>
+              <button class="btn btn--follaje full add" data-add>Añadir al carrito</button>
+            </div>
+          </article>
+
+          <article class="card producto" data-product="2" data-name="NaturaPlát Bandeja 25">
+            <div class="producto-visual">
+              <img src="img/bandeja-25.svg" alt="Bandeja de tres compartimentos hecha de hoja de plátano" width="480" height="340">
+            </div>
+            <div class="producto-body">
+              <p class="producto-tag">Prototipo 02</p>
+              <h3>NaturaPlát Bandeja 25</h3>
+              <p class="producto-desc">
+                Bandeja con tres compartimentos para platos corridos, eventos y food trucks. El platillo
+                completo, sin contacto entre guarniciones.
+              </p>
+              <div class="variantes" role="radiogroup" aria-label="Presentación de NaturaPlát Bandeja 25">
+                <button class="variante" data-variant="pack25" aria-pressed="true">
+                  <span>Pack × 25</span>
+                  <strong>Q149</strong>
+                </button>
+                <button class="variante" data-variant="pack100" aria-pressed="false">
+                  <span>Pack × 100</span>
+                  <strong>Q480</strong>
+                </button>
+              </div>
+              <button class="btn btn--follaje full add" data-add>Añadir al carrito</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="productos-note">
+          Precios de lanzamiento para prototipos. ¿Pedidos al por mayor? Escríbenos desde
+          <a href="#contacto">contacto</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section impacto" id="impacto">
+      <div class="container">
+        <h2 class="section-title">Números que hablan por sí solos</h2>
+        <ul class="impacto-grid">
+          <li><strong>45 días</strong><span>para volver al suelo en compostaje</span></li>
+          <li><strong>0</strong><span>plástico, ceras o polímeros por pieza</span></li>
+          <li><strong>100 %</strong><span>fibra natural de hoja de plátano</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container">
+        <p class="kicker kiss">Preguntas frecuentes</p>
+        <h2 class="section-title">Todo lo que quieres saber</h2>
+        <div class="acc-list">
+          <div class="acc">
+            <h3>
+              <button class="acc-btn" id="acc1" aria-expanded="false" aria-controls="accp1">
+                ¿Los platos soportan comida caliente y líquida?
+              </button>
+            </h3>
+            <div class="acc-panel" id="accp1" role="region" aria-labelledby="acc1" hidden>
+              <p>Sí, resisten guisos calientes, grasas y líquidos durante horas. No usamos ceras ni
+                recubrimientos: la resistencia viene de la fibra prensada. Eso sí, evita contacto directo
+                con la llama o superficies muy calientes.</p>
+            </div>
+          </div>
+          <div class="acc">
+            <h3>
+              <button class="acc-btn" id="acc2" aria-expanded="false" aria-controls="accp2">
+                ¿Son 100 % biodegradables?
+              </button>
+            </h3>
+            <div class="acc-panel" id="accp2" role="region" aria-labelledby="acc2" hidden>
+              <p>Sí. En un compost se desintegran en alrededor de 45 días y también pueden desecharse con
+                los residuos orgánicos. Regresan al suelo sin dejar residuos tóxicos.</p>
+            </div>
+          </div>
+          <div class="acc">
+            <h3>
+              <button class="acc-btn" id="acc3" aria-expanded="false" aria-controls="accp3">
+                ¿Son seguros para el contacto con alimentos?
+              </button>
+            </h3>
+            <div class="acc-panel" id="accp3" role="region" aria-labelledby="acc3" hidden>
+              <p>Están hechos solo con hoja de plátano lavada y prensada con calor, sin aditivos. Son aptos
+                para contacto directo con alimentos.</p>
+            </div>
+          </div>
+          <div class="acc">
+            <h3>
+              <button class="acc-btn" id="acc4" aria-expanded="false" aria-controls="accp4">
+                ¿Hacen envíos y venta al por mayor?
+              </button>
+            </h3>
+            <div class="acc-panel" id="accp4" role="region" aria-labelledby="acc4" hidden>
+              <p>Trabajamos con envíos a todo el país y contamos con tarifas especiales para restaurantes,
+                eventos y distribuidores. Escríbenos para cotizar tu volumen.</p>
+            </div>
+          </div>
+          <div class="acc">
+            <h3>
+              <button class="acc-btn" id="acc5" aria-expanded="false" aria-controls="accp5">
+                ¿Pueden ir al microondas?
+              </button>
+            </h3>
+            <div class="acc-panel" id="accp5" role="region" aria-labelledby="acc5" hidden>
+              <p>Son aptos para recalentar en microondas por periodos cortos, pero no para horno ni contacto
+                con fuego directo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contacto" id="contacto">
+      <div class="container contacto-inner">
+        <div>
+          <p class="kicker kiss">Hablemos</p>
+          <h2 class="section-title">Pedidos al por mayor, distribución o pruebas</h2>
+          <p class="contacto-texto">
+            ¿Restaurante, evento o tienda? Cuéntanos tu necesidad y te respondemos con una cotización
+            el mismo día.
+          </p>
+          <ul class="contacto-list">
+            <li>
+              <a href="https://wa.me/50278200000" target="_blank" rel="noopener" class="contacto-item">
+                <span class="icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  </svg>
+                </span>
+                <span>WhatsApp · <strong>+502 7820 0000</strong></span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:hola@ecoplatos.com" class="contacto-item">
+                <span class="icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <span>Correo · <strong>hola@ecoplatos.com</strong></span>
+              </a>
+            </li>
+            <li class="contacto-item ic">
+              <span class="icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </span>
+              <span>Atención de lunes a sábado, 9:00 a 18:00</span>
+            </li>
+          </ul>
+        </div>
+        <form class="card form" id="contactForm" novalidate>
+          <h3>Escríbenos una cotización</h3>
+          <label>
+            Nombre
+            <input type="text" name="nombre" autocomplete="name" required>
+          </label>
+          <label>
+            Correo
+            <input type="email" name="correo" autocomplete="email" required>
+          </label>
+          <label>
+            Mensaje
+            <textarea name="mensaje" rows="4" required placeholder="¿Qué volumen necesitas y para cuándo?"></textarea>
+          </label>
+          <button class="btn btn--follaje full" type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo/logo.png" onerror="this.onerror=null;this.src='img/logo.svg'" alt="" width="40" height="40">
+        <p>Hecho a mano con hoja de plátano. Sin plástico, hecho para volver a la tierra.</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <p class="footer-legal">© 2026 NaturaPlát · Vajilla biodegradable</p>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <div class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="drawer-head">
+      <h2 id="cartTitle">Tu carrito</h2>
+      <button class="icon-btn" id="cartClose" aria-label="Cerrar carrito">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
+      <ul class="cart-items" id="cartItems"></ul>
+    </div>
+
+    <div class="drawer-foot" id="cartFoot" hidden>
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">Q0</strong>
+      </div>
+      <button class="btn btn--pea full" id="cartCheckout">Finalizar compra</button>
+      <p class="checkout-note">El pago se confirma de forma local. Es una demo de carrito, sin pasarela real.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="modal-inner card">
+      <button class="icon-btn modal-close" id="checkoutClose" aria-label="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+
+      <div class="checkout-panel" id="checkoutPanel">
+        <h2 id="checkoutTitle">Finalizar compra</h2>
+        <h3>Resumen</h3>
+        <ul class="resumen" id="checkoutItems"></ul>
+        <p class="subtotal total"><span>Total</span><strong id="checkoutTotal">Q0</strong></p>
+
+        <form id="checkoutForm" novalidate>
+          <label>
+            Nombre completo
+            <input type="text" name="nombre" autocomplete="name" required>
+          </label>
+          <label>
+            Correo
+            <input type="email" name="correo" autocomplete="email" required>
+          </label>
+          <label>
+            Teléfono
+            <input type="tel" name="telefono" autocomplete="tel" required>
+          </label>
+          <label>
+            Dirección de envío
+            <textarea name="direccion" rows="3" autocomplete="street-address" required placeholder="Calle, número, ciudad y país"></textarea>
+          </label>
+          <fieldset class="metodo">
+            <legend>Método de pago</legend>
+            <label class="radio">
+              <input type="radio" name="metodo" value="Pago contra entrega" checked>
+              <span>Pago contra entrega (demo)</span>
+            </label>
+            <label class="radio">
+              <input type="radio" name="metodo" value="Transferencia bancaria">
+              <span>Transferencia bancaria (demo)</span>
+            </label>
+          </fieldset>
+          <button class="btn btn--pea full" type="submit">Confirmar pedido</button>
+        </form>
+      </div>
+
+      <div class="checkout-panel" id="confirmationPanel" hidden>
+        <span class="ok-mark" aria-hidden="true">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </span>
+        <h2>Pedido confirmado</h2>
+        <p class="ok-text" id="confirmMessage"></p>
+        <button class="btn btn--follaje full" id="confirmDone">Seguir comprando</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
