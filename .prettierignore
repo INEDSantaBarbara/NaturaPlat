@@ -1,0 +1,18 @@
+node_modules/
+package-lock.json
+playwright-report/
+test-results/
+
+# Activos binarios
+public/img/
+
+# Documentación de referencia y material original
+docs/referencia/
+docs/legacy/
+
+# Herramientas de agentes y libreta ODD
+.agents/
+.atl/
+.claude/
+odd/
+skills-lock.json

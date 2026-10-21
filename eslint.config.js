@@ -1,0 +1,50 @@
+import js from '@eslint/js';
+import globals from 'globals';
+
+export default [
+  {
+    ignores: [
+      'node_modules/**',
+      'public/img/**',
+      'docs/**',
+      'odd/**',
+      '.agents/**',
+      '.claude/**',
+      'playwright-report/**',
+      'test-results/**',
+    ],
+  },
+  js.configs.recommended,
+  {
+    // Script clásico que corre en el navegador (IIFE, sin módulos ES).
+    files: ['public/js/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'script',
+      globals: {
+        ...globals.browser,
+      },
+    },
+    rules: {
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    // Tests e2e: ejecutan fragmentos dentro del navegador con page.evaluate().
+    files: ['tests/e2e/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: 'module',
+      globals: { ...globals.node, ...globals.browser },
+    },
+  },
+  {
+    // Config, tests, servidor de desarrollo y scripts corren en Node.
+    files: ['tests/**/*.js', 'playwright.config.js', 'eslint.config.js', 'server.js'],
+    languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: 'module',
+      globals: { ...globals.node },
+    },
+  },
+];

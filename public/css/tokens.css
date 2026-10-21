@@ -1,0 +1,34 @@
+/* ------------------------------------------------------------------
+   NaturaPlát · Platos biodegradables de hoja de plátano
+   Design tokens — único lugar con valores hexadecimales de color.
+   ------------------------------------------------------------------ */
+:root {
+  --follaje: #1c3b2c; /* verde bosque · fondos oscuros */
+  --sombra: #10281c; /* verde profundo · footer, tinta */
+  --hoja: #47724f; /* verde medio · acentos suaves */
+  --lavada: #edf2e8; /* verde pálido frío · fondos claros */
+  --fibra: #e6d9b8; /* beige de plátano · superficies */
+  --cascara: #c9993b; /* dorado suave · CTA destacado */
+  --blanco: #f7faf4;
+  --card: #fff;
+  --tinta: #152b1e;
+  --tinta-suave: #4c5f50;
+  --linea: rgb(28 59 44 / 14%);
+
+  /* Estados */
+  --fibra-hover: #f0e5c8; /* hover del botón fibra */
+  --follaje-hover: #245037; /* hover del botón follaje */
+  --peligro: #a63a2b; /* error accionable */
+  --peligro-suave: #fbf1ef; /* fondo de campo con error */
+
+  /* Tipografía */
+  --disp: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body: 'Karla', 'Segoe UI', Arial, sans-serif;
+
+  /* Forma y medida */
+  --radio: 20px;
+  --radio-sm: 12px;
+  --sombra-suave: 0 6px 24px rgb(16 40 28 / 8%);
+  --header-h: 72px;
+  --max: 1120px;
+}

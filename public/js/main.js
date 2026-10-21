@@ -8,8 +8,8 @@
       img: 'img/eco-plato-22.svg',
       variants: {
         pack25: { label: 'Pack × 25', price: 119 },
-        pack100: { label: 'Pack × 100', price: 390 }
-      }
+        pack100: { label: 'Pack × 100', price: 390 },
+      },
     },
     2: {
       id: 2,
@@ -17,21 +17,31 @@
       img: 'img/bandeja-25.svg',
       variants: {
         pack25: { label: 'Pack × 25', price: 149 },
-        pack100: { label: 'Pack × 100', price: 480 }
-      }
-    }
+        pack100: { label: 'Pack × 100', price: 480 },
+      },
+    },
   };
 
-  var STORAGE_KEY = 'ecoplatos_cart';
+  var STORAGE_KEY = 'naturaplat.cart';
   var cart = load();
   var lastFocus = null;
+
+  // ---------- Respaldo de imágenes ----------
+  document.querySelectorAll('img[data-fallback]').forEach(function (img) {
+    img.addEventListener('error', function onError() {
+      img.removeEventListener('error', onError);
+      img.src = img.getAttribute('data-fallback');
+    });
+  });
 
   // ---------- Selección de variante por tarjeta ----------
   document.querySelectorAll('.producto').forEach(function (card) {
     var buttons = card.querySelectorAll('.variante');
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.setAttribute('aria-pressed', 'true');
       });
     });
@@ -57,7 +67,7 @@
   function load() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    } catch (e) {
+    } catch {
       return {};
     }
   }
@@ -65,7 +75,9 @@
   function save() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-    } catch (e) { /* sin almacenamiento disponible */ }
+    } catch {
+      /* sin almacenamiento disponible */
+    }
   }
 
   function normalize() {
@@ -81,7 +93,9 @@
     cart = next;
   }
 
-  var money = function (n) { return 'Q' + n.toLocaleString('es-GT'); };
+  var money = function (n) {
+    return 'Q' + n.toLocaleString('es-GT');
+  };
 
   // ---------- Render general ----------
   var countEl = document.getElementById('cartCount');
@@ -100,7 +114,9 @@
   function render() {
     normalize();
     var keys = Object.keys(cart);
-    var count = keys.reduce(function (n, k) { return n + cart[k].qty; }, 0);
+    var count = keys.reduce(function (n, k) {
+      return n + cart[k].qty;
+    }, 0);
 
     countEl.textContent = String(count);
     countEl.hidden = count === 0;
@@ -198,7 +214,9 @@
     lastFocus = document.activeElement;
     drawer.hidden = false;
     overlay.hidden = false;
-    requestAnimationFrame(function () { drawer.classList.add('open'); });
+    requestAnimationFrame(function () {
+      drawer.classList.add('open');
+    });
     document.body.style.overflow = 'hidden';
     document.getElementById('cartClose').focus();
   }
@@ -225,6 +243,7 @@
   var checkoutTotal = document.getElementById('checkoutTotal');
   var confirmMessage = document.getElementById('confirmMessage');
   var form = document.getElementById('checkoutForm');
+  var checkoutError = document.getElementById('checkoutError');
 
   function abrirCheckout() {
     closeDrawer();
@@ -267,8 +286,16 @@
       var bad = !val;
       if (input.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) bad = true;
       input.classList.toggle('error', bad);
-      if (bad) ok = false;
+      input.setAttribute('aria-invalid', String(bad));
+      if (bad) {
+        input.setAttribute('aria-describedby', 'checkoutError');
+        ok = false;
+      } else {
+        input.removeAttribute('aria-describedby');
+      }
     });
+    checkoutError.hidden = ok;
+    checkoutError.textContent = ok ? '' : 'Revisa los campos marcados.';
     return ok;
   }
 
@@ -281,15 +308,25 @@
 
     var metodo = form.querySelector('input[name="metodo"]:checked').value;
     var numero = 'EP-' + String(Date.now()).slice(-6);
-    var items = Object.keys(cart).map(function (k) {
-      var it = cart[k];
-      return it.qty + ' × ' + PRODUCTS[it.product].name;
-    }).join(', ');
+    var items = Object.keys(cart)
+      .map(function (k) {
+        var it = cart[k];
+        return it.qty + ' × ' + PRODUCTS[it.product].name;
+      })
+      .join(', ');
 
     confirmMessage.textContent =
-      'Gracias, ' + form.nombre.value.trim() + '. Tu pedido (' + items + ') quedó registrado ' +
-      'con el número ' + numero + '. El envío se coordina con ' + metodo + '. ' +
-      'Espera nuestro correo con los detalles.';
+      'Gracias, ' +
+      form.nombre.value.trim() +
+      '. Tu pedido (' +
+      items +
+      ') quedó registrado ' +
+      'con el número ' +
+      numero +
+      '. El envío se coordina con ' +
+      metodo +
+      '. ' +
+      'Esta es una demostración: no se procesa ningún pago ni se envía correo real.';
 
     panelForm.hidden = true;
     panelOk.hidden = false;
@@ -349,22 +386,41 @@
 
   // ---------- Formulario de contacto ----------
   var contactForm = document.getElementById('contactForm');
+  var contactError = document.getElementById('contactError');
+
   contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var bad = false;
     contactForm.querySelectorAll('[required]').forEach(function (input) {
-      if (!input.value.trim()) { input.classList.add('error'); bad = true; }
-      else { input.classList.remove('error'); }
+      var val = input.value.trim();
+      var invalid = !val;
+      if (input.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) invalid = true;
+      input.classList.toggle('error', invalid);
+      input.setAttribute('aria-invalid', String(invalid));
+      if (invalid) {
+        input.setAttribute('aria-describedby', 'contactError');
+        bad = true;
+      } else {
+        input.removeAttribute('aria-describedby');
+      }
     });
-    if (bad) { toast('Completa todos los campos del mensaje'); return; }
+    contactError.hidden = !bad;
+    contactError.textContent = bad ? 'Completa todos los campos del mensaje.' : '';
+    if (bad) {
+      toast('Completa todos los campos del mensaje');
+      return;
+    }
     contactForm.reset();
-    toast('Mensaje enviado. Te respondemos en el mismo día');
+    toast('Mensaje de demostración registrado. No se envía correo real');
   });
 
   // ---------- Cierre por teclado ----------
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (modal && !modal.hidden) { cerrarCheckout(); return; }
+    if (modal && !modal.hidden) {
+      cerrarCheckout();
+      return;
+    }
     if (drawer && !drawer.hidden && drawer.classList.contains('open')) closeDrawer();
   });
 

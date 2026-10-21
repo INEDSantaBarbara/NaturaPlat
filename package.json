@@ -1,0 +1,52 @@
+{
+  "name": "naturaplat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NaturaPlát: vajilla biodegradable de hoja de plátano. Proyecto MILAB del INED Santa Bárbara, Suchitepéquez, Guatemala.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Proyecto MILAB — INED Santa Bárbara",
+  "keywords": [
+    "guatemala",
+    "milab",
+    "naturaplat",
+    "biodegradable",
+    "hoja-de-platano",
+    "sostenibilidad"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/INED2026/Naturaplat-.git"
+  },
+  "homepage": "https://github.com/INED2026/Naturaplat-#readme",
+  "bugs": {
+    "url": "https://github.com/INED2026/Naturaplat-/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "serve": "node server.js",
+    "dev": "node server.js",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "html-validate public/index.html",
+    "lint:css": "stylelint \"public/css/**/*.css\"",
+    "lint:js": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test:static && npm run test:e2e",
+    "test:static": "node --test tests/static/*.test.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "1.64.0",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "html-validate": "^11.16.2",
+    "prettier": "^3.9.10",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}
