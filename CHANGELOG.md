@@ -1,0 +1,31 @@
+# Changelog
+
+Todos los cambios relevantes de este proyecto se documentan aquí. El formato sigue
+[Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
+[SemVer](https://semver.org/lang/es/).
+
+## [1.0.0] — 2026-10-21
+
+### Añadido
+
+- Makefile autodocumentado con `help` por defecto, identidad git y compuerta `ci`.
+- Servidor local `server.js` sin dependencias, en el puerto compartido 4173 y sin caché.
+- `package.json` con lockfile, ESLint, Stylelint, html-validate, Prettier y Playwright.
+- Pruebas estáticas (`node:test`) y end-to-end (Playwright) para navegación y carrito.
+- CI de GitHub Actions con jobs `quality` y `e2e`.
+- `vercel.json` para despliegue estático con cabeceras de seguridad y caché.
+- README, LICENSE MIT, CHANGELOG, CONTRIBUTING y documentación de arquitectura y despliegue.
+
+### Cambiado
+
+- El sitio se movió de la raíz a `public/` (`index.html`, `css/`, `js/`, `img/`).
+- La paleta se extrajo a `public/css/tokens.css`; los hexadecimales sueltos pasaron a tokens.
+- La clave de carrito cambió a `naturaplat.cart` (antes `ecoplatos_cart`).
+- El checkout y el formulario de contacto ahora declaran explícitamente que son una demostración.
+
+### Corregido
+
+- El pie del carrito (subtotal y botón de compra) se mostraba con el carrito vacío porque
+  `display: grid` anulaba el atributo `hidden`.
+- Los errores de formulario exponen `role="alert"`, `aria-invalid` y `aria-describedby`.
+- Se eliminaron los manejadores inline `onerror` de los logotipos.
