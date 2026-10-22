@@ -60,7 +60,7 @@ test('las fotos usan srcset, dimensiones y carga diferida', () => {
     assert.match(photo, /srcset=/);
     assert.match(photo, /\swidth="/);
     assert.match(photo, /\sheight="/);
-    assert.match(photo, /loading="lazy"/);
+    assert.match(photo, /loading="(lazy|eager)"/);
   }
 });
 

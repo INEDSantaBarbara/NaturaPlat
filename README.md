@@ -46,8 +46,8 @@ checkout simulado.
   supuestos se editan y se separan de los datos oficiales.
 - 🛒 **Catálogo y carrito** — un solo plato terminado de 14 cm de ancho por 20 cm de largo,
   variantes, subtotal en quetzales y checkout de demostración.
-- 📷 **Producto y evidencia** — fotos de estudio del producto terminado, del termoprensado y del
-  equipo, optimizadas en WebP con `srcset` 1600/800.
+- 📷 **Producto y evidencia** — mosaico en el héroe con el plato terminado, el termoprensado y el
+  equipo; fotos optimizadas en WebP con `srcset` 1600/800.
 - 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y
   1920×1080; en móvil se desplaza la diapositiva densa, no la página.
 - ♿ **Accesibilidad** — foco gestionado al cambiar de diapositiva, `inert` y `aria-hidden` en las
@@ -79,7 +79,7 @@ checkout simulado.
 │   ├── img/
 │   │   ├── evidencia/         # Equipo y registro audiovisual (WebP)
 │   │   ├── producto/          # Producto terminado y termoprensado (WebP)
-│   │   └── …                  # Ilustraciones SVG y logotipos
+│   │   └── logo/              # Logotipo y respaldo SVG
 ├── assets/
 │   ├── evidencia/             # Originales de equipo (no se sirven)
 │   └── producto/              # Originales de producto y proceso (no se sirven)

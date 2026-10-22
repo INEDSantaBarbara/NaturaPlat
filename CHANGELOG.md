@@ -4,6 +4,13 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.0.1] — 2026-10-22
+
+### Cambiado
+
+- El héroe usa un mosaico de fotos del plato terminado, el termoprensado y el equipo.
+- Se retiraron los SVG de platos que ya no se usan.
+
 ## [2.0.0] — 2026-10-21
 
 ### Añadido
