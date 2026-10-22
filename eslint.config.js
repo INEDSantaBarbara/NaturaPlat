@@ -16,11 +16,12 @@ export default [
   },
   js.configs.recommended,
   {
-    // Script clásico que corre en el navegador (IIFE, sin módulos ES).
+    // JavaScript del navegador: main.js es un IIFE clásico y simulator.js es un
+    // módulo ES. Ambos se lintean como módulo; el HTML decide cómo se cargan.
     files: ['public/js/**/*.js'],
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'script',
+      ecmaVersion: 2023,
+      sourceType: 'module',
       globals: {
         ...globals.browser,
       },

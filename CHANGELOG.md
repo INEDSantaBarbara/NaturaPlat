@@ -4,6 +4,15 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [Unreleased]
+
+### Añadido
+
+- `docs/design.md`: especificación visual y mapa del rediseño como recorrido en diapositivas.
+- `public/js/simulator.js`: lógica pura del simulador de prospectivas de impacto, con pruebas.
+- `assets/evidencia/` y `public/img/evidencia/`: fotos originales y versiones WebP.
+- `make images`: optimización reproducible de las fotos con Pillow.
+
 ## [1.0.1] — 2026-10-21
 
 ### Añadido

@@ -61,16 +61,24 @@ experiencia de compra, no para vender.
 │   ├── css/
 │   │   ├── tokens.css         # Paleta, tipografía y medidas (único archivo con hex)
 │   │   └── styles.css         # Reset, layout y componentes
-│   ├── js/main.js             # Carrito, checkout, acordeón, menú y validación
-│   └── img/                   # Ilustraciones SVG y logotipos
+│   ├── js/
+│   │   ├── main.js            # Carrito, checkout, acordeón, menú y validación
+│   │   └── simulator.js       # Lógica del simulador de impacto (rediseño en curso)
+│   ├── img/
+│   │   ├── evidencia/         # Fotos optimizadas en WebP
+│   │   └── …                  # Ilustraciones SVG y logotipos
+├── assets/evidencia/          # Fotos originales (no se sirven)
 ├── tests/
 │   ├── static/                # node:test, sin navegador
 │   └── e2e/                   # Playwright: navegación y carrito
 ├── docs/
 │   ├── arquitectura.md        # Cómo está construido y por qué
+│   ├── design.md              # Fuente de verdad visual
 │   └── despliegue.md          # Vercel Hobby e identidad git
 ├── server.js                  # Servidor local sin dependencias (puerto 4173, sin caché)
-├── scripts/free-port.mjs      # Libera el puerto 4173 de servidores colgados
+├── scripts/
+│   ├── free-port.mjs          # Libera el puerto 4173 de servidores colgados
+│   └── optimize-images.py     # Genera los WebP de assets/evidencia
 ├── Makefile                   # Atajos autodocumentados
 ├── package.json               # Scripts y dependencias de desarrollo
 ├── vercel.json                # Configuración de despliegue estático
@@ -85,6 +93,7 @@ versiona.
 - **Node.js 22 o superior** (`.nvmrc` fija la versión de CI).
 - **npm** con lockfile (`package-lock.json`).
 - **make** (opcional: los scripts de npm son la vía oficial).
+- **Pillow** (solo para `make images`, que regenera las fotos WebP).
 - Para las pruebas e2e, Chromium de Playwright (`npx playwright install chromium`).
 
 ## 🚀 Inicio rápido
@@ -119,6 +128,7 @@ make free-port
 | `make serve`          | Sirve el sitio en `http://127.0.0.1:4173` sin caché.             |
 | `make dev` / `run`    | Alias de `serve`.                                                |
 | `make free-port`      | Cierra el proceso que ocupa el puerto 4173.                      |
+| `make images`         | Genera los WebP de `assets/evidencia` (requiere Pillow).         |
 | `make lint`           | html-validate + Stylelint + ESLint.                              |
 | `make format`         | Formatea con Prettier.                                           |
 | `make format-check`   | Verifica el formato sin escribir.                                |
