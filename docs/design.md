@@ -1,7 +1,8 @@
 # Design spec — NaturaPlát
 
-> **Estado:** propuesta base. Reemplaza o ajusta este archivo con tu `design.md`; a partir de
-> ese momento es la fuente de verdad visual del proyecto.
+> **Estado (2026-10-21):** paleta oficial del equipo líder integrada; se conserva la disposición
+> de capítulos, componentes y movimiento. La tipografía sigue como propuesta hasta que llegue tu
+> `design.md`.
 >
 > **Precedencia:** `docs/design.md` (intención) → `public/css/tokens.css` (implementación) →
 > pruebas. Si una decisión de este archivo choca con el estándar MILAB, se avisa antes de
@@ -50,37 +51,60 @@
 Total: 17 diapositivas. El capítulo Impacto desarrolla: un plato, supuestos, una persona,
 territorio, año por año, método/valores y fuentes.
 
-## 4. Dirección visual propuesta
+## 4. Sistema visual oficial
 
-Dos sistemas conviven hoy en el material:
+La paleta la fijó el equipo líder del proyecto (2026-10-21). Se conserva la **disposición** de
+este documento; el color se implementa solo con estos cinco valores. No se introducen tonos de
+otra familia salvo el rojo funcional de error.
 
-- **A · Landing actual:** Fraunces + Karla, verde bosque profundo (#1c3b2c), beige (#e6d9b8).
-  Elegante y editorial, pero más de catálogo que de recorrido.
-- **B · Prospectivas:** Bricolage Grotesque + Atkinson Hyperlegible + IBM Plex Mono, fondo
-  claro verdoso (#f5f8f1), verde hoja (#2f7a3e), sol (#e3b21c) y gris duroport (#6b7a8c).
+### 4.1 Tokens
 
-**Propuesta:** usar **B** como base del recorrido (ya está pensada para diapositivas y para
-datos) y reservar el bosque profundo de **A** para las portadas de Inicio y Cierre, de modo que
-el recorrido abra y cierre en la marca, y el centro sea claro y legible. Si tu `design.md` trae
-otra dirección, manda la tuya.
+| Rol              | Token              | Valor                    | Uso                                              |
+| ---------------- | ------------------ | ------------------------ | ------------------------------------------------ |
+| Fondo            | `--np-bg`          | `#f2f2f2`                | escenario claro, fondo de página                 |
+| Superficie       | `--np-surface`     | `#ffffff`                | tarjetas, paneles, tablas                        |
+| Texto            | `--np-ink`         | `#317302`                | texto principal, enlaces, botones                |
+| Texto secundario | `--np-ink-soft`    | `#407d15`                | jerarquía secundaria (92 % de la marca)          |
+| Marca profunda   | `--np-leaf-deep`   | `#317302`                | portada, cierre, cabecera                        |
+| Sobre oscuro     | `--np-on-dark`     | `#f2f2f2`                | texto sobre `--np-leaf-deep`                     |
+| Verde hoja       | `--np-leaf`        | `#58a60a`                | series de gráficos, rellenos, ilustración        |
+| Verde suave      | `--np-leaf-soft`   | `#6fa660`                | superficies decorativas, fondos de tarjetas      |
+| Acento           | `--np-lime`        | `#87d90d`                | cifras grandes, barras, foco sobre oscuro        |
+| Línea            | `--np-line`        | `rgba(49, 115, 2, 0.18)` | bordes y separadores                             |
+| Error            | `--np-danger`      | `#a63a2b`                | errores y campos inválidos (funcional, no marca) |
+| Fondo de error   | `--np-danger-soft` | `#f6e9e7`                | fondo de campo con error                         |
+| Foco claro       | `--np-focus`       | `#317302`                | anillo de foco sobre fondo claro                 |
+| Foco oscuro      | `--np-focus-dark`  | `#87d90d`                | anillo de foco sobre `--np-leaf-deep`            |
 
-### 4.1 Tokens candidatos (a confirmar con tu spec)
+**Ningún hexadecimal fuera de `public/css/tokens.css`.** `--np-ink-soft` es una mezcla al 92 %
+de `#317302` sobre `#f2f2f2` para alcanzar 4.5:1; no es un color nuevo de la marca.
 
-| Rol            | Token            | Valor     | Uso                             |
-| -------------- | ---------------- | --------- | ------------------------------- |
-| Marca profunda | `--np-leaf-deep` | `#1f5a2c` | cabecera, portada, cierre       |
-| Marca          | `--np-leaf`      | `#2f7a3e` | acciones, datos positivos, foco |
-| Acento         | `--np-sun`       | `#e3b21c` | cifras clave, CTA secundario    |
-| Fondo          | `--np-bg`        | `#f5f8f1` | escenario claro                 |
-| Texto          | `--np-ink`       | `#16241b` | texto principal                 |
-| Duroport       | `--np-eps`       | `#6b7a8c` | línea base negativa             |
-| Línea          | `--np-line`      | `#d9e2d4` | bordes y separadores            |
-| Sobre oscuro   | `--np-on-dark`   | `#f1f7ee` | texto en portada/cierre         |
+### 4.2 Contraste y uso permitido
 
-Estados: `--np-danger` para errores y `--np-sun-soft` para avisos. **Ningún hexadecimal fuera de
-`public/css/tokens.css`.**
+| Combinación           | Ratio  | Uso permitido                                                        |
+| --------------------- | ------ | -------------------------------------------------------------------- |
+| `#317302` / `#f2f2f2` | 5.23:1 | texto normal, enlaces, botones                                       |
+| `#f2f2f2` / `#317302` | 5.23:1 | texto normal sobre portada, cierre y cabecera                        |
+| `#ffffff` / `#317302` | 5.86:1 | texto sobre superficie blanca o marca                                |
+| `#317302` / `#87d90d` | 3.34:1 | solo texto grande (≥24 px o ≥18.66 px bold) y elementos no textuales |
+| `#87d90d` / `#317302` | 3.34:1 | acentos, barras y foco sobre fondo oscuro                            |
+| `#a63a2b` / `#f2f2f2` | 5.75:1 | errores                                                              |
+| `#f2f2f2` / `#58a60a` | 2.73:1 | **prohibido como texto**; solo relleno, gráfico o icono decorativo   |
+| `#f2f2f2` / `#6fa660` | 2.57:1 | **prohibido como texto**; solo superficie o ilustración              |
+| `#317302` / `#58a60a` | 1.92:1 | **prohibido como texto**                                             |
+| `#317302` / `#6fa660` | 2.04:1 | **prohibido como texto**                                             |
 
-### 4.2 Tipografía
+Reglas:
+
+- El texto normal vive únicamente en `--np-ink` o `--np-ink-soft` sobre `--np-bg`/`#fff`, o en
+  `--np-on-dark` sobre `--np-leaf-deep`.
+- `#6fa660`, `#58a60a` y `#87d90d` son colores de **superficie, dato y acento**, no de párrafo.
+- El botón primario usa `#317302` con texto `#f2f2f2`; el hover se resuelve con borde, elevación
+  o subrayado, nunca bajando el contraste del texto.
+- El foco es `#317302` sobre claro y `#87d90d` sobre oscuro; no se elimina nunca.
+- El rojo `#a63a2b` es exclusivamente funcional para errores.
+
+### 4.3 Tipografía
 
 | Rol     | Familia               | Por qué                                           |
 | ------- | --------------------- | ------------------------------------------------- |
@@ -89,21 +113,26 @@ Estados: `--np-danger` para errores y `--np-sun-soft` para avisos. **Ningún hex
 | Datos   | IBM Plex Mono         | cifras tabulares, fórmulas y fuentes              |
 
 Escala con `clamp()`; texto base nunca por debajo de 16 px en móvil. Longitud de línea 60–75
-caracteres.
+caracteres. Si tu `design.md` fija otras familias, se reemplazan estas tres.
 
-### 4.3 Tratamiento fotográfico
+### 4.4 Tratamiento fotográfico
 
 - Fotos a sangre en el capítulo Equipo y en Proceso/Evidencia; nunca detrás de texto pequeño.
 - Encuadre 4:3 y 16:9 con `object-fit: cover`; punto de interés con `object-position`.
-- Tratamiento sobrio: sin duotono agresivo; un velo verde bosque solo si el texto va encima.
+- Sin duotono. Si el texto va encima, velo `#317302` al 65–75 % con texto `#f2f2f2` (5.23:1).
 - `loading="lazy"`, `decoding="async"`, `width`/`height` y `srcset` 1600/800.
 - Sin nombres, cargos ni pies que identifiquen a estudiantes.
 
-### 4.4 Movimiento
+### 4.5 Movimiento
 
 - Transición de diapositiva 380 ms; `prefers-reduced-motion` la anula.
 - Contadores y gráficos solo cuando el usuario pulsa «Simular»; nunca en bucle.
 - Sin parallax ni autoplay. El foco se mueve al `h1`/`h2` de la diapositiva activa.
+
+### 4.6 Retirado
+
+- La paleta candidata anterior (bosque `#1c3b2c`, beige `#e6d9b8`, sol `#e3b21c`) **no se usa**
+  en el rediseño. Queda solo como referencia histórica de la landing.
 
 ## 5. Componentes del catálogo
 
@@ -138,12 +167,10 @@ caracteres.
 
 ## 8. Pendiente de tu `design.md`
 
-Marca estos puntos o reemplaza la sección 4 completa:
-
-- [ ] Paleta final y modo oscuro (¿hay?).
+- [x] Paleta final: fijada por el equipo líder (sección 4.1). No hay modo oscuro.
 - [ ] Tipografías definitivas y licencias.
 - [ ] Logotipo e isotipo: ¿se conserva `img/logo/logo.png`?
-- [ ] Tratamiento de las fotos: color, duotono, marcos o máscaras.
+- [ ] Tratamiento de las fotos: color, marcos o máscaras.
 - [ ] ¿El carrito demo se queda en Producto o se retira?
 - [ ] Tono de voz y ejemplos de titulares.
 - [ ] Referencias visuales que te gusten (enlaces o capturas).
