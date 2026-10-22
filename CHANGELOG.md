@@ -4,14 +4,45 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
-## [Unreleased]
+## [2.0.0] — 2026-10-21
 
 ### Añadido
 
-- `docs/design.md`: especificación visual y mapa del rediseño como recorrido en diapositivas.
-- `public/js/simulator.js`: lógica pura del simulador de prospectivas de impacto, con pruebas.
-- `assets/evidencia/` y `public/img/evidencia/`: fotos originales y versiones WebP.
-- `make images`: optimización reproducible de las fotos con Pillow.
+- Recorrido en diapositivas de 7 capítulos y 17 diapositivas, sin scroll de página, con pestañas,
+  anterior/siguiente, puntos, teclado, gesto y hash.
+- Capítulo Impacto con simulador de prospectivas: duelo duroport/NaturaPlát, supuestos editables,
+  persona, territorio, tabla, método, valores y diez fuentes.
+- `public/js/simulator.js`: lógica pura del simulador, con 9 pruebas unitarias.
+- `public/js/charts.js`: gráficos SVG propios, sin Chart.js ni CDN.
+- `public/js/slides.js`: foco gestionado, `inert`, `aria-hidden` y anuncio acotado.
+- Fotos del producto terminado y del proceso (`assets/producto/`, `public/img/producto/`).
+- Fotos de equipo y registro audiovisual (`assets/evidencia/`, `public/img/evidencia/`).
+- `make images`: optimización reproducible a WebP 1600/800 con Pillow.
+- `docs/design.md`: fuente de verdad visual, referencia Analogue y paleta oficial.
+- Pruebas: 32 estáticas con `node:test` y 18 end-to-end con Playwright.
+
+### Cambiado
+
+- La landing con scroll se reemplazó por el recorrido en diapositivas.
+- La paleta oficial del equipo líder sustituyó la paleta anterior: `#317302`, `#f2f2f2`,
+  `#58a60a`, `#6fa660` y `#87d90d`.
+- La tipografía pasó a Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono.
+- El catálogo muestra la Bandeja 25 terminada con foto de estudio; el Plato 22 queda como
+  prototipo ilustrado.
+- El carrito y el checkout se conservan como demostración accesible.
+- README, arquitectura, despliegue, CHANGELOG y CONTRIBUTING se actualizaron.
+
+### Eliminado
+
+- La dependencia de Chart.js por CDN.
+- El formulario de contacto simulado; el cierre usa WhatsApp y correo de demostración.
+
+### Corregido
+
+- Contraste de la paleta: `#58a60a` y `#6fa660` ya no llevan texto; `#87d90d` se limita a cifras
+  grandes, barras y foco.
+- El pie del carrito y los paneles ocultos respetan `[hidden]`.
+- El foco del carrito y del checkout queda atrapado en el diálogo y vuelve al control de origen.
 
 ## [1.0.1] — 2026-10-21
 

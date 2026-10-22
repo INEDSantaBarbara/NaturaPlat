@@ -20,13 +20,16 @@ Proyecto del laboratorio **MILAB** del _INED Santa Bárbara_, Suchitepéquez, Gu
 ## 📖 Descripción
 
 **NaturaPlát** presenta una línea de platos y bandejas biodegradables prensados con hoja de
-plátano recolectada después de la cosecha, sin plásticos, ceras ni aditivos. El sitio cuenta la
-historia del producto —problema, misión, proceso, catálogo, impacto y preguntas frecuentes— en
-una sola página informativa.
+plátano recolectada después de la cosecha, sin plásticos, ceras ni aditivos. El sitio es un
+**recorrido en diapositivas** de siete capítulos —Inicio, Problema, Producto, Proceso, Impacto,
+Equipo y Cierre— sin scroll de página: se avanza con las pestañas, los botones, el teclado o un
+gesto.
 
-Incluye un **carrito de demostración** con dos productos, dos presentaciones por producto,
-persistencia en `localStorage` y un checkout simulado. El carrito existe para mostrar la
-experiencia de compra, no para vender.
+El capítulo **Impacto** integra el simulador de prospectivas: compara el duroport con NaturaPlát,
+permite ajustar los supuestos, proyecta una persona y el territorio hasta 2032 y cierra con la
+tabla anual, la fórmula, los valores y diez fuentes numeradas. Incluye un **carrito de
+demostración** con dos piezas, dos presentaciones por pieza, persistencia en `localStorage` y un
+checkout simulado.
 
 > **Aviso de demostración.** Este sitio es un prototipo escolar. Los pedidos y los mensajes de
 > contacto **no se procesan**: no hay pasarela de pago, ni backend, ni envío de correos. Los datos
@@ -35,42 +38,54 @@ experiencia de compra, no para vender.
 
 ## ✨ Características
 
-- 🌿 **Catálogo con variantes** — NaturaPlát 22 y Bandeja 25, cada uno en pack × 25 y × 100, con
-  precios de lanzamiento y selector `aria-pressed`.
-- 🛒 **Carrito persistente** — alta, aumento, reducción, eliminación y subtotal en quetzales
-  (`Intl` con `es-GT`), guardado en `localStorage` bajo la clave `naturaplat.cart`.
-- 🧾 **Checkout de demostración** — resumen del pedido, validación de campos, número de pedido
-  simulado y confirmación que declara que no se procesa ningún pago.
-- 📱 **Responsive sin scroll horizontal** — verificado en 390×844 y 1366×768; menú móvil con
-  `aria-expanded` y cierre por navegación.
-- ♿ **Accesibilidad** — un solo `h1`, jerarquía de títulos, `alt` en imágenes, foco visible de
-  3 px, foco gestionado al abrir carrito y checkout, cierre con `Escape`, errores con
-  `role="alert"` y `aria-invalid`, y `prefers-reduced-motion`.
-- 🎨 **Tokens de diseño** — toda la paleta vive en `public/css/tokens.css`; ningún hexadecimal
-  fuera de ese archivo.
-- 🧪 **Pruebas en dos niveles** — `node:test` para la estructura y Playwright para los flujos.
-- ⚡ **Cero dependencias en runtime** — HTML, CSS y JavaScript servidos tal cual, sin build. Las
-  tipografías Fraunces y Karla se cargan desde Google Fonts.
+- 🎞️ **Recorrido MILAB** — siete capítulos y 17 diapositivas, una idea por diapositiva, sin
+  scroll de página; pestañas, anterior/siguiente, puntos, teclado y gesto.
+- 📊 **Simulador de impacto** — duroport (fabricación + quema), tres escenarios de hoja, serie de
+  72 meses, población INE de Guatemala/Suchitepéquez/Santa Bárbara y adopción 2027–2032.
+- 🧮 **Datos con fuente** — tabla anual, fórmula, valores usados y 10 fuentes enlazadas; los
+  supuestos se editan y se separan de los datos oficiales.
+- 🛒 **Catálogo y carrito** — Bandeja 25 (producto terminado) y Plato 22 (prototipo ilustrado),
+  variantes, subtotal en quetzales y checkout de demostración.
+- 📷 **Producto y evidencia** — fotos de estudio del producto terminado, del termoprensado y del
+  equipo, optimizadas en WebP con `srcset` 1600/800.
+- 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y
+  1920×1080; en móvil se desplaza la diapositiva densa, no la página.
+- ♿ **Accesibilidad** — foco gestionado al cambiar de diapositiva, `inert` y `aria-hidden` en las
+  inactivas, cierre con `Escape`, trampa de foco en carrito/checkout, errores con `role="alert"`
+  y `aria-invalid`, y `prefers-reduced-motion`.
+- 🎨 **Paleta oficial** — los cinco colores del equipo líder viven en `public/css/tokens.css`;
+  ningún hexadecimal fuera de ese archivo.
+- 🧪 **Pruebas en dos niveles** — 32 estáticas con `node:test` y 18 end-to-end con Playwright.
+- ⚡ **Cero dependencias en runtime** — HTML, CSS y módulos ES sin build; gráficos SVG propios,
+  sin Chart.js. Las tipografías Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono se
+  cargan desde Google Fonts.
 
 ## 🗂️ Estructura del proyecto
 
 ```text
 .
 ├── public/                    # Raíz web servible (lo que se despliega)
-│   ├── index.html             # Página única: hero, catálogo, proceso, FAQ, contacto
+│   ├── index.html             # Recorrido: 7 capítulos y 17 diapositivas
 │   ├── css/
-│   │   ├── tokens.css         # Paleta, tipografía y medidas (único archivo con hex)
-│   │   └── styles.css         # Reset, layout y componentes
+│   │   ├── tokens.css         # Paleta oficial, tipografía y medidas (único con hex)
+│   │   └── styles.css         # Marco de tres filas, diapositivas y componentes
 │   ├── js/
-│   │   ├── main.js            # Carrito, checkout, acordeón, menú y validación
-│   │   └── simulator.js       # Lógica del simulador de impacto (rediseño en curso)
+│   │   ├── main.js            # Arranque: diapositivas, impacto y carrito
+│   │   ├── slides.js          # Capítulos, navegación, foco, teclado y gesto
+│   │   ├── simulator.js       # Lógica pura del simulador (probada en node:test)
+│   │   ├── charts.js          # Gráficos SVG sin dependencias
+│   │   ├── impact.js          # Enlace de supuestos, gráficos y tabla
+│   │   └── cart.js            # Carrito, checkout y validación
 │   ├── img/
-│   │   ├── evidencia/         # Fotos optimizadas en WebP
+│   │   ├── evidencia/         # Equipo y registro audiovisual (WebP)
+│   │   ├── producto/          # Producto terminado y termoprensado (WebP)
 │   │   └── …                  # Ilustraciones SVG y logotipos
-├── assets/evidencia/          # Fotos originales (no se sirven)
+├── assets/
+│   ├── evidencia/             # Originales de equipo (no se sirven)
+│   └── producto/              # Originales de producto y proceso (no se sirven)
 ├── tests/
 │   ├── static/                # node:test, sin navegador
-│   └── e2e/                   # Playwright: navegación y carrito
+│   └── e2e/                   # Playwright: recorrido, impacto y carrito
 ├── docs/
 │   ├── arquitectura.md        # Cómo está construido y por qué
 │   ├── design.md              # Fuente de verdad visual
@@ -78,7 +93,7 @@ experiencia de compra, no para vender.
 ├── server.js                  # Servidor local sin dependencias (puerto 4173, sin caché)
 ├── scripts/
 │   ├── free-port.mjs          # Libera el puerto 4173 de servidores colgados
-│   └── optimize-images.py     # Genera los WebP de assets/evidencia
+│   └── optimize-images.py     # Genera los WebP de assets/evidencia y producto
 ├── Makefile                   # Atajos autodocumentados
 ├── package.json               # Scripts y dependencias de desarrollo
 ├── vercel.json                # Configuración de despliegue estático
@@ -147,17 +162,18 @@ Overrides útiles: `make serve PORT=8080 HOST=0.0.0.0`.
 ## 🧪 Testing
 
 ```bash
-make test-static   # estructura, tokens, formularios y avisos
-make test-e2e      # navegación, carrito, checkout, menú móvil y responsive
+make test-static   # recorrido, impacto, tokens, fotos y carrito
+make test-e2e      # navegación, simulador, carrito y responsive
 make test          # todo
 ```
 
-- **Estáticos** (`tests/static/`): idioma y metadatos, un solo `h1`, ids únicos, referencias
-  locales existentes, `alt` en imágenes, ausencia de manejadores inline, tokens definidos,
-  hexadecimales solo en `tokens.css` y avisos de demostración.
-- **E2E** (`tests/e2e/`): carga sin errores de consola, navegación por secciones, acordeón, menú
-  móvil, carrito (alta, cantidad, eliminación, persistencia), checkout inválido y válido, y
-  ausencia de scroll horizontal.
+- **Estáticos** (`tests/static/`): idioma y metadatos, 17 diapositivas con título, siete
+  capítulos, ids únicos, referencias locales, `alt` y `srcset` de fotos, formularios accesibles,
+  tokens definidos, hexadecimales solo en `tokens.css`, simulador (9 casos), fuentes y avisos.
+- **E2E** (`tests/e2e/`): carga sin errores, pestañas y capítulos, siguiente/anterior, teclado,
+  puntos, enlaces directos, `inert`, foco, cinco medidas sin scroll; simulador (supuestos,
+  persona, territorio, tabla y fuentes); carrito (alta, variantes, cantidades, persistencia) y
+  checkout inválido/válido.
 
 Las pruebas que mutan estado usan el contexto aislado de Playwright: no escriben en tu
 `localStorage` real ni dejan archivos versionados.
@@ -174,9 +190,10 @@ de la cuenta. Los detalles están en [`docs/despliegue.md`](docs/despliegue.md).
 
 ## 🧰 Tecnologías
 
-HTML5 semántico · CSS3 con custom properties · JavaScript clásico (IIFE, sin framework) ·
-Node.js para el servidor local · Playwright para e2e · ESLint, Stylelint, html-validate y Prettier
-para calidad. **Sin dependencias en runtime y sin paso de compilación.**
+HTML5 semántico · CSS3 con custom properties · módulos ES nativos (sin framework) ·
+SVG generado con la API del DOM · Node.js para el servidor local · Playwright para e2e · ESLint,
+Stylelint, html-validate y Prettier para calidad. **Sin dependencias en runtime, sin Chart.js y
+sin paso de compilación.** La especificación visual vive en [`docs/design.md`](docs/design.md).
 
 ## 📄 Licencia y créditos
 

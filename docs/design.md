@@ -1,8 +1,8 @@
 # Design spec — NaturaPlát
 
-> **Estado (2026-10-21):** paleta oficial del equipo líder integrada; se conserva la disposición
-> de capítulos, componentes y movimiento. La tipografía sigue como propuesta hasta que llegue tu
-> `design.md`.
+> **Estado (2026-10-21):** implementado en la rama `rediseno-recorrido`. Recorrido de 7 capítulos
+> y 17 diapositivas; paleta oficial; tipografía, fotos y carrito aplicados. La referencia Analogue
+> aporta la disposición; MILAB manda en navegación, contenido y accesibilidad.
 >
 > **Precedencia:** `docs/design.md` (intención) → `public/css/tokens.css` (implementación) →
 > pruebas. Si una decisión de este archivo choca con el estándar MILAB, se avisa antes de
@@ -146,7 +146,10 @@ caracteres. Si tu `design.md` fija otras familias, se reemplazan estas tres.
 
 ### 4.4 Tratamiento fotográfico
 
-- Fotos a sangre en el capítulo Equipo y en Proceso/Evidencia; nunca detrás de texto pequeño.
+- **Equipo y evidencia** a sangre en Equipo y Proceso/Evidencia; nunca detrás de texto pequeño.
+- **Producto terminado** en fichas blancas del capítulo Producto: foto de estudio, `object-fit:
+contain`, sin recorte de fondo.
+- **Proceso** con la foto del termoprensado junto a los cuatro pasos.
 - Encuadre 4:3 y 16:9 con `object-fit: cover`; punto de interés con `object-position`.
 - Sin duotono. Si el texto va encima, velo `#317302` al 65–75 % con texto `#f2f2f2` (5.23:1).
 - `loading="lazy"`, `decoding="async"`, `width`/`height` y `srcset` 1600/800.
@@ -197,9 +200,9 @@ caracteres. Si tu `design.md` fija otras familias, se reemplazan estas tres.
 ## 8. Pendiente de tu `design.md`
 
 - [x] Paleta final: fijada por el equipo líder (sección 4.1). No hay modo oscuro.
-- [ ] Tipografías definitivas y licencias.
-- [ ] Logotipo e isotipo: ¿se conserva `img/logo/logo.png`?
-- [ ] Tratamiento de las fotos: color, marcos o máscaras.
-- [ ] ¿El carrito demo se queda en Producto o se retira?
-- [ ] Tono de voz y ejemplos de titulares.
-- [ ] Referencias visuales que te gusten (enlaces o capturas).
+- [x] Tipografías: Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono (Google Fonts).
+- [x] Logotipo: se conserva `img/logo/logo.png`, con respaldo `img/logo.svg`.
+- [x] Fotos: color natural, sin duotono; producto en fichas, proceso y equipo a sangre.
+- [x] Carrito: se queda en Producto como demostración, con checkout accesible.
+- [x] Tono: directo, en segunda persona, sin promesas de funciones inexistentes.
+- [ ] Referencias visuales adicionales: la referencia Analogue ya está integrada.

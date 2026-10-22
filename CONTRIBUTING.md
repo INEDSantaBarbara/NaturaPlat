@@ -27,8 +27,10 @@ Lee [`docs/arquitectura.md`](docs/arquitectura.md) antes de tocar el carrito o l
 
 ## Reglas del proyecto
 
+- **Una idea por diapositiva** y nunca scroll de página: el escenario es el que cambia.
 - **Un solo `h1`** y jerarquía de títulos sin saltos.
 - **Cero hexadecimales fuera de `public/css/tokens.css`**: usa `var(--token)`.
+- **Cada cifra con fuente numerada** y cada supuesto separado de los datos oficiales.
 - **Nada de `innerHTML` con datos**: construye nodos con `createElement` y `textContent`.
 - **Accesibilidad primero**: foco visible, `aria-*` correcto, errores con `role="alert"` y
   movimiento reducido.

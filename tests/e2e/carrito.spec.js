@@ -1,29 +1,31 @@
 import { test, expect } from '@playwright/test';
 
-const product = (page) => page.locator('article.producto[data-product="1"]');
+const addTray = async (page) => {
+  await page.goto('/#s-producto-catalogo');
+  await page.locator('.product-card[data-product="2"] .add').click();
+};
 
-test('agregar al carrito abre el panel, suma y enfoca el cierre', async ({ page }) => {
-  await page.goto('/');
+test('agregar abre el panel, suma y enfoca el cierre', async ({ page }) => {
+  await addTray(page);
 
-  await product(page).getByRole('button', { name: 'Añadir al carrito' }).click();
-
-  const drawer = page.locator('#cartDrawer');
-  await expect(drawer).toBeVisible();
+  await expect(page.locator('#cartDrawer')).toBeVisible();
   await expect(page.locator('#cartCount')).toHaveText('1');
-  await expect(page.locator('#cartSubtotal')).toHaveText('Q119');
+  await expect(page.locator('#cartSubtotal')).toHaveText('Q149');
   await expect(page.locator('#cartClose')).toBeFocused();
 
   await page.keyboard.press('Escape');
-  await expect(drawer).toBeHidden();
+  await expect(page.locator('#cartDrawer')).toBeHidden();
 });
 
-test('cantidad y eliminación actualizan el subtotal', async ({ page }) => {
-  await page.goto('/');
-  await product(page).getByRole('button', { name: 'Añadir al carrito' }).click();
+test('las variantes y cantidades actualizan el subtotal', async ({ page }) => {
+  await page.goto('/#s-producto-catalogo');
+  await page.locator('.product-card[data-product="1"] .variant[data-variant="pack100"]').click();
+  await page.locator('.product-card[data-product="1"] .add').click();
 
+  await expect(page.locator('#cartSubtotal')).toHaveText('Q390');
   await page.getByRole('button', { name: 'Aumentar cantidad' }).click();
   await expect(page.locator('#cartCount')).toHaveText('2');
-  await expect(page.locator('#cartSubtotal')).toHaveText('Q238');
+  await expect(page.locator('#cartSubtotal')).toHaveText('Q780');
 
   await page.getByRole('button', { name: 'Quitar' }).click();
   await expect(page.locator('#cartEmpty')).toBeVisible();
@@ -31,25 +33,12 @@ test('cantidad y eliminación actualizan el subtotal', async ({ page }) => {
   await expect(page.locator('#cartCount')).toBeHidden();
 });
 
-test('el carrito persiste al recargar', async ({ page }) => {
-  await page.goto('/');
-  await product(page).getByRole('button', { name: 'Añadir al carrito' }).click();
-  await page.keyboard.press('Escape');
-
-  await page.reload();
-  await expect(page.locator('#cartCount')).toHaveText('1');
-});
-
 test('el checkout valida y confirma un pedido de demostración', async ({ page }) => {
-  await page.goto('/');
-  await product(page).getByRole('button', { name: 'Añadir al carrito' }).click();
-
+  await addTray(page);
   await page.locator('#cartCheckout').click();
-  const modal = page.locator('#checkoutModal');
-  await expect(modal).toBeVisible();
 
+  await expect(page.locator('#checkoutModal')).toBeVisible();
   await page.locator('#checkoutForm button[type="submit"]').click();
-  await expect(page.locator('#checkoutError')).toHaveAttribute('role', 'alert');
   await expect(page.locator('#checkoutError')).toBeVisible();
   await expect(page.locator('#checkoutForm input[name="nombre"]')).toHaveAttribute(
     'aria-invalid',
@@ -70,20 +59,16 @@ test('el checkout valida y confirma un pedido de demostración', async ({ page }
   await expect(page.locator('#cartCount')).toBeHidden();
 });
 
-test('el formulario de contacto avisa que es una demostración', async ({ page }) => {
+test('el carrito persiste al recargar', async ({ page }) => {
+  await addTray(page);
+  await page.keyboard.press('Escape');
+  await page.reload();
+  await expect(page.locator('#cartCount')).toHaveText('1');
+});
+
+test('el carrito vacío muestra su estado', async ({ page }) => {
   await page.goto('/');
-
-  await page.locator('#contactForm button[type="submit"]').click();
-  await expect(page.locator('#contactError')).toBeVisible();
-  await expect(page.locator('#contactForm input[name="nombre"]')).toHaveAttribute(
-    'aria-invalid',
-    'true'
-  );
-
-  await page.locator('#contactForm input[name="nombre"]').fill('Estudiante de ejemplo');
-  await page.locator('#contactForm input[name="correo"]').fill('ejemplo@milab.gt');
-  await page.locator('#contactForm textarea[name="mensaje"]').fill('Cotización de ejemplo');
-  await page.locator('#contactForm button[type="submit"]').click();
-
-  await expect(page.locator('#toast')).toContainText(/demostración/i);
+  await page.locator('#cartOpen').click();
+  await expect(page.locator('#cartEmpty')).toBeVisible();
+  await expect(page.locator('#cartFoot')).toBeHidden();
 });

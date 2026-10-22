@@ -2,624 +2,1110 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NaturaPlát · Platos biodegradables de hoja de plátano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NaturaPlát · Platos que regresan a la tierra</title>
     <meta
       name="description"
-      content="NaturaPlát fabrica platos biodegradables y libres de plástico, hechos a mano con hojas de plátano en Suchitepéquez, Guatemala. Compostables en semanas."
+      content="Recorrido del proyecto NaturaPlát: vajilla biodegradable de hoja de plátano, proceso, evidencia y simulación de impacto al 2032. MILAB, INED Santa Bárbara."
     />
+    <meta name="color-scheme" content="dark light" />
     <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,620&family=Karla:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <a class="skip" href="#productos">Saltar a productos</a>
+    <a class="skip" href="#stage">Saltar al recorrido</a>
 
-    <header class="site-header" id="top">
-      <div class="container header-inner">
-        <a class="brand" href="#top">
-          <img src="img/logo/logo.png" data-fallback="img/logo.svg" alt="" width="40" height="40" />
-          <span class="brand-name">NaturaPlát</span>
+    <div class="app">
+      <header class="top">
+        <a class="brand" href="#s-inicio-portada" aria-label="NaturaPlát, volver al inicio">
+          <img src="img/logo/logo.png" data-fallback="img/logo.svg" alt="" width="36" height="36" />
+          <span class="brand-name">Natura<b>Plát</b></span>
         </a>
 
-        <nav class="site-nav" id="siteNav" aria-label="Principal">
-          <a href="#productos">Productos</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#proceso">Proceso</a>
-          <a href="#contacto">Contacto</a>
+        <nav class="chapters" id="chapters" aria-label="Capítulos del recorrido">
+          <button type="button" class="chap" data-chapter="inicio" aria-current="true">
+            Inicio
+          </button>
+          <button type="button" class="chap" data-chapter="problema">Problema</button>
+          <button type="button" class="chap" data-chapter="producto">Producto</button>
+          <button type="button" class="chap" data-chapter="proceso">Proceso</button>
+          <button type="button" class="chap" data-chapter="impacto">Impacto</button>
+          <button type="button" class="chap" data-chapter="equipo">Equipo</button>
+          <button type="button" class="chap" data-chapter="cierre">Cierre</button>
         </nav>
 
-        <div class="header-actions">
-          <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-expanded="false"
-            aria-controls="siteNav"
-            aria-label="Abrir menú"
+        <button
+          type="button"
+          class="cart-open"
+          id="cartOpen"
+          aria-haspopup="dialog"
+          aria-label="Abrir carrito de demostración"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
           >
-            <span></span><span></span><span></span>
-          </button>
-          <button
-            type="button"
-            class="cart-open"
-            id="cartOpen"
-            aria-haspopup="dialog"
-            aria-label="Abrir carrito"
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="9" cy="21" r="1" />
-              <circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-            <span class="cart-count" id="cartCount" hidden>0</span>
-          </button>
-        </div>
-      </div>
-    </header>
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="cart-count" id="cartCount" hidden>0</span>
+        </button>
+      </header>
 
-    <main id="main">
-      <section class="hero" id="inicio">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <p class="kicker">La hoja de plátano vuelve a la mesa</p>
-            <h1>Platos desechables que regresan a la tierra</h1>
-            <p class="hero-sub">
-              NaturaPlát elabora vajillas 100 % biodegradables a partir de hoja de plátano.
-              Resistentes al uso diario, libres de plástico y compostables en semanas.
-            </p>
-            <div class="hero-cta">
-              <a class="btn btn--pea" href="#productos">Ver productos</a>
-              <a class="btn btn--ghost" href="#nosotros">Nuestra misión</a>
+      <main class="stage" id="stage" tabindex="-1">
+        <!-- ================= INICIO ================= -->
+        <section
+          class="slide is-active"
+          id="s-inicio-portada"
+          data-chapter="inicio"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Inicio: platos que regresan a la tierra"
+        >
+          <div class="inner hero">
+            <div class="hero-copy">
+              <p class="eyebrow">MILAB · INED Santa Bárbara · Suchitepéquez</p>
+              <h1 tabindex="-1">Platos que regresan a la tierra</h1>
+              <p class="lede">
+                Vajilla biodegradable de hoja de plátano. Resistentes en la mesa, compostables en
+                semanas y sin una gota de plástico.
+              </p>
+              <div class="actions">
+                <button type="button" class="pill" data-go="next">Ver el recorrido</button>
+                <a class="pill pill--ghost" href="#s-impacto-plato">Ver impacto</a>
+              </div>
+              <dl class="facts">
+                <div class="fact">
+                  <dt>100 %</dt>
+                  <dd>biodegradable</dd>
+                </div>
+                <div class="fact">
+                  <dt>0</dt>
+                  <dd>plástico virgen</dd>
+                </div>
+                <div class="fact fact--lime">
+                  <dt>≈ 45</dt>
+                  <dd>días para compostar</dd>
+                </div>
+              </dl>
+              <p class="note">
+                Demostración del proyecto MILAB: los pedidos y mensajes no se procesan.
+              </p>
             </div>
-            <dl class="hero-facts">
-              <div>
-                <dt>100 %</dt>
-                <dd>biodegradable</dd>
+
+            <div class="orbit" aria-hidden="true">
+              <img
+                class="orbit-item orbit-item--a"
+                src="img/hero-platos.svg"
+                alt=""
+                width="560"
+                height="520"
+              />
+              <img
+                class="orbit-item orbit-item--b"
+                src="img/eco-plato-22.svg"
+                alt=""
+                width="400"
+                height="400"
+              />
+              <img
+                class="orbit-item orbit-item--c"
+                src="img/bandeja-25.svg"
+                alt=""
+                width="480"
+                height="340"
+              />
+              <img
+                class="orbit-item orbit-item--d"
+                src="img/eco-plato-22.svg"
+                alt=""
+                width="400"
+                height="400"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PROBLEMA ================= -->
+        <section
+          class="slide"
+          id="s-problema-cifras"
+          data-chapter="problema"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Problema: un plato que puede durar siglos"
+        >
+          <div class="inner">
+            <p class="eyebrow">Problema · 01</p>
+            <h2 tabindex="-1">Un plato que puede durar siglos</h2>
+            <p class="lede">
+              El duroport es barato porque su precio no incluye lo que deja: se fabrica con
+              petróleo, se quema en cuatro de cada diez hogares y tarda siglos en desaparecer.
+            </p>
+            <dl class="facts facts--4">
+              <div class="fact">
+                <dt>42.8 %</dt>
+                <dd>de los hogares quema su basura (Censo 2018)</dd>
               </div>
-              <div>
-                <dt>0</dt>
-                <dd>plástico virgen</dd>
+              <div class="fact">
+                <dt>0.519 kg</dt>
+                <dd>de residuos por persona al día (MARN)</dd>
               </div>
-              <div>
-                <dt>≈ 45 días</dt>
-                <dd>para compostar</dd>
+              <div class="fact">
+                <dt>9 %</dt>
+                <dd>de esos residuos es plástico (BID/MARN)</dd>
+              </div>
+              <div class="fact fact--lime">
+                <dt>2021</dt>
+                <dd>se derogó la prohibición de platos de duroport</dd>
               </div>
             </dl>
+            <blockquote class="quote">
+              «La prohibición existió. El duroport volvió.»
+              <cite>Acuerdo Gubernativo 189-2019, derogado en agosto de 2021 [9]</cite>
+            </blockquote>
+            <p class="note">Fuentes [2], [7], [8] y [9] al final del capítulo Impacto.</p>
           </div>
-          <div class="hero-art">
-            <img
-              src="img/hero-platos.svg"
-              alt="NaturaPlát 22 y NaturaPlát Bandeja 25"
-              width="560"
-              height="520"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="section beneficios" id="beneficios">
-        <div class="container">
-          <h2 class="section-title">Por qué NaturaPlát</h2>
-          <ul class="beneficios-grid">
-            <li>
-              <span class="icon" aria-hidden="true">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
-                  />
-                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-                </svg>
-              </span>
-              <h3>Hoja de plátano real</h3>
-              <p>
-                Cada plato se prensa con fibra de hoja de plátano recolectada tras la cosecha del
-                fruto. Sin plásticos, ceras ni aditivos.
-              </p>
-            </li>
-            <li>
-              <span class="icon" aria-hidden="true">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" />
-                </svg>
-              </span>
-              <h3>Resistente en la mesa</h3>
-              <p>
-                Aguanta comidas calientes, grasas y líquidos durante horas de uso real, sin
-                reblandecerse ni filtrar.
-              </p>
-            </li>
-            <li>
-              <span class="icon" aria-hidden="true">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M7 20h10" />
-                  <path d="M10 20c5.5-2.5.8-6.4 3-10" />
-                  <path
-                    d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"
-                  />
-                  <path
-                    d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"
-                  />
-                </svg>
-              </span>
-              <h3>Regresa a la tierra</h3>
-              <p>
-                En condiciones de compostaje se desintegra en alrededor de 45 días. No lo descartes:
-                devuélvelo al suelo.
-              </p>
-            </li>
-            <li>
-              <span class="icon" aria-hidden="true">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </span>
-              <h3>Artesanía que impulsa</h3>
-              <p>
-                Una cadena de producción que apoya a recolectores y talleres locales con condiciones
-                justas y trazables.
-              </p>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section nosotros" id="nosotros">
-        <div class="container">
-          <p class="kicker kiss">Por qué existe NaturaPlát</p>
-          <h2 class="section-title">Misión y visión</h2>
-          <div class="nosotros-grid">
-            <article class="card">
-              <h3>Nuestra misión</h3>
-              <p>
-                Desarrollar y comercializar platos biodegradables elaborados a partir de hojas de
-                plátano, mediante procesos responsables, innovadores y sostenibles que permitan
-                aprovechar los recursos naturales de manera eficiente. Nuestro propósito es ofrecer
-                productos de calidad alternativa que constituyan una alternativa viable frente a los
-                materiales desechables convencionales, contribuyendo a la reducción de residuos y al
-                cuidado y conservación del medio ambiente.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Nuestra visión</h3>
-              <p>
-                Consolidarnos como un emprendimiento reconocido en el departamento de Suchitepéquez
-                por la elaboración y comercialización de productos biodegradables, destacándonos por
-                nuestra innovación, calidad y compromiso con la sostenibilidad. Aspiramos a ampliar
-                nuestra presencia en el mercado y generar conciencia ambiental en la sociedad,
-                promoviendo el uso responsable de los recursos naturales y contribuyendo a la
-                construcción de comunidades más limpias y sostenibles.
-              </p>
-            </article>
-          </div>
-          <p class="nosotros-line">
-            Trabajamos guiados por el uso responsable de los recursos, la innovación y el compromiso
-            con la sostenibilidad.
-          </p>
-        </div>
-      </section>
-
-      <section class="section proceso" id="proceso">
-        <div class="container">
-          <p class="kicker kiss">De la planta a tu mesa</p>
-          <h2 class="section-title">Cómo se hace un NaturaPlát</h2>
-          <ol class="proceso-list">
-            <li>
-              <span class="paso-num" aria-hidden="true">1</span>
-              <h3>Recolección</h3>
-              <p>
-                Las hojas se recogen después de la cosecha de plátano, sin talar una sola planta.
-              </p>
-            </li>
-            <li>
-              <span class="paso-num" aria-hidden="true">2</span>
-              <h3>Lavado y selección</h3>
-              <p>Se limpian a mano y se eligen únicamente las hojas con la textura ideal.</p>
-            </li>
-            <li>
-              <span class="paso-num" aria-hidden="true">3</span>
-              <h3>Termoprensado</h3>
-              <p>Calor y presión le dan forma y firmeza, sin pegamentos ni aditivos.</p>
-            </li>
-            <li>
-              <span class="paso-num" aria-hidden="true">4</span>
-              <h3>Control y empaque</h3>
-              <p>Cada lote se revisa por pieza y se empaca listo para tu mesa.</p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="section productos" id="productos">
-        <div class="container">
-          <p class="kicker kiss">Los prototipos</p>
-          <h2 class="section-title">Elige tu NaturaPlát</h2>
-
-          <div class="productos-grid">
-            <article class="card producto" data-product="1" data-name="NaturaPlát 22">
-              <div class="producto-visual">
-                <img
-                  src="img/eco-plato-22.svg"
-                  alt="Plato redondo de 22 cm hecho de hoja de plátano"
-                  width="400"
-                  height="400"
-                />
-              </div>
-              <div class="producto-body">
-                <p class="producto-tag">Prototipo 01</p>
-                <h3>NaturaPlát 22</h3>
-                <p class="producto-desc">
-                  Plato redondo de 22 cm para sólidos, parrilladas y catering. Su borde reforzado lo
-                  hace cómodo de sostener.
+        <section
+          class="slide"
+          id="s-problema-hoja"
+          data-chapter="problema"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Problema: la hoja ya estaba ahí"
+        >
+          <div class="inner">
+            <p class="eyebrow">Problema · 02</p>
+            <h2 tabindex="-1">La hoja ya estaba ahí</h2>
+            <div class="split">
+              <div class="stack">
+                <p class="lede">
+                  La hoja de plátano es un subproducto de la cosecha. No se tala una planta: se
+                  recoge después del fruto y se prensa con calor.
                 </p>
-                <div class="variantes" role="radiogroup" aria-label="Presentación de NaturaPlát 22">
-                  <button type="button" class="variante" data-variant="pack25" aria-pressed="true">
-                    <span>Pack × 25</span>
-                    <strong>Q119</strong>
-                  </button>
-                  <button
-                    type="button"
-                    class="variante"
-                    data-variant="pack100"
-                    aria-pressed="false"
-                  >
-                    <span>Pack × 100</span>
-                    <strong>Q390</strong>
-                  </button>
-                </div>
-                <button type="button" class="btn btn--follaje full add" data-add>
-                  Añadir al carrito
-                </button>
+                <ul class="checks">
+                  <li>Sin plásticos, ceras ni pegamentos.</li>
+                  <li>Composta en semanas, no en siglos.</li>
+                  <li>Cadena corta: el plátano y el plato nacen en Suchitepéquez.</li>
+                </ul>
               </div>
-            </article>
+              <div class="big-number">
+                <strong>≈ 45</strong>
+                <span>días para volver al suelo</span>
+                <small>En condiciones de compostaje [4].</small>
+              </div>
+            </div>
+            <p class="note">Una materia prima que ya existía; el cambio es volver a usarla.</p>
+          </div>
+        </section>
 
-            <article class="card producto" data-product="2" data-name="NaturaPlát Bandeja 25">
-              <div class="producto-visual">
-                <img
-                  src="img/bandeja-25.svg"
-                  alt="Bandeja de tres compartimentos hecha de hoja de plátano"
-                  width="480"
-                  height="340"
-                />
-              </div>
-              <div class="producto-body">
-                <p class="producto-tag">Prototipo 02</p>
+        <!-- ================= PRODUCTO ================= -->
+        <section
+          class="slide"
+          id="s-producto-catalogo"
+          data-chapter="producto"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Producto: dos platos, una misma hoja"
+        >
+          <div class="inner">
+            <p class="eyebrow">Producto · 01</p>
+            <h2 tabindex="-1">Dos piezas, una misma hoja</h2>
+            <p class="lede">
+              Vajilla prensada a mano. Elige la presentación y arma un pedido de demostración.
+            </p>
+
+            <div class="products">
+              <article class="product-card" data-product="2">
+                <div class="product-visual product-visual--photo">
+                  <img
+                    src="img/producto/bandeja-25-1-800.webp"
+                    srcset="
+                      img/producto/bandeja-25-1-800.webp   800w,
+                      img/producto/bandeja-25-1-1600.webp 1600w
+                    "
+                    sizes="(max-width: 720px) 90vw, 40vw"
+                    width="1600"
+                    height="1207"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Bandeja NaturaPlát de hoja de plátano, vista superior sobre fondo blanco."
+                  />
+                </div>
+                <p class="kicker">Producto terminado</p>
                 <h3>NaturaPlát Bandeja 25</h3>
-                <p class="producto-desc">
-                  Bandeja con tres compartimentos para platos corridos, eventos y food trucks. El
-                  platillo completo, sin contacto entre guarniciones.
+                <p class="product-desc">
+                  Bandeja de tres compartimentos para platos corridos, eventos y food trucks.
+                  Terminado artesanalmente con hoja de plátano.
                 </p>
                 <div
-                  class="variantes"
-                  role="radiogroup"
+                  class="variants"
+                  role="group"
                   aria-label="Presentación de NaturaPlát Bandeja 25"
                 >
-                  <button type="button" class="variante" data-variant="pack25" aria-pressed="true">
-                    <span>Pack × 25</span>
-                    <strong>Q149</strong>
+                  <button type="button" class="variant" data-variant="pack25" aria-pressed="true">
+                    Pack × 25 <strong>Q149</strong>
                   </button>
-                  <button
-                    type="button"
-                    class="variante"
-                    data-variant="pack100"
-                    aria-pressed="false"
-                  >
-                    <span>Pack × 100</span>
-                    <strong>Q480</strong>
+                  <button type="button" class="variant" data-variant="pack100" aria-pressed="false">
+                    Pack × 100 <strong>Q480</strong>
                   </button>
                 </div>
-                <button type="button" class="btn btn--follaje full add" data-add>
-                  Añadir al carrito
-                </button>
-              </div>
-            </article>
-          </div>
+                <button type="button" class="pill pill--solid add">Añadir al carrito</button>
+              </article>
 
-          <p class="productos-note">
-            Precios de lanzamiento para prototipos. ¿Pedidos al por mayor? Escríbenos desde
-            <a href="#contacto">contacto</a>.
-          </p>
-        </div>
-      </section>
+              <article class="product-card" data-product="1">
+                <div class="product-visual">
+                  <img
+                    src="img/eco-plato-22.svg"
+                    alt="Ilustración de un plato redondo de 22 cm hecho de hoja de plátano"
+                    width="400"
+                    height="400"
+                  />
+                </div>
+                <p class="kicker">Prototipo ilustrado</p>
+                <h3>NaturaPlát 22</h3>
+                <p class="product-desc">
+                  Plato redondo de 22 cm para sólidos, parrilladas y catering. Borde reforzado.
+                  Ilustración del prototipo; la bandeja es el producto terminado.
+                </p>
+                <div class="variants" role="group" aria-label="Presentación de NaturaPlát 22">
+                  <button type="button" class="variant" data-variant="pack25" aria-pressed="true">
+                    Pack × 25 <strong>Q119</strong>
+                  </button>
+                  <button type="button" class="variant" data-variant="pack100" aria-pressed="false">
+                    Pack × 100 <strong>Q390</strong>
+                  </button>
+                </div>
+                <button type="button" class="pill pill--solid add">Añadir al carrito</button>
+              </article>
+            </div>
 
-      <section class="section impacto" id="impacto">
-        <div class="container">
-          <h2 class="section-title">Números que hablan por sí solos</h2>
-          <ul class="impacto-grid">
-            <li><strong>45 días</strong><span>para volver al suelo en compostaje</span></li>
-            <li><strong>0</strong><span>plástico, ceras o polímeros por pieza</span></li>
-            <li><strong>100 %</strong><span>fibra natural de hoja de plátano</span></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section faq" id="faq">
-        <div class="container">
-          <p class="kicker kiss">Preguntas frecuentes</p>
-          <h2 class="section-title">Todo lo que quieres saber</h2>
-          <div class="acc-list">
-            <div class="acc">
-              <h3>
-                <button
-                  type="button"
-                  class="acc-btn"
-                  id="acc1"
-                  aria-expanded="false"
-                  aria-controls="accp1"
-                >
-                  ¿Los platos soportan comida caliente y líquida?
-                </button>
-              </h3>
-              <div class="acc-panel" id="accp1" role="region" aria-labelledby="acc1" hidden>
-                <p>
-                  Sí, resisten guisos calientes, grasas y líquidos durante horas. No usamos ceras ni
-                  recubrimientos: la resistencia viene de la fibra prensada. Eso sí, evita contacto
-                  directo con la llama o superficies muy calientes.
-                </p>
-              </div>
-            </div>
-            <div class="acc">
-              <h3>
-                <button
-                  type="button"
-                  class="acc-btn"
-                  id="acc2"
-                  aria-expanded="false"
-                  aria-controls="accp2"
-                >
-                  ¿Son 100 % biodegradables?
-                </button>
-              </h3>
-              <div class="acc-panel" id="accp2" role="region" aria-labelledby="acc2" hidden>
-                <p>
-                  Sí. En un compost se desintegran en alrededor de 45 días y también pueden
-                  desecharse con los residuos orgánicos. Regresan al suelo sin dejar residuos
-                  tóxicos.
-                </p>
-              </div>
-            </div>
-            <div class="acc">
-              <h3>
-                <button
-                  type="button"
-                  class="acc-btn"
-                  id="acc3"
-                  aria-expanded="false"
-                  aria-controls="accp3"
-                >
-                  ¿Son seguros para el contacto con alimentos?
-                </button>
-              </h3>
-              <div class="acc-panel" id="accp3" role="region" aria-labelledby="acc3" hidden>
-                <p>
-                  Están hechos solo con hoja de plátano lavada y prensada con calor, sin aditivos.
-                  Son aptos para contacto directo con alimentos.
-                </p>
-              </div>
-            </div>
-            <div class="acc">
-              <h3>
-                <button
-                  type="button"
-                  class="acc-btn"
-                  id="acc4"
-                  aria-expanded="false"
-                  aria-controls="accp4"
-                >
-                  ¿Hacen envíos y venta al por mayor?
-                </button>
-              </h3>
-              <div class="acc-panel" id="accp4" role="region" aria-labelledby="acc4" hidden>
-                <p>
-                  Trabajamos con envíos a todo el país y contamos con tarifas especiales para
-                  restaurantes, eventos y distribuidores. Escríbenos para cotizar tu volumen.
-                </p>
-              </div>
-            </div>
-            <div class="acc">
-              <h3>
-                <button
-                  type="button"
-                  class="acc-btn"
-                  id="acc5"
-                  aria-expanded="false"
-                  aria-controls="accp5"
-                >
-                  ¿Pueden ir al microondas?
-                </button>
-              </h3>
-              <div class="acc-panel" id="accp5" role="region" aria-labelledby="acc5" hidden>
-                <p>
-                  Son aptos para recalentar en microondas por periodos cortos, pero no para horno ni
-                  contacto con fuego directo.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section contacto" id="contacto">
-        <div class="container contacto-inner">
-          <div>
-            <p class="kicker kiss">Hablemos</p>
-            <h2 class="section-title">Pedidos al por mayor, distribución o pruebas</h2>
-            <p class="contacto-texto">
-              ¿Restaurante, evento o tienda? Cuéntanos tu necesidad y te respondemos con una
-              cotización el mismo día.
+            <p class="note">
+              Precios de lanzamiento de los prototipos. El carrito es una demostración: no se
+              procesa ningún pago.
             </p>
-            <ul class="contacto-list">
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-producto-ficha"
+          data-chapter="producto"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Producto: lo que aguanta"
+        >
+          <div class="inner">
+            <p class="eyebrow">Producto · 02</p>
+            <h2 tabindex="-1">Lo que aguanta</h2>
+            <div class="cards cards--4">
+              <article class="card card--dark">
+                <p class="kicker">Caliente</p>
+                <h3>Guisos y líquidos</h3>
+                <p>Resiste comidas calientes, grasas y líquidos durante horas.</p>
+              </article>
+              <article class="card card--dark">
+                <p class="kicker">Microondas</p>
+                <h3>Periodos cortos</h3>
+                <p>Apto para recalentar; nunca para horno ni contacto con llama.</p>
+              </article>
+              <article class="card card--dark">
+                <p class="kicker">Compost</p>
+                <h3>≈ 45 días</h3>
+                <p>Se desintegra en condiciones de compostaje, sin residuos tóxicos.</p>
+              </article>
+              <article class="card card--dark">
+                <p class="kicker">Sin aditivos</p>
+                <h3>Solo hoja y calor</h3>
+                <p>Hoja lavada y prensada. Sin ceras, plásticos ni pegamentos.</p>
+              </article>
+            </div>
+            <div class="actions">
+              <button type="button" class="pill" id="openCartFromSlide">
+                Abrir mi pedido demo
+              </button>
+              <a class="pill pill--ghost" href="#s-proceso-hoja">Ver cómo se hace</a>
+            </div>
+            <p class="note">Demostración: el pedido no sale del navegador.</p>
+          </div>
+        </section>
+
+        <!-- ================= PROCESO ================= -->
+        <section
+          class="slide"
+          id="s-proceso-hoja"
+          data-chapter="proceso"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Proceso: de la hoja a la mesa"
+        >
+          <div class="inner">
+            <p class="eyebrow">Proceso · 01</p>
+            <h2 tabindex="-1">De la hoja a la mesa</h2>
+            <div class="split split--process">
+              <ol class="steps steps--2">
+                <li class="step">
+                  <span class="step-num" aria-hidden="true">01</span>
+                  <h3>Recolección</h3>
+                  <p>Las hojas se recogen después de la cosecha, sin talar una sola planta.</p>
+                </li>
+                <li class="step">
+                  <span class="step-num" aria-hidden="true">02</span>
+                  <h3>Lavado y selección</h3>
+                  <p>Se limpian a mano y se eligen las hojas con la textura ideal.</p>
+                </li>
+                <li class="step">
+                  <span class="step-num" aria-hidden="true">03</span>
+                  <h3>Termoprensado</h3>
+                  <p>Calor y presión dan forma y firmeza, sin pegamentos ni aditivos.</p>
+                </li>
+                <li class="step">
+                  <span class="step-num" aria-hidden="true">04</span>
+                  <h3>Control y empaque</h3>
+                  <p>Cada lote se revisa por pieza y se empaca listo para la mesa.</p>
+                </li>
+              </ol>
+              <figure class="photo photo--press">
+                <img
+                  src="img/producto/prensa-800.webp"
+                  srcset="img/producto/prensa-800.webp 800w, img/producto/prensa-1600.webp 1600w"
+                  sizes="(max-width: 860px) 100vw, 45vw"
+                  width="1600"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Prensa metálica con tuercas colocada sobre fuego, usada para dar forma a la hoja de plátano."
+                />
+                <figcaption>Termoprensado sobre fuego: calor y presión, sin pegamentos.</figcaption>
+              </figure>
+            </div>
+            <p class="note">Una cadena corta: recolección, prensado y empaque local.</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-proceso-evidencia"
+          data-chapter="proceso"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Proceso: así lo investigamos"
+        >
+          <div class="inner">
+            <p class="eyebrow">Proceso · 02</p>
+            <h2 tabindex="-1">Así lo investigamos</h2>
+            <p class="lede">
+              La presentación se construyó con registro audiovisual, sesión de producto y revisión
+              de fuentes.
+            </p>
+            <div class="photo-grid">
+              <figure class="photo photo--tall">
+                <img
+                  src="img/evidencia/sesion-fotografica-1600.webp"
+                  srcset="
+                    img/evidencia/sesion-fotografica-800.webp   800w,
+                    img/evidencia/sesion-fotografica-1600.webp 1600w
+                  "
+                  sizes="(max-width: 860px) 100vw, 55vw"
+                  width="1600"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Dos estudiantes sostienen una hoja de plátano y los prototipos en el set de fotografía del proyecto."
+                />
+                <figcaption>Sesión de producto en el set MILAB.</figcaption>
+              </figure>
+              <figure class="photo">
+                <img
+                  src="img/evidencia/grabacion-entrevista-1600.webp"
+                  srcset="
+                    img/evidencia/grabacion-entrevista-800.webp   800w,
+                    img/evidencia/grabacion-entrevista-1600.webp 1600w
+                  "
+                  sizes="(max-width: 860px) 100vw, 45vw"
+                  width="1600"
+                  height="715"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Tres estudiantes conversan frente a una cámara y un micrófono en el set de grabación."
+                />
+                <figcaption>Registro audiovisual para la feria.</figcaption>
+              </figure>
+              <figure class="photo photo--wide">
+                <img
+                  src="img/producto/prototipo-campo-2-800.webp"
+                  srcset="
+                    img/producto/prototipo-campo-2-800.webp   800w,
+                    img/producto/prototipo-campo-2-1600.webp 1600w
+                  "
+                  sizes="100vw"
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Mano sosteniendo un prototipo de bandeja de hoja de plátano en el patio del centro educativo."
+                />
+                <figcaption>Prueba de campo del prototipo.</figcaption>
+              </figure>
+            </div>
+            <p class="note">Cada cifra de esta presentación tiene una fuente numerada.</p>
+          </div>
+        </section>
+
+        <!-- ================= IMPACTO ================= -->
+        <section
+          class="slide"
+          id="s-impacto-plato"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: un plato, dos historias"
+        >
+          <div class="inner">
+            <p class="eyebrow">Impacto · Paso 1 de 7</p>
+            <h2 tabindex="-1">Un plato, dos historias</h2>
+            <p class="lede">
+              La huella de carbono suma lo que se emite al fabricar un producto y al deshacerse de
+              él. En Guatemala, 4 de cada 10 hogares queman su basura.
+            </p>
+
+            <div class="duel">
+              <article class="data-card">
+                <h3 class="c-eps">Plato de duroport</h3>
+                <p class="big-data"><span id="imp-eps-total">—</span><small>g CO₂e</small></p>
+                <div class="bar" aria-hidden="true">
+                  <span class="bar-eps" id="imp-bar-eps-prod"></span>
+                  <span class="bar-burn" id="imp-bar-eps-burn"></span>
+                </div>
+                <dl class="legend">
+                  <div>
+                    <dt><i class="dot dot-eps"></i>Fabricación (petróleo → poliestireno)</dt>
+                    <dd id="imp-eps-prod">—</dd>
+                  </div>
+                  <div>
+                    <dt><i class="dot dot-burn"></i>Quema en el hogar</dt>
+                    <dd id="imp-eps-burn">—</dd>
+                  </div>
+                </dl>
+              </article>
+
+              <article class="data-card">
+                <h3 class="c-leaf">Plato NaturaPlát</h3>
+                <p class="big-data"><span id="imp-leaf-total">—</span><small>g CO₂e</small></p>
+                <div class="bar" aria-hidden="true">
+                  <span class="bar-leaf" id="imp-bar-leaf"></span>
+                </div>
+                <dl class="legend">
+                  <div>
+                    <dt><i class="dot dot-leaf"></i><span id="imp-leaf-name">Escenario</span></dt>
+                    <dd id="imp-leaf-detail">—</dd>
+                  </div>
+                  <div>
+                    <dt>La hoja es subproducto y se composta en semanas.</dt>
+                    <dd></dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+
+            <div class="verdict">
+              <span>Cada plato NaturaPlát que reemplaza uno de duroport evita</span>
+              <strong id="imp-save">—</strong>
+              <span id="imp-save-pct">—</span>
+            </div>
+            <p class="note">Fuentes [1]–[4]. Ajusta los supuestos en el paso siguiente.</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-supuestos"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: ajusta los supuestos"
+        >
+          <div class="inner">
+            <p class="eyebrow">Impacto · Paso 2 de 7</p>
+            <h2 tabindex="-1">Ajusta los supuestos</h2>
+            <p class="lede">
+              Estos valores alimentan todas las diapositivas siguientes. Reemplázalos con tus
+              propias mediciones: una encuesta o pesar un plato en el laboratorio.
+            </p>
+            <div class="split split--data">
+              <div class="panel" role="group" aria-label="Supuestos del simulador">
+                <div class="control">
+                  <label for="imp-plates">Platos desechables por semana</label>
+                  <output id="imp-o-plates" for="imp-plates">3</output>
+                  <input id="imp-plates" type="range" min="1" max="14" step="1" value="3" />
+                  <span class="hint">Supuesto. Reemplázalo con el promedio de una encuesta.</span>
+                </div>
+                <div class="control">
+                  <label for="imp-burn">Hogares que queman la basura</label>
+                  <output id="imp-o-burn" for="imp-burn">42.8 %</output>
+                  <input id="imp-burn" type="range" min="0" max="100" step="0.1" value="42.8" />
+                  <span class="hint">Censo 2018 (INE): 42.8 % de los hogares.</span>
+                </div>
+                <div class="control">
+                  <label for="imp-mass">Peso del plato de duroport</label>
+                  <output id="imp-o-mass" for="imp-mass">6 g</output>
+                  <input id="imp-mass" type="range" min="4" max="12" step="0.5" value="6" />
+                  <span class="hint">Un plato #9 pesa entre 4.5 y 6 g.</span>
+                </div>
+                <div class="control">
+                  <label for="imp-leaf">Producción NaturaPlát</label>
+                  <select id="imp-leaf">
+                    <option value="conservador" selected>Conservador · 5 g CO₂e</option>
+                    <option value="artesanal">Artesanal local · 1 g CO₂e</option>
+                    <option value="inicial">Pequeña escala, prensa eléctrica · 18 g CO₂e</option>
+                  </select>
+                  <span class="hint" id="imp-leaf-hint"
+                    >Valor de un estudio de platos de hoja producidos a escala.</span
+                  >
+                </div>
+              </div>
+
+              <aside class="mini" aria-label="Resultado por plato">
+                <p class="eyebrow">Por plato, con estos supuestos</p>
+                <div><span>Duroport</span><b id="imp-mini-eps">—</b></div>
+                <div><span>NaturaPlát</span><b id="imp-mini-leaf">—</b></div>
+                <div><span>Ahorro</span><b id="imp-mini-save">—</b></div>
+                <p class="note">Gramos de CO₂ equivalente.</p>
+              </aside>
+            </div>
+            <p class="note">Los supuestos están separados de los datos oficiales.</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-persona"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: dos vecinos, seis años"
+        >
+          <div class="inner inner--fill">
+            <p class="eyebrow">Impacto · Paso 3 de 7</p>
+            <h2 tabindex="-1">Dos vecinos, seis años</h2>
+            <div class="persona">
+              <div class="persona-left">
+                <div class="person person--eps">
+                  <span class="person-who c-eps">Usa duroport</span>
+                  <strong class="person-kg" id="imp-person-eps">0.0 kg</strong>
+                  <span class="note"
+                    >CO₂e acumulado · <span id="imp-person-waste">0</span> kg de duroport
+                    desechado</span
+                  >
+                </div>
+                <div class="person person--leaf">
+                  <span class="person-who c-leaf">Usa NaturaPlát</span>
+                  <strong class="person-kg" id="imp-person-leaf">0.0 kg</strong>
+                  <span class="note">CO₂e acumulado · hojas compostadas</span>
+                </div>
+                <div class="actions">
+                  <button type="button" class="pill" id="imp-play">▶ Simular</button>
+                  <button type="button" class="pill pill--ghost" id="imp-end">Final</button>
+                </div>
+                <p class="callout" id="imp-person-callout">—</p>
+              </div>
+              <div class="chart chart--grow">
+                <svg
+                  id="imp-person-chart"
+                  viewBox="0 0 720 340"
+                  role="img"
+                  aria-label="CO₂e acumulado por persona, duroport frente a NaturaPlát, 2027 a 2032"
+                ></svg>
+              </div>
+            </div>
+            <p class="note" id="imp-person-flag">Resultado a diciembre de 2032.</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-territorio"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: el territorio al 2032"
+        >
+          <div class="inner inner--fill">
+            <p class="eyebrow">Impacto · Paso 4 de 7</p>
+            <h2 tabindex="-1">El territorio al 2032</h2>
+            <div class="territory-top">
+              <div class="segment" role="group" aria-label="Territorio">
+                <button type="button" data-terr="sb" aria-pressed="false">Santa Bárbara</button>
+                <button type="button" data-terr="su" aria-pressed="true">Suchitepéquez</button>
+                <button type="button" data-terr="gt" aria-pressed="false">Guatemala</button>
+              </div>
+              <div class="control control--inline">
+                <label for="imp-adopt">Personas que usan NaturaPlát en 2032:</label>
+                <output id="imp-o-adopt" for="imp-adopt">15 %</output>
+                <input id="imp-adopt" type="range" min="1" max="100" step="1" value="15" />
+              </div>
+            </div>
+            <div class="kpis">
+              <div class="kpi">
+                <span class="kpi-value" id="imp-k-pop">—</span>
+                <span class="kpi-label">habitantes en 2032 (INE)</span>
+              </div>
+              <div class="kpi kpi--leaf">
+                <span class="kpi-value" id="imp-k-users">—</span>
+                <span class="kpi-label">personas con NaturaPlát en 2032</span>
+              </div>
+              <div class="kpi kpi--leaf">
+                <span class="kpi-value" id="imp-k-co2">—</span>
+                <span class="kpi-label">t CO₂e evitadas 2027–2032</span>
+              </div>
+              <div class="kpi kpi--lime">
+                <span class="kpi-value" id="imp-k-waste">—</span>
+                <span class="kpi-label">t de duroport evitadas</span>
+              </div>
+            </div>
+            <div class="chart chart--grow">
+              <svg
+                id="imp-terr-chart"
+                viewBox="0 0 720 300"
+                role="img"
+                aria-label="Proyección de emisiones por platos desechables, 2027 a 2032"
+              ></svg>
+            </div>
+            <p class="note" id="imp-pop-note">—</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-tabla"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: año por año"
+        >
+          <div class="inner">
+            <p class="eyebrow">Impacto · Paso 5 de 7</p>
+            <h2 tabindex="-1">Año por año</h2>
+            <p class="lede">
+              La adopción crece de forma gradual: en 2027 arranca con una sexta parte de la meta y
+              la alcanza en 2032.
+            </p>
+            <div class="table-wrap">
+              <table>
+                <caption class="sr-only">
+                  Proyección anual de población, adopción, platos reemplazados, CO₂e y duroport
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Año</th>
+                    <th scope="col">Población</th>
+                    <th scope="col">Adopción</th>
+                    <th scope="col">Personas con NaturaPlát</th>
+                    <th scope="col">Platos reemplazados</th>
+                    <th scope="col">t CO₂e evitadas</th>
+                    <th scope="col">t duroport evitadas</th>
+                  </tr>
+                </thead>
+                <tbody id="imp-table-body"></tbody>
+              </table>
+            </div>
+            <p class="note" id="imp-table-note">—</p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-metodo"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: cómo se calcula"
+        >
+          <div class="inner">
+            <p class="eyebrow">Impacto · Paso 6 de 7</p>
+            <h2 tabindex="-1">Cómo se calcula</h2>
+            <div class="split split--data">
+              <pre class="formula">
+Huella duroport (g)   = masa × [ FE_fabricación
+                        + %quema × FE_combustión ]
+Huella NaturaPlát (g) = valor del escenario
+Ahorro por plato (g)  = duroport − NaturaPlát
+
+Persona (kg/año)   = platos_semana × 52
+                     × huella ÷ 1,000
+Territorio (t/año) = población × adopción
+                     × platos_semana × 52
+                     × ahorro ÷ 1,000,000
+adopción(año)      = meta × (año − 2026) ÷ 6</pre>
+              <ul class="context">
+                <li>
+                  Cada guatemalteco genera unos 0.519 kg de residuos al día (MARN) [7]; un estudio
+                  del BID citado por el MARN estimó que 9 % es plástico [8].
+                </li>
+                <li>
+                  El Acuerdo Gubernativo 189-2019 prohibía platos de plástico y duroport, pero fue
+                  derogado en agosto de 2021 [9].
+                </li>
+                <li>
+                  Las emisiones fósiles de CO₂ en Guatemala son de unas 1.06 t por persona al año
+                  (2024) [10].
+                </li>
+                <li>
+                  Los platos de hoja pierden ventaja cuando viajan lejos o se prensan con
+                  electricidad de carbón [4]. Producir en Suchitepéquez es lo que hace ganar a
+                  NaturaPlát.
+                </li>
+              </ul>
+            </div>
+            <details class="values">
+              <summary>Ver los valores usados</summary>
+              <dl class="assumptions">
+                <dt>FE fabricación de poliestireno espumado</dt>
+                <dd>4.78 kg CO₂e/kg</dd>
+                <dd>Base de datos ICM, de la cuna a la tienda [1]</dd>
+                <dt>FE combustión del poliestireno</dt>
+                <dd>3.385 kg CO₂/kg</dd>
+                <dd>El poliestireno (C₈H₈) es 92.3 % carbono: 0.923 × 44 ÷ 12</dd>
+                <dt>Hogares que queman la basura</dt>
+                <dd>42.8 %</dd>
+                <dd>XII Censo de Población 2018, INE [2]</dd>
+                <dt>Peso del plato de duroport</dt>
+                <dd>6 g</dd>
+                <dd>
+                  Cajas de 500 platos de 9" pesan 2.4–3.1 kg; Franklin Associates usa 4.5 g [3].
+                  Supuesto.
+                </dd>
+                <dt>NaturaPlát · conservador</dt>
+                <dd>5 g CO₂e</dd>
+                <dd>
+                  Plato de hoja a escala [4]; incluye un transporte largo que NaturaPlát no tiene
+                </dd>
+                <dt>NaturaPlát · artesanal local</dt>
+                <dd>1 g CO₂e</dd>
+                <dd>
+                  Estimación: compostaje 0.4 g [4] + transporte local y lavado ≈ 0.6 g. Supuesto.
+                </dd>
+                <dt>NaturaPlát · pequeña escala</dt>
+                <dd>18 g CO₂e</dd>
+                <dd>Empresa pequeña, prensa eléctrica y envío aéreo parcial [4]. Peor caso.</dd>
+                <dt>Platos desechables por semana</dt>
+                <dd>3</dd>
+                <dd>Supuesto. No hay estadística oficial; medirlo con una encuesta.</dd>
+                <dt>Población Guatemala 2026–2030</dt>
+                <dd>18.3 M → 19.2 M</dd>
+                <dd>INE, revisión 2019 [5]; 2031–2032 interpolados hacia INE 2034</dd>
+                <dt>Población Suchitepéquez 2026</dt>
+                <dd>646,587</dd>
+                <dd>INE [5]; 2027–2032 con la tendencia de su participación nacional</dd>
+                <dt>Población Santa Bárbara 2018 / 2023</dt>
+                <dd>27,215 / 27,978</dd>
+                <dd>INE [6]; extendido con su crecimiento de 0.55 % anual</dd>
+              </dl>
+            </details>
+            <p class="note">
+              Los datos oficiales y los supuestos están separados; los supuestos se editan en el
+              paso 2.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-impacto-fuentes"
+          data-chapter="impacto"
+          data-tone="light"
+          aria-roledescription="diapositiva"
+          aria-label="Impacto: fuentes"
+        >
+          <div class="inner">
+            <p class="eyebrow">Impacto · Paso 7 de 7</p>
+            <h2 tabindex="-1">Fuentes</h2>
+            <ol class="sources">
               <li>
+                Climatiq · ICM Database 2019, «Polystyrene foam slab», 4.78 kg CO₂e/kg.
                 <a
-                  href="https://wa.me/50278200000"
+                  href="https://www.climatiq.io/data/emission-factor/224eb053-b833-4802-90a5-21e3e75812a1"
                   target="_blank"
                   rel="noopener"
-                  class="contacto-item"
+                  >climatiq.io</a
                 >
-                  <span class="icon" aria-hidden="true">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-                      />
-                    </svg>
-                  </span>
-                  <span>WhatsApp · <strong>+502 7820 0000</strong></span>
-                </a>
               </li>
               <li>
-                <a href="mailto:hola@ecoplatos.com" class="contacto-item">
-                  <span class="icon" aria-hidden="true">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <rect x="2" y="4" width="20" height="16" rx="2" />
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
-                  </span>
-                  <span>Correo · <strong>hola@ecoplatos.com</strong></span>
-                </a>
+                INE, XII Censo Nacional de Población y VII de Vivienda 2018 (eliminación de basura),
+                reportado por La Hora.
+                <a href="https://lahora.gt/?p=284086" target="_blank" rel="noopener">lahora.gt</a>
               </li>
-              <li class="contacto-item ic">
-                <span class="icon" aria-hidden="true">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                  </svg>
-                </span>
-                <span>Atención de lunes a sábado, 9:00 a 18:00</span>
+              <li>
+                Franklin Associates (2015), citado por Reynolds/Hefty: plato de espuma de 4.5 g.
+                <a href="https://www.hefty.com/facts-foam" target="_blank" rel="noopener"
+                  >hefty.com</a
+                >
               </li>
-            </ul>
+              <li>
+                Korbelyiova et al. (2021). «Paper vs leaf: Carbon footprint of single-use plates
+                made from renewable materials». Sustainable Production and Consumption 25, 77–90.
+                <a
+                  href="https://pub.epsilon.slu.se/id/document/20381923"
+                  target="_blank"
+                  rel="noopener"
+                  >pub.epsilon.slu.se</a
+                >
+              </li>
+              <li>
+                INE Guatemala, proyecciones nacionales y departamentales (revisión 2019).
+                <a
+                  href="https://livinginguatemala.com/guatemala-population/"
+                  target="_blank"
+                  rel="noopener"
+                  >livinginguatemala.com</a
+                >
+                ·
+                <a href="https://www.ine.gob.gt/ine/proyecciones/" target="_blank" rel="noopener"
+                  >ine.gob.gt</a
+                >
+              </li>
+              <li>
+                INE, estimaciones municipales, vía City Population.
+                <a
+                  href="https://citypopulation.de/en/guatemala/admin/suchitepéquez/1015__santa_bárbara/"
+                  target="_blank"
+                  rel="noopener"
+                  >citypopulation.de</a
+                >
+              </li>
+              <li>
+                MARN, residuos por habitante (AGN).
+                <a
+                  href="https://agn.gt/dia-internacional-del-reciclaje-una-responsabilidad-con-el-medio-ambiente/"
+                  target="_blank"
+                  rel="noopener"
+                  >agn.gt</a
+                >
+              </li>
+              <li>
+                MARN, caracterización de desechos sólidos (AGN).
+                <a
+                  href="https://agn.gt/comparten-resultados-de-estudios-de-caracterizacion-de-desechos-solidos"
+                  target="_blank"
+                  rel="noopener"
+                  >agn.gt</a
+                >
+              </li>
+              <li>
+                Arrecis, M. (2021). «Plásticos y duroport de un solo uso, la prohibición pendiente».
+                Revista Análisis de la Realidad Nacional, USAC.
+                <a
+                  href="https://revistasguatemala.usac.edu.gt/IPNUSAC/article/download/2657/2371/5502"
+                  target="_blank"
+                  rel="noopener"
+                  >revistasguatemala.usac.edu.gt</a
+                >
+              </li>
+              <li>
+                Worldometer con datos IEA-EDGAR: emisiones fósiles de CO₂ de Guatemala, 2024.
+                <a
+                  href="https://www.worldometers.info/co2-emissions/guatemala-co2-emissions/"
+                  target="_blank"
+                  rel="noopener"
+                  >worldometers.info</a
+                >
+              </li>
+            </ol>
+            <p class="note">
+              Simulación educativa del proyecto NaturaPlát, INED Santa Bárbara. Los resultados son
+              estimaciones que dependen de los supuestos indicados.
+            </p>
           </div>
-          <form class="card form" id="contactForm" novalidate>
-            <h3>Escríbenos una cotización</h3>
-            <p class="form-alert" id="contactError" role="alert" hidden></p>
-            <label>
-              Nombre
-              <input type="text" name="nombre" autocomplete="name" required />
-            </label>
-            <label>
-              Correo
-              <input type="email" name="correo" autocomplete="email" required />
-            </label>
-            <label>
-              Mensaje
-              <textarea
-                name="mensaje"
-                rows="4"
-                required
-                placeholder="¿Qué volumen necesitas y para cuándo?"
-              ></textarea>
-            </label>
-            <button class="btn btn--follaje full" type="submit">Enviar mensaje</button>
-            <p class="demo-note">Demostración: este formulario no envía correos reales.</p>
-          </form>
-        </div>
-      </section>
-    </main>
+        </section>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <img src="img/logo/logo.png" data-fallback="img/logo.svg" alt="" width="40" height="40" />
-          <p>Hecho a mano con hoja de plátano. Sin plástico, hecho para volver a la tierra.</p>
+        <!-- ================= EQUIPO ================= -->
+        <section
+          class="slide"
+          id="s-equipo-quienes"
+          data-chapter="equipo"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Equipo: quiénes están detrás"
+        >
+          <div class="inner">
+            <p class="eyebrow">Equipo · 01</p>
+            <h2 tabindex="-1">Quiénes están detrás</h2>
+            <div class="split split--photo">
+              <figure class="photo photo--team">
+                <img
+                  src="img/evidencia/equipo-feria-1280.webp"
+                  srcset="
+                    img/evidencia/equipo-feria-800.webp   800w,
+                    img/evidencia/equipo-feria-1280.webp 1280w
+                  "
+                  sizes="(max-width: 860px) 100vw, 55vw"
+                  width="1280"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Equipo de estudiantes y docentes de NaturaPlát frente al stand del proyecto en la feria MILAB."
+                />
+                <figcaption>Equipo NaturaPlát en la feria MILAB 2026.</figcaption>
+              </figure>
+              <div class="stack">
+                <article class="card card--dark">
+                  <p class="kicker">Misión</p>
+                  <h3>Vajilla que vuelve al suelo</h3>
+                  <p>
+                    Desarrollar platos biodegradables de hoja de plátano con procesos responsables,
+                    innovadores y sostenibles, para reducir los residuos y cuidar el ambiente.
+                  </p>
+                </article>
+                <article class="card card--dark">
+                  <p class="kicker">Visión</p>
+                  <h3>Suchitepéquez, referente</h3>
+                  <p>
+                    Consolidar un emprendimiento reconocido en Suchitepéquez por su innovación,
+                    calidad y compromiso con la sostenibilidad.
+                  </p>
+                </article>
+              </div>
+            </div>
+            <p class="note">
+              Textos institucionales del proyecto, revisados por el establecimiento.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="s-equipo-trabajo"
+          data-chapter="equipo"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Equipo: cómo trabajamos"
+        >
+          <div class="inner">
+            <p class="eyebrow">Equipo · 02</p>
+            <h2 tabindex="-1">Cómo trabajamos</h2>
+            <div class="split split--photo">
+              <div class="stack">
+                <article class="card card--dark">
+                  <p class="kicker">Investigación</p>
+                  <h3>Datos con fuente</h3>
+                  <p>Cada cifra se rastreó a un estudio, un censo o una base de datos.</p>
+                </article>
+                <article class="card card--dark">
+                  <p class="kicker">Prototipos</p>
+                  <h3>Probar, pesar, corregir</h3>
+                  <p>Los platos se prensan, se usan y se ajustan antes de mostrarse.</p>
+                </article>
+                <article class="card card--dark">
+                  <p class="kicker">Feria</p>
+                  <h3>Contar la historia</h3>
+                  <p>El recorrido se diseña para explicar el proyecto en pocos minutos.</p>
+                </article>
+              </div>
+              <figure class="photo photo--team">
+                <img
+                  src="img/evidencia/mesa-trabajo-1600.webp"
+                  srcset="
+                    img/evidencia/mesa-trabajo-800.webp   800w,
+                    img/evidencia/mesa-trabajo-1600.webp 1600w
+                  "
+                  sizes="(max-width: 860px) 100vw, 45vw"
+                  width="1600"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Estudiantes y un docente trabajan con computadoras alrededor de una mesa en el aula MILAB."
+                />
+                <figcaption>Mesa de trabajo del equipo en el aula MILAB.</figcaption>
+              </figure>
+            </div>
+            <p class="note">Equipo NaturaPlát · INED Santa Bárbara · Suchitepéquez, Guatemala.</p>
+          </div>
+        </section>
+
+        <!-- ================= CIERRE ================= -->
+        <section
+          class="slide"
+          id="s-cierre"
+          data-chapter="cierre"
+          data-tone="dark"
+          aria-roledescription="diapositiva"
+          aria-label="Cierre: la hoja vuelve a la mesa"
+        >
+          <div class="inner cierre">
+            <p class="eyebrow">Cierre</p>
+            <h2 tabindex="-1">La hoja vuelve a la mesa</h2>
+            <p class="lede">
+              Si tienes un restaurante, un evento o una tienda, hablemos de cómo cambiar el plato
+              que se va a la basura.
+            </p>
+            <div class="contact-grid">
+              <a class="contact" href="https://wa.me/50278200000" target="_blank" rel="noopener">
+                <span class="kicker">WhatsApp</span>
+                <strong>+502 7820 0000</strong>
+              </a>
+              <a class="contact" href="mailto:hola@ecoplatos.com">
+                <span class="kicker">Correo</span>
+                <strong>hola@ecoplatos.com</strong>
+              </a>
+              <div class="contact">
+                <span class="kicker">Horario</span>
+                <strong>Lunes a sábado · 9:00–18:00</strong>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="pill" href="https://wa.me/50278200000" target="_blank" rel="noopener"
+                >Escribir por WhatsApp</a
+              >
+              <a class="pill pill--ghost" href="#s-inicio-portada">Volver al inicio</a>
+            </div>
+            <p class="note">
+              Demostración del proyecto MILAB: los datos de contacto y los pedidos son ficticios y
+              no se procesan. Código MIT en el repositorio del proyecto.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <nav class="navbar" aria-label="Navegación de diapositivas">
+        <span class="progress" id="progress" aria-hidden="true"></span>
+        <button type="button" class="navbtn" id="btnPrev" aria-label="Diapositiva anterior">
+          ← <span class="lbl">Anterior</span>
+        </button>
+        <div class="where">
+          <span class="where-text" id="whereText">—</span>
+          <div class="dots" id="dots" role="group" aria-label="Diapositivas de este capítulo"></div>
         </div>
-        <nav aria-label="Pie de página">
-          <a href="#productos">Productos</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#proceso">Proceso</a>
-          <a href="#faq">Preguntas</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-        <p class="footer-legal">
-          © 2026 NaturaPlát · Vajilla biodegradable · Demostración del proyecto MILAB: los pedidos y
-          mensajes no se procesan.
-        </p>
-      </div>
-    </footer>
+        <button
+          type="button"
+          class="navbtn navbtn--next"
+          id="btnNext"
+          aria-label="Diapositiva siguiente"
+        >
+          <span class="lbl">Siguiente</span> →
+        </button>
+      </nav>
+    </div>
 
     <div class="overlay" id="overlay" hidden></div>
 
-    <div
+    <aside
       class="drawer"
       id="cartDrawer"
       role="dialog"
@@ -628,7 +1114,7 @@
       hidden
     >
       <div class="drawer-head">
-        <h2 id="cartTitle">Tu carrito</h2>
+        <h2 id="cartTitle">Tu pedido</h2>
         <button type="button" class="icon-btn" id="cartClose" aria-label="Cerrar carrito">
           <svg
             width="20"
@@ -645,23 +1131,18 @@
           </svg>
         </button>
       </div>
-
       <div class="drawer-body">
         <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
         <ul class="cart-items" id="cartItems"></ul>
       </div>
-
       <div class="drawer-foot" id="cartFoot" hidden>
-        <div class="subtotal">
-          <span>Subtotal</span>
-          <strong id="cartSubtotal">Q0</strong>
-        </div>
-        <button type="button" class="btn btn--pea full" id="cartCheckout">Finalizar compra</button>
-        <p class="checkout-note">
-          El pago se confirma de forma local. Es una demo de carrito, sin pasarela real.
-        </p>
+        <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">Q0</strong></div>
+        <button type="button" class="pill pill--solid" id="cartCheckout">
+          Finalizar compra demo
+        </button>
+        <p class="note">Demostración: no se procesa ningún pago.</p>
       </div>
-    </div>
+    </aside>
 
     <div
       class="modal"
@@ -671,7 +1152,7 @@
       aria-labelledby="checkoutTitle"
       hidden
     >
-      <div class="modal-inner card">
+      <div class="modal-inner">
         <button type="button" class="icon-btn modal-close" id="checkoutClose" aria-label="Cerrar">
           <svg
             width="20"
@@ -690,24 +1171,18 @@
 
         <div class="checkout-panel" id="checkoutPanel">
           <h2 id="checkoutTitle">Finalizar compra</h2>
+          <p class="note">Demostración: no se procesa ningún pago ni se envía correo real.</p>
           <h3>Resumen</h3>
-          <ul class="resumen" id="checkoutItems"></ul>
-          <p class="subtotal total"><span>Total</span><strong id="checkoutTotal">Q0</strong></p>
+          <ul class="summary" id="checkoutItems"></ul>
+          <p class="total"><span>Total</span><strong id="checkoutTotal">Q0</strong></p>
 
           <form id="checkoutForm" novalidate>
             <p class="form-alert" id="checkoutError" role="alert" hidden></p>
-            <label>
-              Nombre completo
-              <input type="text" name="nombre" autocomplete="name" required />
-            </label>
-            <label>
-              Correo
-              <input type="email" name="correo" autocomplete="email" required />
-            </label>
-            <label>
-              Teléfono
-              <input type="tel" name="telefono" autocomplete="tel" required />
-            </label>
+            <label
+              >Nombre completo <input type="text" name="nombre" autocomplete="name" required
+            /></label>
+            <label>Correo <input type="email" name="correo" autocomplete="email" required /></label>
+            <label>Teléfono <input type="tel" name="telefono" autocomplete="tel" required /></label>
             <label>
               Dirección de envío
               <textarea
@@ -718,7 +1193,7 @@
                 placeholder="Calle, número, ciudad y país"
               ></textarea>
             </label>
-            <fieldset class="metodo">
+            <fieldset class="method">
               <legend>Método de pago</legend>
               <label class="radio">
                 <input type="radio" name="metodo" value="Pago contra entrega" checked />
@@ -729,36 +1204,21 @@
                 <span>Transferencia bancaria (demo)</span>
               </label>
             </fieldset>
-            <button class="btn btn--pea full" type="submit">Confirmar pedido</button>
+            <button type="submit" class="pill pill--solid">Confirmar pedido demo</button>
           </form>
         </div>
 
         <div class="checkout-panel" id="confirmationPanel" hidden>
-          <span class="ok-mark" aria-hidden="true">
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M20 6 9 17l-5-5" />
-            </svg>
-          </span>
           <h2>Pedido confirmado</h2>
           <p class="ok-text" id="confirmMessage"></p>
-          <button type="button" class="btn btn--follaje full" id="confirmDone">
-            Seguir comprando
-          </button>
+          <button type="button" class="pill" id="confirmDone">Seguir explorando</button>
         </div>
       </div>
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="sr-only" id="live" aria-live="polite"></div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

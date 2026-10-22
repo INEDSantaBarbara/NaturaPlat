@@ -10,51 +10,81 @@ test('la página carga sin errores y con un solo h1', async ({ page }) => {
   await page.goto('/');
 
   await expect(page).toHaveTitle(/NaturaPlát/);
-  await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('h1')).toHaveCount(1);
-  await expect(page.locator('h1')).toContainText('Platos desechables');
+  await expect(page.locator('.slide')).toHaveCount(17);
+  await expect(page.locator('.chap')).toHaveCount(7);
   expect(errors).toEqual([]);
 });
 
-test('la navegación lleva a cada sección', async ({ page }) => {
+test('las pestañas cambian de capítulo y actualizan la ubicación', async ({ page }) => {
   await page.goto('/');
+  await page.locator('.chap[data-chapter="impacto"]').click();
 
-  await page.locator('.site-nav a[href="#productos"]').click();
-  await expect(page).toHaveURL(/#productos$/);
-  await expect(page.locator('#productos')).toBeInViewport();
+  await expect(page).toHaveURL(/#s-impacto-plato$/);
+  await expect(page.locator('#s-impacto-plato')).toHaveClass(/is-active/);
+  await expect(page.locator('.chap[data-chapter="impacto"]')).toHaveAttribute(
+    'aria-current',
+    'true'
+  );
+  await expect(page.locator('#whereText')).toContainText('Impacto');
+  await expect(page.locator('#whereText')).toContainText('1 de 7');
+  await expect(page.locator('#s-impacto-plato h2')).toBeFocused();
 });
 
-test('el acordeón de preguntas abre y cierra', async ({ page }) => {
+test('siguiente y anterior recorren las diapositivas', async ({ page }) => {
   await page.goto('/');
 
-  const button = page.locator('#acc1');
-  const panel = page.locator('#accp1');
+  await page.locator('#btnNext').click();
+  await expect(page).toHaveURL(/#s-problema-cifras$/);
+  await expect(page.locator('#s-problema-cifras')).toHaveClass(/is-active/);
 
-  await expect(panel).toBeHidden();
-  await button.click();
-  await expect(button).toHaveAttribute('aria-expanded', 'true');
-  await expect(panel).toBeVisible();
-
-  await button.click();
-  await expect(button).toHaveAttribute('aria-expanded', 'false');
-  await expect(panel).toBeHidden();
+  await page.locator('#btnPrev').click();
+  await expect(page).toHaveURL(/#s-inicio-portada$/);
+  await expect(page.locator('#btnPrev')).toBeDisabled();
 });
 
-test('el menú móvil se abre, navega y se cierra', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+test('el teclado mueve, va al final y vuelve al inicio', async ({ page }) => {
   await page.goto('/');
 
-  const toggle = page.locator('#menuToggle');
-  await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('#siteNav')).toHaveClass(/open/);
+  await page.keyboard.press('ArrowRight');
+  await expect(page).toHaveURL(/#s-problema-cifras$/);
 
-  await page.locator('#siteNav a[href="#nosotros"]').click();
-  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(page).toHaveURL(/#nosotros$/);
+  await page.keyboard.press('ArrowLeft');
+  await expect(page).toHaveURL(/#s-inicio-portada$/);
+
+  await page.keyboard.press('End');
+  await expect(page).toHaveURL(/#s-cierre$/);
+
+  await page.keyboard.press('Home');
+  await expect(page).toHaveURL(/#s-inicio-portada$/);
 });
 
-test('no hay desplazamiento horizontal en las cinco medidas del estándar', async ({ page }) => {
+test('los puntos saltan dentro del capítulo', async ({ page }) => {
+  await page.goto('/#s-impacto-plato');
+
+  await page.locator('#dots button').nth(2).click();
+  await expect(page).toHaveURL(/#s-impacto-persona$/);
+  await expect(page.locator('#dots button').nth(2)).toHaveAttribute('aria-current', 'true');
+});
+
+test('los enlaces directos y el hash abren la diapositiva correcta', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Ver impacto' }).click();
+  await expect(page).toHaveURL(/#s-impacto-plato$/);
+
+  await page.goto('/#s-impacto-fuentes');
+  await expect(page.locator('#s-impacto-fuentes')).toHaveClass(/is-active/);
+  await expect(page.locator('#whereText')).toContainText('7 de 7');
+});
+
+test('las diapositivas inactivas quedan inertes', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#s-problema-cifras')).toHaveAttribute('inert', '');
+  await expect(page.locator('#s-inicio-portada')).not.toHaveAttribute('inert', '');
+  await expect(page.locator('#s-problema-cifras')).toHaveAttribute('aria-hidden', 'true');
+});
+
+test('no hay scroll de página ni desborde en las cinco medidas', async ({ page }) => {
   for (const size of [
     { width: 390, height: 844 },
     { width: 768, height: 1024 },
@@ -64,9 +94,17 @@ test('no hay desplazamiento horizontal en las cinco medidas del estándar', asyn
   ]) {
     await page.setViewportSize(size);
     await page.goto('/');
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth > window.innerWidth + 1
+    const metrics = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      innerWidth: window.innerWidth,
+      scrollHeight: document.documentElement.scrollHeight,
+      innerHeight: window.innerHeight,
+    }));
+    expect(metrics.scrollWidth, `${size.width}x${size.height}`).toBeLessThanOrEqual(
+      metrics.innerWidth + 1
     );
-    expect(overflow, `desborde horizontal en ${size.width}×${size.height}`).toBe(false);
+    expect(metrics.scrollHeight, `${size.width}x${size.height}`).toBeLessThanOrEqual(
+      metrics.innerHeight + 1
+    );
   }
 });

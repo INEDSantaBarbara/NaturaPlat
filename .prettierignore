@@ -6,6 +6,7 @@ test-results/
 # Activos binarios
 public/img/
 assets/evidencia/
+assets/producto/
 
 # Documentación de referencia y material original
 docs/referencia/

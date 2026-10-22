@@ -1,34 +1,60 @@
 /* ------------------------------------------------------------------
-   NaturaPlát · Platos biodegradables de hoja de plátano
-   Design tokens — único lugar con valores hexadecimales de color.
+   NaturaPlát · tokens oficiales
+   Paleta fijada por el equipo líder del proyecto (2026-10-21).
+   Este es el único archivo con valores hexadecimales de color.
    ------------------------------------------------------------------ */
 :root {
-  --follaje: #1c3b2c; /* verde bosque · fondos oscuros */
-  --sombra: #10281c; /* verde profundo · footer, tinta */
-  --hoja: #47724f; /* verde medio · acentos suaves */
-  --lavada: #edf2e8; /* verde pálido frío · fondos claros */
-  --fibra: #e6d9b8; /* beige de plátano · superficies */
-  --cascara: #c9993b; /* dorado suave · CTA destacado */
-  --blanco: #f7faf4;
-  --card: #fff;
-  --tinta: #152b1e;
-  --tinta-suave: #4c5f50;
-  --linea: rgb(28 59 44 / 14%);
+  /* Lienzo y superficies */
+  --np-void: #317302; /* verde profundo: escenario y capítulos galería */
+  --np-light: #f2f2f2; /* sección clara: Impacto y formularios */
+  --np-card-dark: rgb(242 242 242 / 4%);
+  --np-card-light: #fff;
 
-  /* Estados */
-  --fibra-hover: #f0e5c8; /* hover del botón fibra */
-  --follaje-hover: #245037; /* hover del botón follaje */
-  --peligro: #a63a2b; /* error accionable */
-  --peligro-suave: #fbf1ef; /* fondo de campo con error */
+  /* Texto */
+  --np-on-dark: #f2f2f2;
+  --np-on-dark-soft: #dfe5da; /* 4.56:1 sobre el lienzo */
+  --np-ink: #317302;
+  --np-ink-soft: #407d15; /* 4.51:1 sobre claro */
+
+  /* Acentos y datos */
+  --np-leaf: #58a60a;
+  --np-leaf-soft: #6fa660;
+  --np-lime: #87d90d;
+
+  /* Líneas y estados */
+  --np-line-dark: rgb(242 242 242 / 18%);
+  --np-line-light: rgb(49 115 2 / 18%);
+  --np-danger: #a63a2b;
+  --np-danger-soft: #f6e9e7;
+  --np-focus-dark: #87d90d;
+  --np-focus-light: #317302;
 
   /* Tipografía */
-  --disp: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --body: 'Karla', 'Segoe UI', Arial, sans-serif;
+  --np-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --np-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+  --np-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
 
-  /* Forma y medida */
-  --radio: 20px;
-  --radio-sm: 12px;
-  --sombra-suave: 0 6px 24px rgb(16 40 28 / 8%);
-  --header-h: 72px;
-  --max: 1120px;
+  /* Escala tipográfica */
+  --text-caption: 0.72rem;
+  --text-small: 0.82rem;
+  --text-body: clamp(1rem, 0.35vw + 0.92rem, 1.1rem);
+  --text-subhead: clamp(1.2rem, 0.5vw + 1rem, 1.5rem);
+  --text-heading: clamp(1.9rem, 3.2vw + 1rem, 3.8rem);
+  --text-display: clamp(2.7rem, 5.2vw + 1.2rem, 6rem);
+
+  /* Espaciado */
+  --space-1: 6px;
+  --space-2: 12px;
+  --space-3: 18px;
+  --space-4: 26px;
+  --space-5: 35px;
+  --space-6: 47px;
+  --space-7: 80px;
+
+  /* Forma */
+  --radius-card: 18px;
+  --radius-pill: 999px;
+  --max-width: 1120px;
+  --header-h: 64px;
+  --nav-h: 64px;
 }

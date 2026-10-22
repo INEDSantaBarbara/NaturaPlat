@@ -1,75 +1,96 @@
 # Arquitectura
 
-NaturaPlát es una **página informativa estática** con un carrito de demostración. No es una
-aplicación con rutas ni un recorrido en diapositivas: el contenido se lee con scroll normal y el
-carrito es un extra. Esa decisión define toda la arquitectura.
+NaturaPlát es un **recorrido en diapositivas** de siete capítulos, con un carrito de demostración.
+No es una landing con scroll ni una aplicación con rutas: el escenario cambia y la página nunca
+desplaza. Esa decisión define la estructura.
 
 ## Capas
 
 ```text
-public/index.html   Estructura y contenido (una sola página)
-public/css/         tokens.css (valores) → styles.css (componentes y layout)
-public/js/main.js   Comportamiento: carrito, checkout, FAQ, menú y validación
-server.js           Servidor local de desarrollo (Node nativo, sin dependencias)
+public/index.html    Marco de tres filas: cabecera, escenario y barra
+public/css/          tokens.css (valores) → styles.css (marco y componentes)
+public/js/           main.js arranca slides.js, impact.js y cart.js
+public/img/          SVG de marca, fotos de evidencia y fotos de producto
+server.js            Servidor local de desarrollo (Node nativo, sin dependencias)
 ```
 
-- **Sin build.** Lo que hay en `public/` es lo que se publica. Vercel sirve la carpeta tal cual con
-  el preset _Other_.
+- **Sin build.** Lo que hay en `public/` es lo que se publica. Vercel sirve la carpeta con el
+  preset _Other_.
 - **Sin backend.** El carrito vive en `localStorage`; el checkout y el contacto son simulaciones
   declaradas en pantalla.
-- **Sin framework.** `main.js` es un IIFE con secciones separadas por comentarios (`Persistencia`,
-  `Render`, `Drawer`, `Checkout`, `FAQ`, `Contacto`). Cada bloque inicializa una sola cosa.
+- **Módulos ES nativos.** `main.js` importa el motor de diapositivas, el simulador y el carrito.
+  Cada módulo tiene una responsabilidad y no conoce el DOM de los otros.
 
-## Estado del carrito
+## Recorrido
+
+`slides.js` mantiene el índice actual y:
+
+1. Alterna `.is-active` y `.is-before` para la transición.
+2. Marca las diapositivas inactivas con `inert` y `aria-hidden="true"`.
+3. Actualiza la pestaña del capítulo, «N de M», los puntos y el progreso.
+4. Mueve el foco al `h1`/`h2` de la diapositiva y anuncia el cambio en `#live`.
+5. Sincroniza el hash con `history.replaceState`.
+
+La navegación funciona con pestañas, anterior/siguiente, puntos, `←`/`→`, `Inicio`/`Fin` y un
+gesto de 60 px. Los controles de formulario y los gráficos quedan excluidos del gesto.
+
+## Impacto
+
+`simulator.js` es lógica pura y no toca el DOM. Conserva las fórmulas y los datos de
+`prospectivas-de-impacto.html`:
+
+```text
+duroport = masa × (FE_fabricación + %quema × FE_combustión)
+ahorro   = duroport − escenario de hoja
+persona  = platos_semana × 52 × huella
+territorio = población × adopción × platos_semana × 52 × ahorro
+```
+
+`impact.js` mantiene el estado de los supuestos y vuelve a pintar el duelo, la serie de la persona,
+el territorio y la tabla. `charts.js` construye los dos gráficos con SVG y la API del DOM; no hay
+Chart.js ni peticiones externas. La tabla anual es la alternativa textual de los gráficos.
+
+## Carrito
 
 ```text
 localStorage['naturaplat.cart']
   { "1:pack25": { product: 1, variant: "pack25", qty: 2 }, ... }
 ```
 
-1. `load()` lee y tolera JSON corrupto o almacenamiento bloqueado.
-2. `normalize()` descarta productos o variantes inexistentes, cantidades menores a 1 y topa en 99.
-3. Toda mutación pasa por `save()` y `render()`.
-4. `render()` reconstruye la lista con `createElement` y `textContent`; nunca usa `innerHTML` con
-   datos.
-5. `total()` es estado derivado: se calcula al renderizar, no se guarda.
+`cart.js` carga, normaliza y guarda. Todo se reconstruye con `createElement` y `textContent`; no se
+usa `innerHTML` con datos. El checkout valida con `aria-invalid`, `aria-describedby` y
+`role="alert"`, y declara que no procesa pagos.
 
-Los precios y variantes tienen un único origen: el objeto `PRODUCTS` de `main.js`. El HTML repite
-los precios visibles de las tarjetas; si cambia un precio, hay que actualizar ambos y las pruebas.
+## Sistema visual
 
-## Interfaz y tokens
+- `public/css/tokens.css` contiene los cinco colores oficiales y sus roles. Es el único archivo
+  con hexadecimales; una prueba lo verifica.
+- El lienzo es `#317302`; el capítulo Impacto usa `#f2f2f2` para leer datos. `#87d90d` se reserva
+  para cifras grandes, barras y foco sobre verde. `#58a60a` y `#6fa660` no llevan texto.
+- La tipografía es Bricolage Grotesque (display), Atkinson Hyperlegible (texto) e IBM Plex Mono
+  (datos). El tracking negativo y los titulares de dos líneas vienen de la referencia Analogue.
+- Las tarjetas usan borde de 1 px y radio de 18 px; no hay sombras en la UI, solo en el arte del
+  héroe.
 
-- `public/css/tokens.css` contiene **todos** los valores de color, tipografía, radios y medidas.
-  Es el único archivo con hexadecimales; una prueba estática lo verifica.
-- `styles.css` importa esos valores con `var(--token)`. Los estados de error usan
-  `--peligro` y `--peligro-suave`.
-- El layout es _mobile first_ con puntos de quiebre en 720 px, 900 px y 1000 px. El ancho máximo
-  del contenedor es 1120 px.
-- `[hidden] { display: none !important; }` garantiza que los paneles ocultos (carrito vacío,
-  modales, FAQ) no sean visibles cuando un componente define `display`.
+## Fotos
 
-## Accesibilidad
-
-- Un solo `h1`; cada sección tiene `h2`; el acordeón usa `button` con `aria-expanded` y
-  `aria-controls`, y paneles `role="region"` con `aria-labelledby`.
-- El carrito y el checkout son diálogos `aria-modal="true"`; al abrirlos el foco va al botón de
-  cierre y al cerrarlos vuelve al control que los abrió. `Escape` cierra el diálogo activo.
-- Los errores de formulario se anuncian con `role="alert"`, se marcan con `aria-invalid` y se
-  vinculan con `aria-describedby`.
-- `prefers-reduced-motion` desactiva animaciones y scroll suave.
-- Foco visible de 3 px con `:focus-visible`.
+- `assets/evidencia/` y `assets/producto/` guardan los originales; no se publican.
+- `scripts/optimize-images.py` genera WebP 1600/800 en `public/img/`.
+- El HTML usa `srcset`, `sizes`, `width`, `height`, `loading="lazy"` y `decoding="async"`.
+- El héroe usa SVG de platos; las fichas usan fotos del producto terminado y el proceso usa la
+  foto del termoprensado. Las fotos de equipo viven en Equipo y Proceso/Evidencia.
 
 ## Pruebas
 
-- **Estáticas** (`tests/static/`): contrato del HTML, referencias locales, tokens, formularios y
-  avisos. No necesitan navegador.
-- **E2E** (`tests/e2e/`): flujos reales en Chromium con Playwright. El `webServer` levanta
-  `node server.js` y **no reutiliza** un servidor existente: el puerto 4173 es compartido por todos
-  los proyectos MILAB y reutilizarlo probaría otro sitio.
+- **Estáticas** (`tests/static/`): contrato del HTML, diapositivas, capítulos, fotos, tokens,
+  formularios, simulador y carrito. No necesitan navegador.
+- **E2E** (`tests/e2e/`): navegación completa, teclado, foco, `inert`, cinco medidas, simulador,
+  tabla, fuentes y carrito/checkout. El `webServer` levanta `node server.js` y no reutiliza un
+  servidor existente: el puerto 4173 es compartido por todos los proyectos MILAB.
 
 ## Límites conocidos
 
 - Las tipografías se cargan desde Google Fonts: sin red, el sitio usa las familias de respaldo.
-- El formulario de contacto no envía nada; el aviso está en la pantalla y en el README.
-- No hay pasarela de pago ni persistencia del pedido: al confirmar y cerrar, el carrito se vacía.
-- Las cifras de impacto son declaradas por el proyecto; falta su validación técnica.
+- El formulario de contacto se retiró; el cierre usa WhatsApp y correo de demostración.
+- No hay pasarela de pago ni persistencia del pedido fuera del navegador.
+- Las cifras de impacto son estimaciones declaradas; los supuestos se editan en el paso 2.
