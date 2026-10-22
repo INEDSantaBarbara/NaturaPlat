@@ -51,7 +51,28 @@
 Total: 17 diapositivas. El capítulo Impacto desarrolla: un plato, supuestos, una persona,
 territorio, año por año, método/valores y fuentes.
 
-## 4. Sistema visual oficial
+### 3.1 Referencia visual: Analogue (guía, no norma)
+
+La referencia «Analogue — Black gallery vitrine» aporta la **disposición**: lienzo oscuro,
+producto flotando en el vacío, composición centrada, titulares de dos líneas, tracking negativo,
+un único pill como acción, tarjetas con borde de 1 px y radios de 18 px, sin sombras en la UI.
+
+No se copian sus colores ni su monocromía: manda la paleta oficial. Tampoco se copia su regla de
+«sin sujetos humanos»: las fotos de evidencia son parte del proyecto y viven en Equipo y Proceso.
+El número de capítulos, la navegación, la divulgación progresiva y las fuentes los manda MILAB.
+
+| Analogue              | En NaturaPlát                                            |
+| --------------------- | -------------------------------------------------------- |
+| Lienzo negro          | Verde profundo `#317302`                                 |
+| Texto blanco/gris     | `#f2f2f2` y `#dfe5da`                                    |
+| Sin acento cromático  | Lima `#87d90d` solo en cifras grandes, barras y foco     |
+| Una sola familia      | Bricolage + Atkinson + IBM Plex Mono                     |
+| Cartuchos flotando    | Platos de hoja flotando (SVG)                            |
+| Bandas oscuras/claras | Capítulos galería en verde + Impacto en claro            |
+| Pill blanco           | Pill `#f2f2f2` con texto `#317302`                       |
+| Sin sujetos humanos   | Héroe solo producto; fotos de equipo en Equipo y Proceso |
+| Radio 17.6 px         | 18 px                                                    |
+| Ancho 1200 px         | 1120 px (MILAB)                                          |
 
 La paleta la fijó el equipo líder del proyecto (2026-10-21). Se conserva la **disposición** de
 este documento; el color se implementa solo con estos cinco valores. No se introducen tonos de
@@ -59,36 +80,42 @@ otra familia salvo el rojo funcional de error.
 
 ### 4.1 Tokens
 
-| Rol              | Token              | Valor                    | Uso                                              |
-| ---------------- | ------------------ | ------------------------ | ------------------------------------------------ |
-| Fondo            | `--np-bg`          | `#f2f2f2`                | escenario claro, fondo de página                 |
-| Superficie       | `--np-surface`     | `#ffffff`                | tarjetas, paneles, tablas                        |
-| Texto            | `--np-ink`         | `#317302`                | texto principal, enlaces, botones                |
-| Texto secundario | `--np-ink-soft`    | `#407d15`                | jerarquía secundaria (92 % de la marca)          |
-| Marca profunda   | `--np-leaf-deep`   | `#317302`                | portada, cierre, cabecera                        |
-| Sobre oscuro     | `--np-on-dark`     | `#f2f2f2`                | texto sobre `--np-leaf-deep`                     |
-| Verde hoja       | `--np-leaf`        | `#58a60a`                | series de gráficos, rellenos, ilustración        |
-| Verde suave      | `--np-leaf-soft`   | `#6fa660`                | superficies decorativas, fondos de tarjetas      |
-| Acento           | `--np-lime`        | `#87d90d`                | cifras grandes, barras, foco sobre oscuro        |
-| Línea            | `--np-line`        | `rgba(49, 115, 2, 0.18)` | bordes y separadores                             |
-| Error            | `--np-danger`      | `#a63a2b`                | errores y campos inválidos (funcional, no marca) |
-| Fondo de error   | `--np-danger-soft` | `#f6e9e7`                | fondo de campo con error                         |
-| Foco claro       | `--np-focus`       | `#317302`                | anillo de foco sobre fondo claro                 |
-| Foco oscuro      | `--np-focus-dark`  | `#87d90d`                | anillo de foco sobre `--np-leaf-deep`            |
+| Rol                     | Token               | Valor                       | Uso                                      |
+| ----------------------- | ------------------- | --------------------------- | ---------------------------------------- |
+| Lienzo                  | `--np-void`         | `#317302`                   | fondo del escenario y capítulos galería  |
+| Sección clara           | `--np-light`        | `#f2f2f2`                   | capítulo Impacto y formularios           |
+| Tarjeta oscura          | `--np-card-dark`    | `rgba(242, 242, 242, 0.04)` | tarjetas sobre verde                     |
+| Tarjeta clara           | `--np-card-light`   | `#ffffff`                   | tarjetas sobre claro                     |
+| Texto sobre oscuro      | `--np-on-dark`      | `#f2f2f2`                   | títulos y cuerpo                         |
+| Texto secundario oscuro | `--np-on-dark-soft` | `#dfe5da`                   | metadatos (4.56:1)                       |
+| Texto sobre claro       | `--np-ink`          | `#317302`                   | títulos y cuerpo                         |
+| Texto secundario claro  | `--np-ink-soft`     | `#407d15`                   | metadatos (4.51:1)                       |
+| Verde hoja              | `--np-leaf`         | `#58a60a`                   | series, rellenos, ilustración            |
+| Verde suave             | `--np-leaf-soft`    | `#6fa660`                   | superficies decorativas                  |
+| Acento                  | `--np-lime`         | `#87d90d`                   | cifras grandes, barras, foco sobre verde |
+| Línea oscura            | `--np-line-dark`    | `rgba(242, 242, 242, 0.18)` | bordes sobre verde                       |
+| Línea clara             | `--np-line-light`   | `rgba(49, 115, 2, 0.18)`    | bordes sobre claro                       |
+| Error                   | `--np-danger`       | `#a63a2b`                   | errores (solo sobre claro)               |
+| Fondo de error          | `--np-danger-soft`  | `#f6e9e7`                   | campo inválido                           |
+| Foco oscuro             | `--np-focus-dark`   | `#87d90d`                   | anillo de foco sobre verde               |
+| Foco claro              | `--np-focus-light`  | `#317302`                   | anillo de foco sobre claro               |
 
-**Ningún hexadecimal fuera de `public/css/tokens.css`.** `--np-ink-soft` es una mezcla al 92 %
-de `#317302` sobre `#f2f2f2` para alcanzar 4.5:1; no es un color nuevo de la marca.
+**Ningún hexadecimal fuera de `public/css/tokens.css`.** `--np-on-dark-soft` y `--np-ink-soft`
+son mezclas de la marca para alcanzar 4.5:1; no son colores nuevos. `--np-card-dark` es un velo,
+no un color de marca.
 
 ### 4.2 Contraste y uso permitido
 
 | Combinación           | Ratio  | Uso permitido                                                        |
 | --------------------- | ------ | -------------------------------------------------------------------- |
-| `#317302` / `#f2f2f2` | 5.23:1 | texto normal, enlaces, botones                                       |
-| `#f2f2f2` / `#317302` | 5.23:1 | texto normal sobre portada, cierre y cabecera                        |
-| `#ffffff` / `#317302` | 5.86:1 | texto sobre superficie blanca o marca                                |
+| `#317302` / `#f2f2f2` | 5.23:1 | texto normal, enlaces y botones sobre sección clara                  |
+| `#f2f2f2` / `#317302` | 5.23:1 | texto normal sobre el lienzo verde y la cabecera                     |
+| `#dfe5da` / `#317302` | 4.56:1 | texto secundario sobre el lienzo verde                               |
+| `#407d15` / `#f2f2f2` | 4.51:1 | texto secundario sobre sección clara                                 |
+| `#ffffff` / `#317302` | 5.86:1 | texto sobre tarjeta blanca o marca                                   |
 | `#317302` / `#87d90d` | 3.34:1 | solo texto grande (≥24 px o ≥18.66 px bold) y elementos no textuales |
-| `#87d90d` / `#317302` | 3.34:1 | acentos, barras y foco sobre fondo oscuro                            |
-| `#a63a2b` / `#f2f2f2` | 5.75:1 | errores                                                              |
+| `#87d90d` / `#317302` | 3.34:1 | acentos, barras y foco sobre verde                                   |
+| `#a63a2b` / `#f2f2f2` | 5.75:1 | errores sobre sección clara                                          |
 | `#f2f2f2` / `#58a60a` | 2.73:1 | **prohibido como texto**; solo relleno, gráfico o icono decorativo   |
 | `#f2f2f2` / `#6fa660` | 2.57:1 | **prohibido como texto**; solo superficie o ilustración              |
 | `#317302` / `#58a60a` | 1.92:1 | **prohibido como texto**                                             |
@@ -96,13 +123,15 @@ de `#317302` sobre `#f2f2f2` para alcanzar 4.5:1; no es un color nuevo de la mar
 
 Reglas:
 
-- El texto normal vive únicamente en `--np-ink` o `--np-ink-soft` sobre `--np-bg`/`#fff`, o en
-  `--np-on-dark` sobre `--np-leaf-deep`.
+- Sobre el lienzo verde, el texto vive en `--np-on-dark` (5.23:1) o `--np-on-dark-soft` (4.56:1).
+- Sobre sección clara, el texto vive en `--np-ink` (5.23:1) o `--np-ink-soft` (4.51:1).
 - `#6fa660`, `#58a60a` y `#87d90d` son colores de **superficie, dato y acento**, no de párrafo.
-- El botón primario usa `#317302` con texto `#f2f2f2`; el hover se resuelve con borde, elevación
-  o subrayado, nunca bajando el contraste del texto.
-- El foco es `#317302` sobre claro y `#87d90d` sobre oscuro; no se elimina nunca.
-- El rojo `#a63a2b` es exclusivamente funcional para errores.
+- El pill primario sobre verde es `#f2f2f2` con texto `#317302`; sobre claro es `#317302` con
+  texto `#f2f2f2`. El hover se resuelve con borde, elevación o subrayado, nunca bajando el
+  contraste.
+- El foco es `--np-focus-dark` sobre verde y `--np-focus-light` sobre claro; no se elimina.
+- El rojo `#a63a2b` es exclusivamente funcional para errores y vive en superficies claras. Un
+  formulario sobre verde usa una tarjeta blanca.
 
 ### 4.3 Tipografía
 
