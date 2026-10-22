@@ -1,13 +1,15 @@
 /**
  * Arranque del recorrido NaturaPlát.
  *
- * Orden: motor de diapositivas → simulador de impacto → carrito demo.
+ * Orden: diapositivas → galería del héroe → simulador de impacto → carrito demo.
  */
 
 import { initCart } from './cart.js';
+import { initGallery } from './gallery.js';
 import { initImpact } from './impact.js';
 import { initSlides } from './slides.js';
 
 initSlides();
+initGallery();
 initImpact();
 initCart();

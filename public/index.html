@@ -108,66 +108,112 @@
               </p>
             </div>
 
-            <div class="collage" role="group" aria-label="Mosaico de fotos del proyecto">
-              <figure class="collage-card collage-main">
-                <img
-                  src="img/producto/plato-14x20-3-800.webp"
-                  srcset="
-                    img/producto/plato-14x20-3-800.webp   800w,
-                    img/producto/plato-14x20-3-1600.webp 1600w
-                  "
-                  sizes="(max-width: 980px) 60vw, 28vw"
-                  width="1600"
-                  height="1207"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
-                  alt="Plato NaturaPlát de hoja de plátano, 14 cm de ancho por 20 cm de largo, sobre fondo blanco."
-                />
-                <figcaption>Plato terminado · 14 × 20 cm</figcaption>
-              </figure>
-              <figure class="collage-card collage-press">
-                <img
-                  src="img/producto/prensa-800.webp"
-                  srcset="img/producto/prensa-800.webp 800w, img/producto/prensa-1600.webp 1600w"
-                  sizes="(max-width: 980px) 40vw, 18vw"
-                  width="1600"
-                  height="1200"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Prensa metálica calentada al fuego para dar forma a la hoja de plátano."
-                />
-              </figure>
-              <figure class="collage-card collage-team">
-                <img
-                  src="img/evidencia/equipo-feria-800.webp"
-                  srcset="
-                    img/evidencia/equipo-feria-800.webp   800w,
-                    img/evidencia/equipo-feria-1280.webp 1280w
-                  "
-                  sizes="(max-width: 980px) 46vw, 20vw"
-                  width="1280"
-                  height="960"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Equipo NaturaPlát frente al stand del proyecto en la feria MILAB."
-                />
-              </figure>
-              <figure class="collage-card collage-session">
-                <img
-                  src="img/evidencia/sesion-fotografica-800.webp"
-                  srcset="
-                    img/evidencia/sesion-fotografica-800.webp   800w,
-                    img/evidencia/sesion-fotografica-1600.webp 1600w
-                  "
-                  sizes="(max-width: 980px) 36vw, 16vw"
-                  width="1600"
-                  height="1200"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Dos estudiantes sostienen una hoja de plátano y los prototipos en el set de fotografía del proyecto."
-                />
-              </figure>
+            <div
+              class="hero-gallery"
+              id="heroGallery"
+              role="group"
+              aria-roledescription="galería"
+              aria-label="Galería de fotos del proyecto"
+            >
+              <div class="gallery-stage">
+                <figure class="gallery-slide is-active" data-title="Plato terminado · 14 × 20 cm">
+                  <img
+                    src="img/producto/plato-14x20-3-800.webp"
+                    srcset="
+                      img/producto/plato-14x20-3-800.webp   800w,
+                      img/producto/plato-14x20-3-1600.webp 1600w
+                    "
+                    sizes="(max-width: 980px) 90vw, 42vw"
+                    width="1600"
+                    height="1207"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    alt="Plato NaturaPlát de hoja de plátano, 14 cm de ancho por 20 cm de largo, sobre fondo blanco."
+                  />
+                </figure>
+                <figure class="gallery-slide" data-title="Termoprensado" aria-hidden="true">
+                  <img
+                    src="img/producto/prensa-800.webp"
+                    srcset="img/producto/prensa-800.webp 800w, img/producto/prensa-1600.webp 1600w"
+                    sizes="(max-width: 980px) 90vw, 42vw"
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Prensa metálica calentada al fuego para dar forma a la hoja de plátano."
+                  />
+                </figure>
+                <figure class="gallery-slide" data-title="Equipo MILAB" aria-hidden="true">
+                  <img
+                    src="img/evidencia/equipo-feria-800.webp"
+                    srcset="
+                      img/evidencia/equipo-feria-800.webp   800w,
+                      img/evidencia/equipo-feria-1280.webp 1280w
+                    "
+                    sizes="(max-width: 980px) 90vw, 42vw"
+                    width="1280"
+                    height="960"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Equipo NaturaPlát frente al stand del proyecto en la feria MILAB."
+                  />
+                </figure>
+                <figure class="gallery-slide" data-title="Sesión de producto" aria-hidden="true">
+                  <img
+                    src="img/evidencia/sesion-fotografica-800.webp"
+                    srcset="
+                      img/evidencia/sesion-fotografica-800.webp   800w,
+                      img/evidencia/sesion-fotografica-1600.webp 1600w
+                    "
+                    sizes="(max-width: 980px) 90vw, 42vw"
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Dos estudiantes sostienen una hoja de plátano y los prototipos en el set de fotografía del proyecto."
+                  />
+                </figure>
+
+                <div class="gallery-bar">
+                  <div class="gallery-meta">
+                    <p class="gallery-caption" id="galleryCaption">Plato terminado · 14 × 20 cm</p>
+                    <span class="gallery-index" id="galleryIndex">01 / 04</span>
+                  </div>
+                  <div class="gallery-actions">
+                    <button
+                      type="button"
+                      class="gallery-btn"
+                      id="galleryPrev"
+                      aria-label="Foto anterior"
+                    >
+                      ←
+                    </button>
+                    <div
+                      class="gallery-dots"
+                      id="galleryDots"
+                      role="group"
+                      aria-label="Elegir foto"
+                    ></div>
+                    <button
+                      type="button"
+                      class="gallery-btn"
+                      id="galleryNext"
+                      aria-label="Foto siguiente"
+                    >
+                      →
+                    </button>
+                    <button
+                      type="button"
+                      class="gallery-btn"
+                      id="galleryToggle"
+                      aria-label="Pausar galería"
+                    >
+                      ❚❚
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

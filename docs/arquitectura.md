@@ -76,9 +76,10 @@ usa `innerHTML` con datos. El checkout valida con `aria-invalid`, `aria-describe
 
 - `assets/evidencia/` y `assets/producto/` guardan los originales; no se publican.
 - `scripts/optimize-images.py` genera WebP 1600/800 en `public/img/`.
-- El HTML usa `srcset`, `sizes`, `width`, `height`, `loading="lazy"` y `decoding="async"`.
-- El héroe usa SVG de platos; las fichas usan fotos del producto terminado y el proceso usa la
-  foto del termoprensado. Las fotos de equipo viven en Equipo y Proceso/Evidencia.
+- El HTML usa `srcset`, `sizes`, `width`, `height`, `loading` (`eager` en la primera foto de la
+  galería, `lazy` en el resto) y `decoding="async"`.
+- El héroe usa una galería incrustada de cuatro fotos: plato, termoprensado, equipo y sesión.
+  La ficha usa la foto del producto terminado; el proceso, la del termoprensado.
 
 ## Pruebas
 

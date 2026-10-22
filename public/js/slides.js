@@ -120,6 +120,12 @@ export function initSlides() {
       live.textContent = `${chapterName(slide)}, diapositiva ${index + 1} de ${slides.length}: ${slide.getAttribute('aria-label')}`;
     }
 
+    document.dispatchEvent(
+      new CustomEvent('slidechange', {
+        detail: { id: slide.id, chapter: chapterOf(slide) },
+      })
+    );
+
     if (focus) {
       const heading = slide.querySelector('h1, h2');
       heading?.focus({ preventScroll: true });

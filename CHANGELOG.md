@@ -4,6 +4,13 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.0.2] — 2026-10-22
+
+### Cambiado
+
+- El héroe usa una galería incrustada de cuatro fotos (plato, termoprensado, equipo y sesión)
+  con transición automática, flechas, puntos, pausa y respeto por `prefers-reduced-motion`.
+
 ## [2.0.1] — 2026-10-22
 
 ### Cambiado
