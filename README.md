@@ -28,7 +28,7 @@ gesto.
 El capítulo **Impacto** integra el simulador de prospectivas: compara el duroport con NaturaPlát,
 permite ajustar los supuestos, proyecta una persona y el territorio hasta 2032 y cierra con la
 tabla anual, la fórmula, los valores y diez fuentes numeradas. Incluye un **carrito de
-demostración** con dos piezas, dos presentaciones por pieza, persistencia en `localStorage` y un
+demostración** con un solo plato, dos presentaciones, persistencia en `localStorage` y un
 checkout simulado.
 
 > **Aviso de demostración.** Este sitio es un prototipo escolar. Los pedidos y los mensajes de
@@ -44,7 +44,7 @@ checkout simulado.
   72 meses, población INE de Guatemala/Suchitepéquez/Santa Bárbara y adopción 2027–2032.
 - 🧮 **Datos con fuente** — tabla anual, fórmula, valores usados y 10 fuentes enlazadas; los
   supuestos se editan y se separan de los datos oficiales.
-- 🛒 **Catálogo y carrito** — Bandeja 25 (producto terminado) y Plato 22 (prototipo ilustrado),
+- 🛒 **Catálogo y carrito** — un solo plato terminado de 14 cm de ancho por 20 cm de largo,
   variantes, subtotal en quetzales y checkout de demostración.
 - 📷 **Producto y evidencia** — fotos de estudio del producto terminado, del termoprensado y del
   equipo, optimizadas en WebP con `srcset` 1600/800.

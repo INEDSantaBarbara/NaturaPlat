@@ -19,13 +19,13 @@ test('agregar abre el panel, suma y enfoca el cierre', async ({ page }) => {
 
 test('las variantes y cantidades actualizan el subtotal', async ({ page }) => {
   await page.goto('/#s-producto-catalogo');
-  await page.locator('.product-card[data-product="1"] .variant[data-variant="pack100"]').click();
-  await page.locator('.product-card[data-product="1"] .add').click();
+  await page.locator('.product-card[data-product="2"] .variant[data-variant="pack100"]').click();
+  await page.locator('.product-card[data-product="2"] .add').click();
 
-  await expect(page.locator('#cartSubtotal')).toHaveText('Q390');
+  await expect(page.locator('#cartSubtotal')).toHaveText('Q480');
   await page.getByRole('button', { name: 'Aumentar cantidad' }).click();
   await expect(page.locator('#cartCount')).toHaveText('2');
-  await expect(page.locator('#cartSubtotal')).toHaveText('Q780');
+  await expect(page.locator('#cartSubtotal')).toHaveText('Q960');
 
   await page.getByRole('button', { name: 'Quitar' }).click();
   await expect(page.locator('#cartEmpty')).toBeVisible();

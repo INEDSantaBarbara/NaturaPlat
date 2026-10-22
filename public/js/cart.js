@@ -6,19 +6,10 @@
  */
 
 const PRODUCTS = {
-  1: {
-    id: 1,
-    name: 'NaturaPlát 22',
-    img: 'img/eco-plato-22.svg',
-    variants: {
-      pack25: { label: 'Pack × 25', price: 119 },
-      pack100: { label: 'Pack × 100', price: 390 },
-    },
-  },
   2: {
     id: 2,
-    name: 'NaturaPlát Bandeja 25',
-    img: 'img/producto/bandeja-25-1-800.webp',
+    name: 'NaturaPlát 14 × 20',
+    img: 'img/producto/plato-14x20-1-800.webp',
     variants: {
       pack25: { label: 'Pack × 25', price: 149 },
       pack100: { label: 'Pack × 100', price: 480 },

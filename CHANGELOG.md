@@ -27,8 +27,8 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 - La paleta oficial del equipo líder sustituyó la paleta anterior: `#317302`, `#f2f2f2`,
   `#58a60a`, `#6fa660` y `#87d90d`.
 - La tipografía pasó a Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono.
-- El catálogo muestra la Bandeja 25 terminada con foto de estudio; el Plato 22 queda como
-  prototipo ilustrado.
+- El catálogo muestra un solo plato terminado de 14 cm de ancho por 20 cm de largo, con foto de
+  estudio y ficha de medidas.
 - El carrito y el checkout se conservan como demostración accesible.
 - README, arquitectura, despliegue, CHANGELOG y CONTRIBUTING se actualizaron.
 
