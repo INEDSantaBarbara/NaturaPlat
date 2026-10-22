@@ -359,7 +359,7 @@ h3 {
   font-size: var(--text-caption);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--np-lime);
+  color: var(--np-on-dark-soft);
 }
 
 .slide[data-tone='light'] .kicker {
@@ -682,7 +682,7 @@ h3 {
 .step-num {
   font-family: var(--np-mono);
   font-size: var(--text-caption);
-  color: var(--np-lime);
+  color: var(--np-on-dark-soft);
 }
 
 .step h3 {
