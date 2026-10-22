@@ -446,66 +446,147 @@ h3 {
   min-width: 0;
 }
 
-.mosaic {
+.collage {
   position: relative;
-  display: grid;
   width: 100%;
   max-height: 58vh;
-  aspect-ratio: 1 / 1.02;
-  grid-template-columns: 1.15fr 0.85fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  aspect-ratio: 1 / 1.05;
   justify-self: center;
 }
 
-.mosaic-item {
-  position: relative;
-  min-width: 0;
+.collage::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 8%;
+  width: 80%;
+  aspect-ratio: 1;
+  border: 1px dashed var(--np-line-dark);
+  border-radius: 50%;
+  animation: collage-spin 80s linear infinite;
+  pointer-events: none;
+}
+
+.collage-card {
+  position: absolute;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--np-line-dark);
-  border-radius: var(--radius-card);
+  border-radius: 16px;
   background: var(--np-card-dark);
+  box-shadow: 0 18px 36px rgb(0 0 0 / 25%);
+  will-change: transform;
 }
 
-.mosaic-item img {
+.collage-card img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-.mosaic-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  grid-row: 1 / 3;
-  padding: 12px;
+.collage-main {
+  z-index: 3;
+  top: 8%;
+  left: 0;
+  width: 62%;
+  padding: 10px;
   background: var(--np-card-light);
+  transform: rotate(-3deg);
+  animation: collage-float-a 8s ease-in-out infinite;
 }
 
-.mosaic-main img {
-  flex: 1;
-  min-height: 0;
-  border-radius: 10px;
+.collage-main img {
+  aspect-ratio: 4 / 3;
   object-fit: contain;
+  border-radius: 8px;
 }
 
-.mosaic-main figcaption {
-  padding-top: 8px;
+.collage-main figcaption {
+  padding-top: 6px;
   color: var(--np-ink);
   font-family: var(--np-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
   text-align: center;
   text-transform: uppercase;
 }
 
-.mosaic-item:not(.mosaic-main) img {
-  transition: transform 0.4s ease;
+.collage-press {
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 42%;
+  transform: rotate(4deg);
+  animation: collage-float-b 7.2s ease-in-out infinite;
+  animation-delay: -1.6s;
 }
 
-.mosaic-item:not(.mosaic-main):hover img {
-  transform: scale(1.03);
+.collage-team {
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  transform: rotate(-2deg);
+  animation: collage-float-c 9s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.collage-session {
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  width: 38%;
+  transform: rotate(5deg);
+  animation: collage-float-d 8.6s ease-in-out infinite;
+  animation-delay: -2.2s;
+}
+
+@keyframes collage-float-a {
+  0%,
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-2deg) translateY(-10px);
+  }
+}
+
+@keyframes collage-float-b {
+  0%,
+  100% {
+    transform: rotate(4deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+@keyframes collage-float-c {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-3deg) translateY(-12px);
+  }
+}
+
+@keyframes collage-float-d {
+  0%,
+  100% {
+    transform: rotate(5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(6deg) translateY(-7px);
+  }
+}
+
+@keyframes collage-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ------------------------------------------------------------------
@@ -1888,7 +1969,7 @@ textarea.error {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .mosaic {
+  .collage {
     display: none;
   }
 
@@ -2036,5 +2117,10 @@ textarea.error {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .collage-card,
+  .collage::before {
+    animation: none;
   }
 }
