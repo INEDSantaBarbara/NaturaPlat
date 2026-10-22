@@ -6,10 +6,12 @@
 
 import { initCart } from './cart.js';
 import { initGallery } from './gallery.js';
+import { initGuide } from './guide.js';
 import { initImpact } from './impact.js';
 import { initSlides } from './slides.js';
 
 initSlides();
 initGallery();
+initGuide();
 initImpact();
 initCart();

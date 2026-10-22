@@ -4,6 +4,18 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.1.0] — 2026-10-22
+
+### Añadido
+
+- Guía NaturaPlát en un panel lateral discreto, con banco local, sugerencias, historial
+  acotado y respaldo cuando la API no está disponible.
+- `api/chat.js`: proxy serverless a DeepSeek con prompt acotado, clave solo en el servidor,
+  límites de ráfaga, diarios y de cuerpo, timeout y `thinking` desactivado.
+- `public/js/guide.js`, estilos de la pestaña/panel y ruta local `/api/chat` en `server.js`.
+- `make env`, `.env.example` y `docs/asistente.md`.
+- Pruebas: 38 estáticas y 23 end-to-end; la guía se prueba con la API mockeada.
+
 ## [2.0.2] — 2026-10-22
 
 ### Cambiado

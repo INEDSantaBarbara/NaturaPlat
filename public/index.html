@@ -1292,6 +1292,85 @@ adopción(año)      = meta × (año − 2026) ÷ 6</pre>
       </div>
     </div>
 
+    <button
+      type="button"
+      class="guide-tab"
+      id="guideTab"
+      aria-haspopup="dialog"
+      aria-controls="guideDrawer"
+      aria-expanded="false"
+    >
+      <span class="guide-dot" aria-hidden="true"></span>
+      <span class="guide-label">Guía</span>
+    </button>
+
+    <p class="guide-nudge" id="guideNudge" hidden>¿Te quedó una duda del proyecto?</p>
+
+    <div class="guide-overlay" id="guideOverlay" hidden></div>
+
+    <aside
+      class="guide-drawer"
+      id="guideDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="guideTitle"
+      hidden
+    >
+      <header class="guide-head">
+        <div>
+          <p class="guide-eyebrow">NaturaPlát · MILAB</p>
+          <h2 id="guideTitle">Guía del proyecto</h2>
+        </div>
+        <button type="button" class="icon-btn guide-close" id="guideClose" aria-label="Cerrar guía">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </header>
+      <div class="guide-body">
+        <div
+          class="guide-messages"
+          id="guideMessages"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        ></div>
+        <div
+          class="guide-chips"
+          id="guideChips"
+          role="group"
+          aria-label="Preguntas sugeridas"
+        ></div>
+        <form class="guide-form" id="guideForm">
+          <label class="sr-only" for="guideInput">Tu pregunta</label>
+          <input
+            id="guideInput"
+            type="text"
+            maxlength="400"
+            autocomplete="off"
+            placeholder="Preguntá por el plato, el proceso o el impacto"
+          />
+          <button type="submit" class="guide-send" id="guideSend" aria-label="Enviar pregunta">
+            →
+          </button>
+        </form>
+        <p class="guide-note">
+          Prototipo. Las preguntas que no están en la guía local se envían a DeepSeek. No escribas
+          datos personales.
+        </p>
+      </div>
+    </aside>
+
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <div class="sr-only" id="live" aria-live="polite"></div>
 

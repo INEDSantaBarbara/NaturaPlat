@@ -59,6 +59,20 @@ commits viejos no se redespliegan solos.
 
 El preset de Vercel es **Other** (sin framework). No se configura `buildCommand`.
 
+### Guía con DeepSeek
+
+La función `api/chat.js` se detecta automáticamente. Para habilitar el modelo, agregá en
+**Vercel → Project → Settings → Environment Variables**:
+
+- `DEEPSEEK_API_KEY` (Production y Preview), obligatoria para la guía en línea.
+- `BURST_PER_MINUTE=8`, `DAILY_REQUEST_LIMIT=200`, `DAILY_PER_IP_LIMIT=30` (opcionales).
+- `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` (opcionales, para el tope global
+  persistente).
+
+Sin `DEEPSEEK_API_KEY` el sitio funciona igual: la guía responde con el banco local y avisa
+que la versión en línea no está configurada. Los límites y el detalle están en
+[`docs/asistente.md`](asistente.md).
+
 ## Publicación manual
 
 Solo como excepción justificada:

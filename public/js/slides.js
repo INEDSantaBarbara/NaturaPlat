@@ -164,6 +164,7 @@ export function initSlides() {
   });
 
   document.addEventListener('keydown', (event) => {
+    if (document.querySelector('[role="dialog"]:not([hidden])')) return;
     const tag = (event.target.tagName || '').toLowerCase();
     if (['input', 'select', 'textarea', 'summary'].includes(tag)) return;
     if (event.altKey || event.ctrlKey || event.metaKey) return;

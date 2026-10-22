@@ -19,9 +19,26 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+const PROJECT_ROOT = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.join(PROJECT_ROOT, 'public');
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = Number(process.env.PORT) || 4173;
+
+/**
+ * Carga .env.local si existe. El servidor de desarrollo no necesita dependencias
+ * y así la guía puede probarse en local sin exportar variables a mano.
+ */
+function loadEnvFile() {
+  const file = path.join(PROJECT_ROOT, '.env.local');
+  if (!fs.existsSync(file)) return;
+  for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+    const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
+    if (!match || process.env[match[1]] !== undefined) continue;
+    process.env[match[1]] = match[2].replace(/^['"]|['"]$/g, '');
+  }
+}
+
+loadEnvFile();
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -64,8 +81,14 @@ function sendText(res, status, body) {
   res.end(body);
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const url = (req.url || '/').split('?')[0];
+
+  if (url === '/api/chat') {
+    const { default: chat } = await import('./api/chat.js');
+    await chat(req, res);
+    return;
+  }
 
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     sendText(res, 405, '405 - Método no permitido');

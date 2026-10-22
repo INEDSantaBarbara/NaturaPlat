@@ -31,10 +31,15 @@ tabla anual, la fórmula, los valores y diez fuentes numeradas. Incluye un **car
 demostración** con un solo plato, dos presentaciones, persistencia en `localStorage` y un
 checkout simulado.
 
+Una **Guía NaturaPlát** acompaña el recorrido desde una pestaña discreta al costado: responde
+por el plato, el proceso, el impacto y el equipo. Usa un banco local para lo frecuente y
+DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo en local.
+
 > **Aviso de demostración.** Este sitio es un prototipo escolar. Los pedidos y los mensajes de
-> contacto **no se procesan**: no hay pasarela de pago, ni backend, ni envío de correos. Los datos
-> que escribes se quedan en tu navegador. Las cifras de impacto (45 días de compostaje, 100 %
-> fibra natural) son las declaradas por el proyecto y están sujetas a validación técnica.
+> contacto **no se procesan**: no hay pasarela de pago, ni backend de pedidos, ni envío de
+> correos. La guía usa una función serverless opcional; las preguntas que no están en el banco
+> local se envían a DeepSeek. Las cifras de impacto son las declaradas por el proyecto y están
+> sujetas a validación técnica.
 
 ## ✨ Características
 
@@ -48,6 +53,8 @@ checkout simulado.
   variantes, subtotal en quetzales y checkout de demostración.
 - 📷 **Producto y evidencia** — galería incrustada en el héroe con el plato terminado, el
   termoprensado, el equipo y la sesión; fotos optimizadas en WebP con `srcset` 1600/800.
+- 🗣️ **Guía lateral** — pestaña discreta, aviso breve, panel con sugerencias, banco local,
+  respaldo y DeepSeek solo para las preguntas fuera del banco.
 - 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y
   1920×1080; en móvil se desplaza la diapositiva densa, no la página.
 - ♿ **Accesibilidad** — foco gestionado al cambiar de diapositiva, `inert` y `aria-hidden` en las
@@ -55,10 +62,11 @@ checkout simulado.
   y `aria-invalid`, y `prefers-reduced-motion`.
 - 🎨 **Paleta oficial** — los cinco colores del equipo líder viven en `public/css/tokens.css`;
   ningún hexadecimal fuera de ese archivo.
-- 🧪 **Pruebas en dos niveles** — 32 estáticas con `node:test` y 18 end-to-end con Playwright.
+- 🧪 **Pruebas en dos niveles** — 38 estáticas con `node:test` y 23 end-to-end con Playwright.
 - ⚡ **Cero dependencias en runtime** — HTML, CSS y módulos ES sin build; gráficos SVG propios,
-  sin Chart.js. Las tipografías Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono se
-  cargan desde Google Fonts.
+  sin Chart.js. La guía usa una función serverless y DeepSeek solo si está configurada. Las
+  tipografías Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono se cargan desde Google
+  Fonts.
 
 ## 🗂️ Estructura del proyecto
 
@@ -75,7 +83,8 @@ checkout simulado.
 │   │   ├── simulator.js       # Lógica pura del simulador (probada en node:test)
 │   │   ├── charts.js          # Gráficos SVG sin dependencias
 │   │   ├── impact.js          # Enlace de supuestos, gráficos y tabla
-│   │   └── cart.js            # Carrito, checkout y validación
+│   │   ├── cart.js            # Carrito, checkout y validación
+│   │   └── guide.js           # Guía: banco local, panel y /api/chat
 │   ├── img/
 │   │   ├── evidencia/         # Equipo y registro audiovisual (WebP)
 │   │   ├── producto/          # Producto terminado y termoprensado (WebP)
@@ -85,9 +94,12 @@ checkout simulado.
 │   └── producto/              # Originales de producto y proceso (no se sirven)
 ├── tests/
 │   ├── static/                # node:test, sin navegador
-│   └── e2e/                   # Playwright: recorrido, impacto y carrito
+│   └── e2e/                   # Playwright: recorrido, impacto, carrito y guía
+├── api/
+│   └── chat.js                # Proxy serverless a DeepSeek (opcional)
 ├── docs/
 │   ├── arquitectura.md        # Cómo está construido y por qué
+│   ├── asistente.md           # Guía, límites y configuración
 │   ├── design.md              # Fuente de verdad visual
 │   └── despliegue.md          # Vercel Hobby e identidad git
 ├── server.js                  # Servidor local sin dependencias (puerto 4173, sin caché)
@@ -95,6 +107,7 @@ checkout simulado.
 │   ├── free-port.mjs          # Libera el puerto 4173 de servidores colgados
 │   └── optimize-images.py     # Genera los WebP de assets/evidencia y producto
 ├── Makefile                   # Atajos autodocumentados
+├── .env.example               # Variables de la guía (sin claves reales)
 ├── package.json               # Scripts y dependencias de desarrollo
 ├── vercel.json                # Configuración de despliegue estático
 └── .github/workflows/ci.yml   # Compuertas de calidad
@@ -109,12 +122,14 @@ versiona.
 - **npm** con lockfile (`package-lock.json`).
 - **make** (opcional: los scripts de npm son la vía oficial).
 - **Pillow** (solo para `make images`, que regenera las fotos WebP).
+- **Opcional:** una clave de DeepSeek para la guía en línea (sin ella funciona el banco local).
 - Para las pruebas e2e, Chromium de Playwright (`npx playwright install chromium`).
 
 ## 🚀 Inicio rápido
 
 ```bash
 make install          # npm ci
+make env              # opcional: crea .env.local para la guía
 make serve            # http://127.0.0.1:4173
 ```
 
@@ -143,7 +158,7 @@ make free-port
 | `make serve`          | Sirve el sitio en `http://127.0.0.1:4173` sin caché.             |
 | `make dev` / `run`    | Alias de `serve`.                                                |
 | `make free-port`      | Cierra el proceso que ocupa el puerto 4173.                      |
-| `make images`         | Genera los WebP de `assets/evidencia` (requiere Pillow).         |
+| `make images`         | Genera los WebP de evidencia y producto (requiere Pillow).       |
 | `make lint`           | html-validate + Stylelint + ESLint.                              |
 | `make format`         | Formatea con Prettier.                                           |
 | `make format-check`   | Verifica el formato sin escribir.                                |
@@ -162,18 +177,20 @@ Overrides útiles: `make serve PORT=8080 HOST=0.0.0.0`.
 ## 🧪 Testing
 
 ```bash
-make test-static   # recorrido, impacto, tokens, fotos y carrito
-make test-e2e      # navegación, simulador, carrito y responsive
+make test-static   # recorrido, impacto, tokens, fotos, carrito y guía
+make test-e2e      # navegación, simulador, carrito, guía y responsive
 make test          # todo
 ```
 
 - **Estáticos** (`tests/static/`): idioma y metadatos, 17 diapositivas con título, siete
   capítulos, ids únicos, referencias locales, `alt` y `srcset` de fotos, formularios accesibles,
-  tokens definidos, hexadecimales solo en `tokens.css`, simulador (9 casos), fuentes y avisos.
+  tokens definidos, hexadecimales solo en `tokens.css`, simulador (9 casos), proxy de la guía
+  (método, clave, límites, prompt), fuentes y avisos.
 - **E2E** (`tests/e2e/`): carga sin errores, pestañas y capítulos, siguiente/anterior, teclado,
   puntos, enlaces directos, `inert`, foco, cinco medidas sin scroll; simulador (supuestos,
-  persona, territorio, tabla y fuentes); carrito (alta, variantes, cantidades, persistencia) y
-  checkout inválido/válido.
+  persona, territorio, tabla y fuentes); carrito (alta, variantes, cantidades, persistencia);
+  checkout inválido/válido; guía (apertura, banco local sin red, respuesta mockeada, 429/503 y
+  cierre con `Escape`).
 
 Las pruebas que mutan estado usan el contexto aislado de Playwright: no escriben en tu
 `localStorage` real ni dejan archivos versionados.
@@ -188,12 +205,17 @@ Antes del primer commit, ejecuta `make git-config` y verifica con `make check-id
 Hobby con repositorio privado, Vercel solo despliega commits cuyo **email** coincida con el dueño
 de la cuenta. Los detalles están en [`docs/despliegue.md`](docs/despliegue.md).
 
+La guía necesita `DEEPSEEK_API_KEY` en Vercel (Production y Preview) para consultar a DeepSeek.
+Sin la variable, el despliegue funciona igual y la guía responde con el banco local. La función
+`api/chat.js` se detecta automáticamente; el resto sigue siendo estático en `public/`.
+
 ## 🧰 Tecnologías
 
 HTML5 semántico · CSS3 con custom properties · módulos ES nativos (sin framework) ·
-SVG generado con la API del DOM · Node.js para el servidor local · Playwright para e2e · ESLint,
-Stylelint, html-validate y Prettier para calidad. **Sin dependencias en runtime, sin Chart.js y
-sin paso de compilación.** La especificación visual vive en [`docs/design.md`](docs/design.md).
+SVG generado con la API del DOM · Node.js para el servidor local · función serverless de Vercel
+con DeepSeek opcional · Playwright para e2e · ESLint, Stylelint, html-validate y Prettier para
+calidad. **Sin dependencias npm en runtime, sin Chart.js y sin paso de compilación.** La
+especificación visual vive en [`docs/design.md`](docs/design.md).
 
 ## 📄 Licencia y créditos
 
@@ -201,7 +223,9 @@ Distribuido bajo licencia **MIT** (ver [`LICENSE`](LICENSE)).
 
 - **Proyecto:** NaturaPlát · MILAB, INED Santa Bárbara, Suchitepéquez, Guatemala.
 - **Contenido:** equipo NaturaPlát; misión, visión y cifras de impacto provistas por el proyecto.
-- **Ilustraciones:** SVG originales del proyecto (`public/img/`).
-- **Tipografías:** Fraunces y Karla, SIL Open Font License, servidas por Google Fonts.
+- **Fotografías:** producto, proceso y equipo del proyecto (`assets/` y `public/img/`).
+- **Tipografías:** Bricolage Grotesque, Atkinson Hyperlegible e IBM Plex Mono, SIL Open Font
+  License, servidas por Google Fonts.
+- **Guía:** DeepSeek con el patrón MILAB de asistentes; banco local y proxy serverless.
 - **Estándar:** MILAB v2 (estructura, Makefile, calidad y despliegue) y patrón UX «Recorrido en
   diapositivas» para la jerarquía de contenido.

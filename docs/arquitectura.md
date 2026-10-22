@@ -81,13 +81,26 @@ usa `innerHTML` con datos. El checkout valida con `aria-invalid`, `aria-describe
 - El héroe usa una galería incrustada de cuatro fotos: plato, termoprensado, equipo y sesión.
   La ficha usa la foto del producto terminado; el proceso, la del termoprensado.
 
+## Guía
+
+- `public/js/guide.js` maneja la pestaña, el panel, el historial acotado, las sugerencias y
+  el banco local de preguntas frecuentes.
+- Si el banco no reconoce la pregunta, consulta `POST /api/chat`. El proxy `api/chat.js` es
+  una función serverless que añade el `SYSTEM_PROMPT` y llama a DeepSeek con `thinking`
+  desactivado.
+- La clave `DEEPSEEK_API_KEY` vive solo en el servidor. Los límites de ráfaga, diarios, de
+  cuerpo y de tokens están en `api/chat.js`; sin Upstash los contadores son por instancia.
+- Si falta la clave, la red falla o se alcanza un tope, la guía muestra un mensaje de
+  respaldo y sigue respondiendo el banco local.
+
 ## Pruebas
 
 - **Estáticas** (`tests/static/`): contrato del HTML, diapositivas, capítulos, fotos, tokens,
   formularios, simulador y carrito. No necesitan navegador.
 - **E2E** (`tests/e2e/`): navegación completa, teclado, foco, `inert`, cinco medidas, simulador,
-  tabla, fuentes y carrito/checkout. El `webServer` levanta `node server.js` y no reutiliza un
-  servidor existente: el puerto 4173 es compartido por todos los proyectos MILAB.
+  tabla, fuentes, carrito/checkout y guía (local, mock de `/api/chat`, 429/503). El `webServer`
+  levanta `node server.js` y no reutiliza un servidor existente: el puerto 4173 es compartido
+  por todos los proyectos MILAB.
 
 ## Límites conocidos
 

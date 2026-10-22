@@ -180,6 +180,9 @@ contain`, sin recorte de fondo.
 10. **Ficha de producto** — imagen, variantes, precio, añadir al carrito demo.
 11. **Mosaico de evidencia** — 2–4 fotos con pie breve.
 12. **Cierre** — contacto, créditos y enlace al repositorio.
+13. **Guía lateral** — pestaña vertical de 44 px, aviso una vez, panel de 400 px con
+    mensajes, sugerencias, campo y nota de privacidad. Discreta cuando está cerrada;
+    protagonista solo cuando se abre.
 
 ## 6. Accesibilidad
 

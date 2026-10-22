@@ -14,7 +14,7 @@ PYTHON ?= python3
 GIT_NAME  := MILAB INED Santa Bárbara
 GIT_EMAIL := inedsantabarbaramilab@gmail.com
 
-.PHONY: help install git-config check-identity serve dev run free-port images lint lint-html lint-css lint-js \
+.PHONY: help install env git-config check-identity serve dev run free-port images lint lint-html lint-css lint-js \
         format format-check test test-static test-e2e test-e2e-ui deploy ci clean
 
 help: ## Muestra esta ayuda
@@ -28,6 +28,14 @@ help: ## Muestra esta ayuda
 
 install: ## Instala las dependencias de desarrollo con el lockfile
 	$(NPM) ci
+
+env: ## Crea .env.local desde .env.example (si no existe)
+	@if [ -f .env.local ]; then \
+		echo ".env.local ya existe"; \
+	else \
+		cp .env.example .env.local; \
+		echo "Creado .env.local: completá DEEPSEEK_API_KEY"; \
+	fi
 
 git-config: ## Configura la identidad git del repo (requerida por Vercel Hobby)
 	@git config --local user.name "$(GIT_NAME)"

@@ -44,6 +44,7 @@ export default [
     files: [
       'tests/**/*.js',
       'scripts/**/*.mjs',
+      'api/**/*.js',
       'playwright.config.js',
       'eslint.config.js',
       'server.js',
@@ -51,7 +52,7 @@ export default [
     languageOptions: {
       ecmaVersion: 2023,
       sourceType: 'module',
-      globals: { ...globals.node },
+      globals: { ...globals.node, fetch: 'readonly', AbortSignal: 'readonly' },
     },
   },
 ];
