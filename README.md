@@ -70,6 +70,7 @@ experiencia de compra, no para vender.
 │   ├── arquitectura.md        # Cómo está construido y por qué
 │   └── despliegue.md          # Vercel Hobby e identidad git
 ├── server.js                  # Servidor local sin dependencias (puerto 4173, sin caché)
+├── scripts/free-port.mjs      # Libera el puerto 4173 de servidores colgados
 ├── Makefile                   # Atajos autodocumentados
 ├── package.json               # Scripts y dependencias de desarrollo
 ├── vercel.json                # Configuración de despliegue estático
@@ -103,7 +104,11 @@ npm run serve
 El puerto **4173 es compartido por todos los proyectos MILAB**. `server.js` responde
 `Cache-Control: no-cache, must-revalidate` para que el navegador no muestre la página cacheada de
 otro proyecto; aun así, si abres varios proyectos a la vez, cierra el servidor anterior antes de
-levantar el siguiente.
+levantar el siguiente. Si quedó un servidor colgado, ejecuta:
+
+```bash
+make free-port
+```
 
 ## 🛠️ Comandos
 
@@ -113,6 +118,7 @@ levantar el siguiente.
 | `make install`        | Instala dependencias con el lockfile (`npm ci`).                 |
 | `make serve`          | Sirve el sitio en `http://127.0.0.1:4173` sin caché.             |
 | `make dev` / `run`    | Alias de `serve`.                                                |
+| `make free-port`      | Cierra el proceso que ocupa el puerto 4173.                      |
 | `make lint`           | html-validate + Stylelint + ESLint.                              |
 | `make format`         | Formatea con Prettier.                                           |
 | `make format-check`   | Verifica el formato sin escribir.                                |

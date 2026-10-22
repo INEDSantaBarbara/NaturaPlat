@@ -13,7 +13,7 @@ NPX   ?= npx
 GIT_NAME  := MILAB INED Santa Bárbara
 GIT_EMAIL := inedsantabarbaramilab@gmail.com
 
-.PHONY: help install git-config check-identity serve dev run lint lint-html lint-css lint-js \
+.PHONY: help install git-config check-identity serve dev run free-port lint lint-html lint-css lint-js \
         format format-check test test-static test-e2e test-e2e-ui deploy ci clean
 
 help: ## Muestra esta ayuda
@@ -42,9 +42,13 @@ check-identity: ## Verifica que la identidad git sea la de la cuenta de Vercel
 	@echo "✓ Identidad git correcta: $(GIT_EMAIL)"
 
 serve: ## Sirve el sitio en http://127.0.0.1:4173 (server.js, sin caché)
+	@node scripts/free-port.mjs "$(PORT)" --check
 	HOST="$(HOST)" PORT="$(PORT)" node server.js
 
 dev run: serve ## Alias de 'serve'
+
+free-port: ## Libera el puerto $(PORT) de servidores de desarrollo colgados
+	node scripts/free-port.mjs "$(PORT)"
 
 lint: lint-html lint-css lint-js ## Ejecuta todos los linters
 
@@ -69,6 +73,7 @@ test-static: ## Tests estáticos con node:test (sin navegador)
 	node --test tests/static/*.test.js
 
 test-e2e: ## Tests end-to-end con Playwright (levanta server.js)
+	@node scripts/free-port.mjs "$(PORT)" --check
 	PORT="$(PORT)" $(NPX) playwright test
 
 test-e2e-ui: ## Playwright en modo UI (interactivo)

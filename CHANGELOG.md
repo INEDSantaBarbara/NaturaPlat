@@ -4,6 +4,14 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [1.0.1] — 2026-10-21
+
+### Añadido
+
+- `make free-port` y `npm run port:free`: detectan el proceso que ocupa el puerto 4173 y lo
+  cierran (SIGTERM y, si no responde, SIGKILL).
+- `make serve` y `make test-e2e` comprueban el puerto antes de arrancar y señalan cómo liberarlo.
+
 ## [1.0.0] — 2026-10-21
 
 ### Añadido

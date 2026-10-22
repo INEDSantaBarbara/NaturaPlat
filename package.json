@@ -1,6 +1,6 @@
 {
   "name": "naturaplat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "NaturaPlát: vajilla biodegradable de hoja de plátano. Proyecto MILAB del INED Santa Bárbara, Suchitepéquez, Guatemala.",
   "type": "module",
@@ -28,6 +28,7 @@
   "scripts": {
     "serve": "node server.js",
     "dev": "node server.js",
+    "port:free": "node scripts/free-port.mjs",
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "html-validate public/index.html",
     "lint:css": "stylelint \"public/css/**/*.css\"",

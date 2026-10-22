@@ -40,7 +40,13 @@ export default [
   },
   {
     // Config, tests, servidor de desarrollo y scripts corren en Node.
-    files: ['tests/**/*.js', 'playwright.config.js', 'eslint.config.js', 'server.js'],
+    files: [
+      'tests/**/*.js',
+      'scripts/**/*.mjs',
+      'playwright.config.js',
+      'eslint.config.js',
+      'server.js',
+    ],
     languageOptions: {
       ecmaVersion: 2023,
       sourceType: 'module',
