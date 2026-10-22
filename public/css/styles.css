@@ -144,8 +144,11 @@ button {
 }
 
 .brand img {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--np-card-light);
   object-fit: contain;
 }
 
@@ -238,7 +241,8 @@ button {
   position: relative;
   min-height: 0;
   overflow: hidden;
-  background: var(--np-void);
+  background:
+    radial-gradient(1100px 620px at 78% 18%, rgb(242 242 242 / 6%), transparent 62%), var(--np-void);
 }
 
 .slide {
@@ -546,6 +550,26 @@ h3 {
 
 .gallery-btn:hover {
   background: rgb(49 115 2 / 70%);
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  transform: translateY(-50%);
+  background: rgb(49 115 2 / 78%);
+}
+
+.gallery-arrow--prev {
+  left: 10px;
+}
+
+.gallery-arrow--next {
+  right: 10px;
+}
+
+.gallery-arrow:hover {
+  background: rgb(49 115 2 / 92%);
 }
 
 .gallery-dots {

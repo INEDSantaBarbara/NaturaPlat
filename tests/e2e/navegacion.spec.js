@@ -24,15 +24,15 @@ test('la galería del inicio cambia de foto y se puede pausar', async ({ page })
   await expect(page.locator('.gallery-slide.is-active')).toHaveCount(1);
 
   await page.locator('#galleryDots button').first().click();
-  await expect(page.locator('#galleryCaption')).toHaveText('Plato terminado · 14 × 20 cm');
+  await expect(page.locator('#galleryCaption')).toHaveText('Sesión de producto');
   await expect(page.locator('#galleryIndex')).toHaveText('01 / 04');
 
   await page.locator('#galleryNext').click();
-  await expect(page.locator('#galleryCaption')).toHaveText('Termoprensado');
+  await expect(page.locator('#galleryCaption')).toHaveText('Plato terminado · 14 × 20 cm');
   await expect(page.locator('#galleryIndex')).toHaveText('02 / 04');
 
   await page.locator('#galleryDots button').nth(3).click();
-  await expect(page.locator('#galleryCaption')).toHaveText('Sesión de producto');
+  await expect(page.locator('#galleryCaption')).toHaveText('Equipo MILAB');
   await expect(page.locator('#galleryIndex')).toHaveText('04 / 04');
 });
 
