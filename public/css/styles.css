@@ -670,6 +670,37 @@ h3 {
   align-items: stretch;
 }
 
+.split--product {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+}
+
+.product-use {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 48vh);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--np-line-dark);
+  border-radius: var(--radius-card);
+  background: var(--np-card-dark);
+  justify-self: center;
+}
+
+.product-use img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.product-use figcaption {
+  padding: 10px 12px;
+  color: var(--np-on-dark-soft);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
 .stack {
   display: flex;
   flex-direction: column;
@@ -757,6 +788,10 @@ h3 {
 
 .cards--4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cards--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card {
@@ -2330,6 +2365,7 @@ textarea.error {
   .split--data,
   .split--photo,
   .split--process,
+  .split--product,
   .duel,
   .persona,
   .panel {
@@ -2370,6 +2406,7 @@ textarea.error {
   .facts,
   .facts--4,
   .cards--4,
+  .cards--2,
   .steps,
   .steps--2,
   .products,

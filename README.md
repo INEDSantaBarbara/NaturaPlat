@@ -52,7 +52,8 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 - 🛒 **Catálogo y carrito** — un solo plato terminado de 14 cm de ancho por 20 cm de largo,
   variantes, subtotal en quetzales y checkout de demostración.
 - 📷 **Producto y evidencia** — galería incrustada en el héroe con el plato terminado, el
-  termoprensado, el equipo y la sesión; fotos optimizadas en WebP con `srcset` 1600/800.
+  termoprensado, el equipo y la sesión; la diapositiva «Lo que aguanta» muestra el plato en uso
+  con tamal, huevo, fruta y frijoles. Fotos optimizadas en WebP con `srcset`.
 - 🗣️ **Guía lateral** — pestaña discreta, aviso breve, panel con sugerencias, banco local,
   respaldo y DeepSeek solo para las preguntas fuera del banco.
 - 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y

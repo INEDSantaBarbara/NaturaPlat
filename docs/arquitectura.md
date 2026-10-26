@@ -79,7 +79,8 @@ usa `innerHTML` con datos. El checkout valida con `aria-invalid`, `aria-describe
 - El HTML usa `srcset`, `sizes`, `width`, `height`, `loading` (`eager` en la primera foto de la
   galería, `lazy` en el resto) y `decoding="async"`.
 - El héroe usa una galería incrustada de cuatro fotos: plato, termoprensado, equipo y sesión.
-  La ficha usa la foto del producto terminado; el proceso, la del termoprensado.
+  La ficha usa la foto del producto terminado; «Lo que aguanta» muestra el plato en uso con
+  cuatro comidas; el proceso usa la foto del termoprensado.
 
 ## Guía
 

@@ -4,6 +4,13 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.1.1] — 2026-10-26
+
+### Añadido
+
+- Foto del plato en uso (collage de cuatro comidas) en la diapositiva «Lo que aguanta», junto a
+  las fichas de calor, microondas, compostaje y aditivos.
+
 ## [2.1.0] — 2026-10-22
 
 ### Añadido
