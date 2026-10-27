@@ -52,9 +52,10 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 - 🛒 **Catálogo y carrito** — un solo plato terminado de 14 cm de ancho por 20 cm de largo,
   variantes, subtotal en quetzales y checkout de demostración.
 - 📷 **Producto y evidencia** — galería incrustada en el héroe con el plato terminado, el
-  termoprensado, el equipo y la sesión; «El plato, de cerca» combina un video corto con fotos de
-  estudio; «Lo que aguanta» muestra el plato en uso con tamal, huevo, fruta y frijoles. Fotos
-  optimizadas en WebP con `srcset` y video MP4 sin audio.
+  termoprensado, el equipo y la sesión; «El plato, de cerca» reúne el video y tres fotos de
+  estudio en un solo cuadro con avance automático o manual; «Lo que aguanta» muestra el plato en
+  uso con tamal, huevo, fruta y frijoles. Fotos optimizadas en WebP con `srcset` y video MP4 sin
+  audio.
 - 🗣️ **Guía lateral** — pestaña discreta, aviso breve, panel con sugerencias, banco local,
   respaldo y DeepSeek solo para las preguntas fuera del banco.
 - 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y
@@ -85,7 +86,7 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 │   │   ├── simulator.js       # Lógica pura del simulador (probada en node:test)
 │   │   ├── charts.js          # Gráficos SVG sin dependencias
 │   │   ├── impact.js          # Enlace de supuestos, gráficos y tabla
-│   │   ├── video.js           # Reproducción del video según la diapositiva activa
+│   │   ├── product-gallery.js # Galería del producto: video, fotos, flechas y pausa
 │   │   ├── cart.js            # Carrito, checkout y validación
 │   │   └── guide.js           # Guía: banco local, panel y /api/chat
 │   ├── img/

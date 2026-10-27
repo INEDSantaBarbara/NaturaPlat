@@ -9,11 +9,11 @@ import { initGallery } from './gallery.js';
 import { initGuide } from './guide.js';
 import { initImpact } from './impact.js';
 import { initSlides } from './slides.js';
-import { initProductVideo } from './video.js';
+import { initProductGallery } from './product-gallery.js';
 
 initSlides();
 initGallery();
 initGuide();
-initProductVideo();
+initProductGallery();
 initImpact();
 initCart();

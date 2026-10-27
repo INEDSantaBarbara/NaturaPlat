@@ -79,12 +79,13 @@ usa `innerHTML` con datos. El checkout valida con `aria-invalid`, `aria-describe
 - El HTML usa `srcset`, `sizes`, `width`, `height`, `loading` (`eager` en la primera foto de la
   galería, `lazy` en el resto) y `decoding="async"`.
 - El héroe usa una galería incrustada de cuatro fotos: plato, termoprensado, equipo y sesión.
-  La ficha usa una foto de estudio del producto; «El plato, de cerca» combina un video corto con
-  dos fotos; «Lo que aguanta» muestra el plato en uso con cuatro comidas; el proceso usa la foto
-  del termoprensado.
-- `public/js/video.js` reproduce el video solo cuando su diapositiva está activa, lo pausa al
-  salir y respeta `prefers-reduced-motion`. El botón permite pausar o reanudar; el archivo no
-  tiene audio.
+  La ficha usa una foto de estudio del producto; «El plato, de cerca» reúne el video y tres
+  fotos en un solo cuadro; «Lo que aguanta» muestra el plato en uso con cuatro comidas; el
+  proceso usa la foto del termoprensado.
+- `public/js/product-gallery.js` maneja la galería del producto: un cuadro 3:2, avance cada 5 s
+  (8 s cuando muestra el video), flechas, puntos y pausa. El video solo se reproduce cuando su
+  diapositiva y su cuadro están activos, se pausa al salir y respeta `prefers-reduced-motion`;
+  el archivo no tiene audio. No hay fotos sueltas que desborden la diapositiva.
 
 ## Guía
 

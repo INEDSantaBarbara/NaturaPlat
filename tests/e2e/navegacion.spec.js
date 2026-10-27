@@ -20,8 +20,8 @@ test('la galería del inicio cambia de foto y se puede pausar', async ({ page })
   await page.goto('/');
   await page.locator('#galleryToggle').click();
   await expect(page.locator('#galleryToggle')).toHaveAttribute('aria-label', 'Reproducir galería');
-  await expect(page.locator('.gallery-slide')).toHaveCount(4);
-  await expect(page.locator('.gallery-slide.is-active')).toHaveCount(1);
+  await expect(page.locator('#heroGallery .gallery-slide')).toHaveCount(4);
+  await expect(page.locator('#heroGallery .gallery-slide.is-active')).toHaveCount(1);
 
   await page.locator('#galleryDots button').first().click();
   await expect(page.locator('#galleryCaption')).toHaveText('Sesión de producto');
@@ -36,17 +36,61 @@ test('la galería del inicio cambia de foto y se puede pausar', async ({ page })
   await expect(page.locator('#galleryIndex')).toHaveText('04 / 04');
 });
 
-test('el video del producto se reproduce y se pausa', async ({ page }) => {
+test('la galería del producto alterna el video y las fotos', async ({ page }) => {
   await page.goto('/#s-producto-detalle');
-  await expect(page.locator('#productVideo')).toBeVisible();
-  await expect(page.locator('#videoToggle')).toHaveAttribute('aria-label', 'Pausar video');
 
-  await page.locator('#videoToggle').click();
-  await expect(page.locator('#videoToggle')).toHaveAttribute('aria-label', 'Reproducir video');
+  const video = page.locator('#productVideo');
+  await expect(video).toBeVisible();
+  await expect(page.locator('#productCaption')).toHaveText('Video · el plato gira');
+  await expect(page.locator('#productIndex')).toHaveText('01 / 04');
+  await expect(video).toHaveJSProperty('paused', false);
+  await expect(page.locator('#productToggle')).toHaveAttribute('aria-label', 'Pausar galería');
+
+  await page.locator('#productNext').click();
+  await expect(page.locator('#productCaption')).toHaveText('Dos piezas, una misma hoja');
+  await expect(video).toHaveJSProperty('paused', true);
+
+  await page.locator('#productPrev').click();
+  await expect(page.locator('#productCaption')).toHaveText('Video · el plato gira');
+  await expect(video).toHaveJSProperty('paused', false);
 
   await page.locator('#btnNext').click();
   await page.locator('#btnPrev').click();
-  await expect(page.locator('#productVideo')).toHaveJSProperty('paused', true);
+  await expect(video).toHaveJSProperty('paused', false);
+
+  await page.locator('#productToggle').click();
+  await expect(page.locator('#productToggle')).toHaveAttribute('aria-label', 'Reproducir galería');
+  await expect(video).toHaveJSProperty('paused', true);
+
+  await page.locator('#productNext').click();
+  await page.locator('#productPrev').click();
+  await expect(video).toHaveJSProperty('paused', true);
+});
+
+test('la galería del producto cabe en las cinco medidas sin scroll interno', async ({ page }) => {
+  for (const size of [
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1280, height: 720 },
+    { width: 1366, height: 768 },
+    { width: 1920, height: 1080 },
+  ]) {
+    await page.setViewportSize(size);
+    await page.goto('/#s-producto-detalle');
+    const metrics = await page.evaluate(() => {
+      const slide = document.getElementById('s-producto-detalle');
+      const stage = document.querySelector('#productGallery .gallery-stage');
+      return {
+        overflow: slide.scrollHeight - slide.clientHeight,
+        stageWidth: stage.getBoundingClientRect().width,
+        slideWidth: slide.clientWidth,
+      };
+    });
+    expect(metrics.overflow, `${size.width}x${size.height}`).toBeLessThanOrEqual(1);
+    expect(metrics.stageWidth, `${size.width}x${size.height}`).toBeLessThanOrEqual(
+      metrics.slideWidth
+    );
+  }
 });
 
 test('las pestañas cambian de capítulo y actualizan la ubicación', async ({ page }) => {

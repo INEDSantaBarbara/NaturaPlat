@@ -389,70 +389,155 @@
           aria-label="Producto: el plato de cerca"
         >
           <div class="inner">
-            <p class="eyebrow">Producto · 02</p>
-            <h2 tabindex="-1">El plato, de cerca</h2>
-            <p class="lede">
-              Hoja de plátano lavada y prensada con calor. Sin plásticos, ceras ni pegamentos.
-            </p>
-            <div class="product-media">
-              <figure class="product-video">
-                <video
-                  id="productVideo"
-                  poster="img/producto/plato-hoja-video-poster.webp"
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  title="El plato de hoja de plátano sobre una hoja verde"
-                >
-                  <source src="video/plato-hoja.mp4" type="video/mp4" />
-                </video>
-                <button
-                  type="button"
-                  class="video-toggle"
-                  id="videoToggle"
-                  aria-label="Reproducir video"
-                >
-                  ▶
-                </button>
-                <figcaption>El plato sobre hoja de plátano.</figcaption>
-              </figure>
-              <div class="product-photos">
-                <figure>
-                  <img
-                    src="img/producto/plato-hoja-2-800.webp"
-                    srcset="
-                      img/producto/plato-hoja-2-800.webp   800w,
-                      img/producto/plato-hoja-2-1500.webp 1500w
-                    "
-                    sizes="(max-width: 860px) 45vw, 20vw"
-                    width="1500"
-                    height="1000"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Dos platos NaturaPlát de hoja de plátano sobre una hoja verde."
-                  />
-                  <figcaption>Dos piezas, una misma hoja.</figcaption>
-                </figure>
-                <figure>
-                  <img
-                    src="img/producto/plato-hoja-4-800.webp"
-                    srcset="
-                      img/producto/plato-hoja-4-800.webp   800w,
-                      img/producto/plato-hoja-4-1000.webp 1000w
-                    "
-                    sizes="(max-width: 860px) 45vw, 20vw"
-                    width="1000"
-                    height="1500"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Plato NaturaPlát de hoja de plátano con el borde prensado, sobre una hoja verde."
-                  />
-                  <figcaption>Textura y borde prensado.</figcaption>
-                </figure>
+            <div class="split split--product">
+              <div class="stack">
+                <p class="eyebrow">Producto · 02</p>
+                <h2 tabindex="-1">El plato, de cerca</h2>
+                <p class="lede">
+                  Hoja de plátano lavada y prensada con calor. Sin plásticos, ceras ni pegamentos.
+                </p>
+                <dl class="facts">
+                  <div class="fact">
+                    <dt>14 × 20</dt>
+                    <dd>centímetros</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Hoja</dt>
+                    <dd>de plátano</dd>
+                  </div>
+                  <div class="fact fact--lime">
+                    <dt>≈ 45</dt>
+                    <dd>días en compost</dd>
+                  </div>
+                </dl>
+                <p class="note">Video y fotos del producto terminado.</p>
+              </div>
+
+              <div
+                class="product-gallery"
+                id="productGallery"
+                role="group"
+                aria-roledescription="galería"
+                aria-label="Fotos y video del producto"
+              >
+                <div class="gallery-stage product-stage">
+                  <figure
+                    class="gallery-slide is-active"
+                    data-kind="video"
+                    data-title="Video · el plato gira"
+                  >
+                    <video
+                      id="productVideo"
+                      poster="img/producto/plato-hoja-video-poster.webp"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      title="El plato de hoja de plátano sobre una hoja verde"
+                    >
+                      <source src="video/plato-hoja.mp4" type="video/mp4" />
+                    </video>
+                  </figure>
+                  <figure
+                    class="gallery-slide"
+                    data-title="Dos piezas, una misma hoja"
+                    aria-hidden="true"
+                  >
+                    <img
+                      src="img/producto/plato-hoja-2-800.webp"
+                      srcset="
+                        img/producto/plato-hoja-2-800.webp   800w,
+                        img/producto/plato-hoja-2-1500.webp 1500w
+                      "
+                      sizes="(max-width: 860px) 90vw, 42vw"
+                      width="1500"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Dos platos NaturaPlát de hoja de plátano sobre una hoja verde."
+                    />
+                  </figure>
+                  <figure
+                    class="gallery-slide"
+                    data-title="Textura y borde prensado"
+                    aria-hidden="true"
+                  >
+                    <img
+                      src="img/producto/plato-hoja-4-800.webp"
+                      srcset="
+                        img/producto/plato-hoja-4-800.webp   800w,
+                        img/producto/plato-hoja-4-1000.webp 1000w
+                      "
+                      sizes="(max-width: 860px) 90vw, 42vw"
+                      width="1000"
+                      height="1500"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Plato NaturaPlát de hoja de plátano con el borde prensado."
+                    />
+                  </figure>
+                  <figure
+                    class="gallery-slide"
+                    data-title="El plato y su pieza de hoja"
+                    aria-hidden="true"
+                  >
+                    <img
+                      src="img/producto/plato-hoja-1-800.webp"
+                      srcset="
+                        img/producto/plato-hoja-1-800.webp   800w,
+                        img/producto/plato-hoja-1-1500.webp 1500w
+                      "
+                      sizes="(max-width: 860px) 90vw, 42vw"
+                      width="1500"
+                      height="1000"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Plato NaturaPlát junto a una pieza de hoja prensada sobre una hoja verde."
+                    />
+                  </figure>
+
+                  <button
+                    type="button"
+                    class="gallery-btn gallery-arrow gallery-arrow--prev"
+                    id="productPrev"
+                    aria-label="Elemento anterior"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    class="gallery-btn gallery-arrow gallery-arrow--next"
+                    id="productNext"
+                    aria-label="Elemento siguiente"
+                  >
+                    →
+                  </button>
+
+                  <div class="gallery-bar">
+                    <div class="gallery-meta">
+                      <p class="gallery-caption" id="productCaption">Video · el plato gira</p>
+                      <span class="gallery-index" id="productIndex">01 / 04</span>
+                    </div>
+                    <div class="gallery-actions">
+                      <div
+                        class="gallery-dots"
+                        id="productDots"
+                        role="group"
+                        aria-label="Elegir foto o video"
+                      ></div>
+                      <button
+                        type="button"
+                        class="gallery-btn"
+                        id="productToggle"
+                        aria-label="Pausar galería"
+                      >
+                        ❚❚
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <p class="note">Fotografías y video del producto terminado.</p>
           </div>
         </section>
 

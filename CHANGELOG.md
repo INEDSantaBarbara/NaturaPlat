@@ -4,6 +4,17 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.1.3] — 2026-10-26
+
+### Cambiado
+
+- «El plato, de cerca» pasa a una galería de un solo cuadro 3:2 que alterna el video y tres
+  fotos de estudio, con flechas, puntos, pausa y avance automático o manual. Ya no hay fotos
+  sueltas que sobredimensionen la diapositiva ni obliguen a desplazarse.
+- `public/js/video.js` se reemplaza por `public/js/product-gallery.js`, que coordina el video
+  con el avance de la galería.
+- Prueba nueva: la diapositiva del producto no genera scroll interno en las cinco medidas.
+
 ## [2.1.2] — 2026-10-26
 
 ### Añadido

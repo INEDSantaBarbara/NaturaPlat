@@ -149,6 +149,11 @@ caracteres. Si tu `design.md` fija otras familias, se reemplazan estas tres.
 - **Equipo y evidencia** a sangre en Equipo y Proceso/Evidencia; nunca detrás de texto pequeño.
 - **Producto terminado** en fichas blancas del capítulo Producto: foto de estudio, `object-fit:
 contain`, sin recorte de fondo.
+- **Plato en uso** en «Lo que aguanta»: collage cuadrado con tamal, huevo, fruta y frijoles,
+  junto a las cuatro fichas de uso.
+- **Galería del producto** en «El plato, de cerca»: un solo cuadro 3:2 que alterna el video y
+  tres fotos de estudio, con flechas, puntos, pausa y barra de título. Nunca fotos sueltas que
+  sobredimensionen la diapositiva ni obliguen a desplazarse.
 - **Proceso** con la foto del termoprensado junto a los cuatro pasos.
 - Encuadre 4:3 y 16:9 con `object-fit: cover`; punto de interés con `object-position`.
 - Sin duotono. Si el texto va encima, velo `#317302` al 65–75 % con texto `#f2f2f2` (5.23:1).
@@ -159,7 +164,9 @@ contain`, sin recorte de fondo.
 
 - Transición de diapositiva 380 ms; `prefers-reduced-motion` la anula.
 - Contadores y gráficos solo cuando el usuario pulsa «Simular»; nunca en bucle.
-- Sin parallax ni autoplay. El foco se mueve al `h1`/`h2` de la diapositiva activa.
+- Sin parallax. El autoplay se limita a las dos galerías y al video del producto; se detiene con
+  `prefers-reduced-motion`, al salir de la diapositiva y con el botón de pausa. El foco se mueve
+  al `h1`/`h2` de la diapositiva activa.
 
 ### 4.6 Retirado
 
