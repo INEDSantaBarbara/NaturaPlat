@@ -43,7 +43,7 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 
 ## ✨ Características
 
-- 🎞️ **Recorrido MILAB** — siete capítulos y 17 diapositivas, una idea por diapositiva, sin
+- 🎞️ **Recorrido MILAB** — siete capítulos y 18 diapositivas, una idea por diapositiva, sin
   scroll de página; pestañas, anterior/siguiente, puntos, teclado y gesto.
 - 📊 **Simulador de impacto** — duroport (fabricación + quema), tres escenarios de hoja, serie de
   72 meses, población INE de Guatemala/Suchitepéquez/Santa Bárbara y adopción 2027–2032.
@@ -52,8 +52,9 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 - 🛒 **Catálogo y carrito** — un solo plato terminado de 14 cm de ancho por 20 cm de largo,
   variantes, subtotal en quetzales y checkout de demostración.
 - 📷 **Producto y evidencia** — galería incrustada en el héroe con el plato terminado, el
-  termoprensado, el equipo y la sesión; la diapositiva «Lo que aguanta» muestra el plato en uso
-  con tamal, huevo, fruta y frijoles. Fotos optimizadas en WebP con `srcset`.
+  termoprensado, el equipo y la sesión; «El plato, de cerca» combina un video corto con fotos de
+  estudio; «Lo que aguanta» muestra el plato en uso con tamal, huevo, fruta y frijoles. Fotos
+  optimizadas en WebP con `srcset` y video MP4 sin audio.
 - 🗣️ **Guía lateral** — pestaña discreta, aviso breve, panel con sugerencias, banco local,
   respaldo y DeepSeek solo para las preguntas fuera del banco.
 - 📱 **Responsive sin scroll de página** — verificado en 390×844, 768×1024, 1280×720, 1366×768 y
@@ -74,22 +75,25 @@ DeepSeek solo para lo que no reconoce; si no hay clave o red, sigue respondiendo
 ```text
 .
 ├── public/                    # Raíz web servible (lo que se despliega)
-│   ├── index.html             # Recorrido: 7 capítulos y 17 diapositivas
+│   ├── index.html             # Recorrido: 7 capítulos y 18 diapositivas
 │   ├── css/
 │   │   ├── tokens.css         # Paleta oficial, tipografía y medidas (único con hex)
 │   │   └── styles.css         # Marco de tres filas, diapositivas y componentes
 │   ├── js/
-│   │   ├── main.js            # Arranque: diapositivas, impacto y carrito
+│   │   ├── main.js            # Arranque: diapositivas, guía, video, impacto y carrito
 │   │   ├── slides.js          # Capítulos, navegación, foco, teclado y gesto
 │   │   ├── simulator.js       # Lógica pura del simulador (probada en node:test)
 │   │   ├── charts.js          # Gráficos SVG sin dependencias
 │   │   ├── impact.js          # Enlace de supuestos, gráficos y tabla
+│   │   ├── video.js           # Reproducción del video según la diapositiva activa
 │   │   ├── cart.js            # Carrito, checkout y validación
 │   │   └── guide.js           # Guía: banco local, panel y /api/chat
 │   ├── img/
 │   │   ├── evidencia/         # Equipo y registro audiovisual (WebP)
-│   │   ├── producto/          # Producto terminado y termoprensado (WebP)
+│   │   ├── producto/          # Producto terminado, termoprensado y plato en uso (WebP)
 │   │   └── logo/              # Logotipo y respaldo SVG
+│   ├── video/
+│   │   └── plato-hoja.mp4     # Video corto del producto (sin audio, 469 KB)
 ├── assets/
 │   ├── evidencia/             # Originales de equipo (no se sirven)
 │   └── producto/              # Originales de producto y proceso (no se sirven)
@@ -123,6 +127,7 @@ versiona.
 - **npm** con lockfile (`package-lock.json`).
 - **make** (opcional: los scripts de npm son la vía oficial).
 - **Pillow** (solo para `make images`, que regenera las fotos WebP).
+- **ffmpeg** (solo para `make video`, que regenera el video y su poster).
 - **Opcional:** una clave de DeepSeek para la guía en línea (sin ella funciona el banco local).
 - Para las pruebas e2e, Chromium de Playwright (`npx playwright install chromium`).
 
@@ -160,6 +165,7 @@ make free-port
 | `make dev` / `run`    | Alias de `serve`.                                                |
 | `make free-port`      | Cierra el proceso que ocupa el puerto 4173.                      |
 | `make images`         | Genera los WebP de evidencia y producto (requiere Pillow).       |
+| `make video`          | Regenera el video del producto y su poster (requiere ffmpeg).    |
 | `make lint`           | html-validate + Stylelint + ESLint.                              |
 | `make format`         | Formatea con Prettier.                                           |
 | `make format-check`   | Verifica el formato sin escribir.                                |
@@ -183,7 +189,7 @@ make test-e2e      # navegación, simulador, carrito, guía y responsive
 make test          # todo
 ```
 
-- **Estáticos** (`tests/static/`): idioma y metadatos, 17 diapositivas con título, siete
+- **Estáticos** (`tests/static/`): idioma y metadatos, 18 diapositivas con título, siete
   capítulos, ids únicos, referencias locales, `alt` y `srcset` de fotos, formularios accesibles,
   tokens definidos, hexadecimales solo en `tokens.css`, simulador (9 casos), proxy de la guía
   (método, clave, límites, prompt), fuentes y avisos.

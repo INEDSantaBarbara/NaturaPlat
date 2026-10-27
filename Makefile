@@ -6,6 +6,7 @@ HOST  ?= 127.0.0.1
 NPM   ?= npm
 NPX   ?= npx
 PYTHON ?= python3
+FFMPEG ?= ffmpeg
 
 # Identidad git de este repo. En el plan Hobby de Vercel, con repositorio
 # privado, solo se despliegan los commits cuyo autor sea el dueño de la cuenta:
@@ -14,7 +15,7 @@ PYTHON ?= python3
 GIT_NAME  := MILAB INED Santa Bárbara
 GIT_EMAIL := inedsantabarbaramilab@gmail.com
 
-.PHONY: help install env git-config check-identity serve dev run free-port images lint lint-html lint-css lint-js \
+.PHONY: help install env git-config check-identity serve dev run free-port images video lint lint-html lint-css lint-js \
         format format-check test test-static test-e2e test-e2e-ui deploy ci clean
 
 help: ## Muestra esta ayuda
@@ -59,8 +60,11 @@ dev run: serve ## Alias de 'serve'
 free-port: ## Libera el puerto $(PORT) de servidores de desarrollo colgados
 	node scripts/free-port.mjs "$(PORT)"
 
-images: ## Optimiza las fotos de assets/evidencia a WebP (requiere Pillow)
+images: ## Optimiza las fotos de assets/evidencia y producto a WebP (requiere Pillow)
 	$(PYTHON) scripts/optimize-images.py
+
+video: ## Regenera el video del producto y su poster (requiere ffmpeg)
+	FFMPEG="$(FFMPEG)" bash scripts/optimize-video.sh
 
 lint: lint-html lint-css lint-js ## Ejecuta todos los linters
 

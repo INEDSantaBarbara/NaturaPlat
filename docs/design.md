@@ -1,7 +1,7 @@
 # Design spec — NaturaPlát
 
 > **Estado (2026-10-21):** implementado en la rama `rediseno-recorrido`. Recorrido de 7 capítulos
-> y 17 diapositivas; paleta oficial; tipografía, fotos y carrito aplicados. La referencia Analogue
+> y 18 diapositivas; paleta oficial; tipografía, fotos y carrito aplicados. La referencia Analogue
 > aporta la disposición; MILAB manda en navegación, contenido y accesibilidad.
 >
 > **Precedencia:** `docs/design.md` (intención) → `public/css/tokens.css` (implementación) →
@@ -42,13 +42,13 @@
 | --- | -------- | ------------ | ------------------------------------------------------------- |
 | 1   | Inicio   | 1            | ¿Qué es NaturaPlát y por qué importa?                         |
 | 2   | Problema | 2            | ¿Cuánto contamina el duroport y qué se intentó en Guatemala?  |
-| 3   | Producto | 2            | ¿Qué platos existen y cómo se piden?                          |
+| 3   | Producto | 3            | ¿Qué platos existen y cómo se piden?                          |
 | 4   | Proceso  | 2            | ¿Cómo se hace y qué evidencia hay del trabajo?                |
 | 5   | Impacto  | 7            | ¿Cuánto ahorra un plato, una persona y el territorio al 2032? |
 | 6   | Equipo   | 2            | ¿Quiénes lo hacen y cómo trabajan?                            |
 | 7   | Cierre   | 1            | ¿Cómo contactar y qué sigue?                                  |
 
-Total: 17 diapositivas. El capítulo Impacto desarrolla: un plato, supuestos, una persona,
+Total: 18 diapositivas. El capítulo Impacto desarrolla: un plato, supuestos, una persona,
 territorio, año por año, método/valores y fuentes.
 
 ### 3.1 Referencia visual: Analogue (guía, no norma)

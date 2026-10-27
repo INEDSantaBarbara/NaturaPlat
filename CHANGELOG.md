@@ -4,6 +4,16 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.1.2] — 2026-10-26
+
+### Añadido
+
+- Diapositiva «El plato, de cerca» con video corto del producto (sin audio, en bucle) y dos
+  fotos de estudio; el video se reproduce solo en su diapositiva y respeta
+  `prefers-reduced-motion`.
+- Fotos profesionales del producto en la galería del héroe y en la ficha del plato.
+- `make video` y `scripts/optimize-video.sh` para regenerar el MP4 y su poster.
+
 ## [2.1.1] — 2026-10-26
 
 ### Añadido

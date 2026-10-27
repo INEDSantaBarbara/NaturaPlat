@@ -9,7 +9,7 @@ const PRODUCTS = {
   2: {
     id: 2,
     name: 'NaturaPlát 14 × 20',
-    img: 'img/producto/plato-14x20-3-800.webp',
+    img: 'img/producto/plato-hoja-1-800.webp',
     variants: {
       pack25: { label: 'Pack × 25', price: 149 },
       pack100: { label: 'Pack × 100', price: 480 },

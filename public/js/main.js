@@ -9,9 +9,11 @@ import { initGallery } from './gallery.js';
 import { initGuide } from './guide.js';
 import { initImpact } from './impact.js';
 import { initSlides } from './slides.js';
+import { initProductVideo } from './video.js';
 
 initSlides();
 initGallery();
 initGuide();
+initProductVideo();
 initImpact();
 initCart();

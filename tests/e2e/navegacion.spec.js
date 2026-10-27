@@ -11,7 +11,7 @@ test('la página carga sin errores y con un solo h1', async ({ page }) => {
 
   await expect(page).toHaveTitle(/NaturaPlát/);
   await expect(page.locator('h1')).toHaveCount(1);
-  await expect(page.locator('.slide')).toHaveCount(17);
+  await expect(page.locator('.slide')).toHaveCount(18);
   await expect(page.locator('.chap')).toHaveCount(7);
   expect(errors).toEqual([]);
 });
@@ -34,6 +34,19 @@ test('la galería del inicio cambia de foto y se puede pausar', async ({ page })
   await page.locator('#galleryDots button').nth(3).click();
   await expect(page.locator('#galleryCaption')).toHaveText('Equipo MILAB');
   await expect(page.locator('#galleryIndex')).toHaveText('04 / 04');
+});
+
+test('el video del producto se reproduce y se pausa', async ({ page }) => {
+  await page.goto('/#s-producto-detalle');
+  await expect(page.locator('#productVideo')).toBeVisible();
+  await expect(page.locator('#videoToggle')).toHaveAttribute('aria-label', 'Pausar video');
+
+  await page.locator('#videoToggle').click();
+  await expect(page.locator('#videoToggle')).toHaveAttribute('aria-label', 'Reproducir video');
+
+  await page.locator('#btnNext').click();
+  await page.locator('#btnPrev').click();
+  await expect(page.locator('#productVideo')).toHaveJSProperty('paused', true);
 });
 
 test('las pestañas cambian de capítulo y actualizan la ubicación', async ({ page }) => {

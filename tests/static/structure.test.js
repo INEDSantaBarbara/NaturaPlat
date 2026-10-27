@@ -20,9 +20,9 @@ test('el documento declara idioma, título y descripción', () => {
   assert.ok((meta[0].match(/content="([^"]+)"/)?.[1] || '').length >= 40);
 });
 
-test('hay un solo h1 y 17 diapositivas con título', () => {
+test('hay un solo h1 y 18 diapositivas con título', () => {
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1);
-  assert.equal(slides.length, 17, 'el recorrido debe tener 17 diapositivas');
+  assert.equal(slides.length, 18, 'el recorrido debe tener 18 diapositivas');
   for (const block of slides) assert.match(block, /<h[12][\s>]/, 'diapositiva sin título');
 });
 
@@ -49,6 +49,18 @@ test('las imágenes tienen alt y no hay manejadores inline', () => {
     assert.match(image[0], /\salt="[^"]*"/);
   }
   assert.doesNotMatch(html, /\son[a-z]+\s*=/i);
+});
+
+test('el video del producto tiene poster y fuente local', () => {
+  const video = html.match(/<video\b[^>]*id="productVideo"[^>]*>/);
+  assert.ok(video, 'falta el video del producto');
+  assert.match(video[0], /\bmuted\b/);
+  assert.match(video[0], /\bloop\b/);
+  assert.match(video[0], /\bplaysinline\b/);
+  const poster = video[0].match(/poster="([^"]+)"/)?.[1];
+  assert.ok(poster && existsSync(join(PUBLIC, poster)), 'falta el poster del video');
+  const source = html.match(/<source\s+src="(video\/[^"]+\.mp4)"/);
+  assert.ok(source && existsSync(join(PUBLIC, source[1])), 'falta la fuente del video');
 });
 
 test('las fotos usan srcset, dimensiones y carga diferida', () => {
