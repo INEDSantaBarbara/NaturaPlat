@@ -16,6 +16,9 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
   que ampliaba la imagen un 4 % por encima del contenedor.
 - El puntero sobre la galería ya no detiene el avance automático; solo lo detienen el botón de
   pausa, el foco del teclado y la salida de la diapositiva.
+- Las fotos de la galería se recortaron a 3:2 sobre la hoja, sin las bandas blancas del mantel,
+  para que llenen el cuadro. La toma de la diapositiva 03 cambió por otra sin estudiantes al
+  fondo.
 - Prueba nueva: el cuadro y la imagen miden lo mismo en las cinco medidas.
 
 ## [2.1.3] — 2026-10-26

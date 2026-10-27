@@ -153,7 +153,8 @@ contain`, sin recorte de fondo.
   junto a las cuatro fichas de uso.
 - **Galería del producto** en «El plato, de cerca»: un solo cuadro 3:2 que alterna el video y
   tres fotos de estudio, con flechas, puntos, pausa y barra de título. Nunca fotos sueltas que
-  sobredimensionen la diapositiva ni obliguen a desplazarse.
+  sobredimensionen la diapositiva ni obliguen a desplazarse. La foto llena el cuadro exacto
+  (`object-fit: cover`, sin zoom) y las tomas se recortan a 3:2 sobre la hoja, sin mantel visible.
 - **Proceso** con la foto del termoprensado junto a los cuatro pasos.
 - Encuadre 4:3 y 16:9 con `object-fit: cover`; punto de interés con `object-position`.
 - Sin duotono. Si el texto va encima, velo `#317302` al 65–75 % con texto `#f2f2f2` (5.23:1).
