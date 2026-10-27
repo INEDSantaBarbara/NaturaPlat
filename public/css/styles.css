@@ -1020,6 +1020,14 @@ h3 {
   background: var(--np-card-dark);
 }
 
+/* La foto ocupa exactamente el cuadro: sin zoom ni ampliación de la animación
+   del héroe, para que nada sobresalga del contenedor. */
+.product-stage .gallery-slide,
+.product-stage .gallery-slide.is-active {
+  animation: none;
+  transform: none;
+}
+
 .product-desc {
   font-size: 0.92rem;
   color: var(--np-ink-soft);

@@ -40,7 +40,9 @@ test('los id son únicos', () => {
 });
 
 test('las referencias locales existen dentro de public/', () => {
-  const refs = [...html.matchAll(/(?:src|href)="([^"#:]+)"/g)].map((match) => match[1]);
+  const refs = [...html.matchAll(/(?:src|href)="([^"#:]+)"/g)].map(
+    (match) => match[1].split('?')[0]
+  );
   for (const ref of refs) assert.ok(existsSync(join(PUBLIC, ref)), `falta ${ref}`);
 });
 

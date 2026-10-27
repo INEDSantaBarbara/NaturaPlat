@@ -4,6 +4,20 @@ Todos los cambios relevantes de este proyecto se documentan aquí. El formato si
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado
 [SemVer](https://semver.org/lang/es/).
 
+## [2.1.4] — 2026-10-26
+
+### Corregido
+
+- La galería del producto ya no se congela tras un despliegue: JS y CSS se sirven con
+  `max-age=0, must-revalidate` y `index.html` los referencia con `?v=2.1.4`. Antes el navegador
+  podía ejecutar un `main.js` cacheado que importaba un módulo eliminado y la página quedaba sin
+  flechas ni avance automático.
+- La foto ocupa exactamente el cuadro de la galería: se quitó el zoom de la animación del héroe,
+  que ampliaba la imagen un 4 % por encima del contenedor.
+- El puntero sobre la galería ya no detiene el avance automático; solo lo detienen el botón de
+  pausa, el foco del teclado y la salida de la diapositiva.
+- Prueba nueva: el cuadro y la imagen miden lo mismo en las cinco medidas.
+
 ## [2.1.3] — 2026-10-26
 
 ### Cambiado

@@ -73,6 +73,15 @@ Sin `DEEPSEEK_API_KEY` el sitio funciona igual: la guía responde con el banco l
 que la versión en línea no está configurada. Los límites y el detalle están en
 [`docs/asistente.md`](asistente.md).
 
+### Caché de assets
+
+Los archivos de `css/` y `js/` no llevan hash en el nombre. Por eso `vercel.json` los sirve con
+`Cache-Control: public, max-age=0, must-revalidate`: el navegador revalida en cada visita y un
+despliegue nuevo se ve al instante. Además, `index.html` referencia `tokens.css`, `styles.css` y
+`main.js` con `?v=<versión>`; al publicar cambios en CSS o JS, subí ese número junto con la
+versión de `package.json`. Sin esto, un navegador puede ejecutar un `main.js` viejo que importa
+módulos que ya no existen y la página queda sin JavaScript (sin flechas ni avance automático).
+
 ## Publicación manual
 
 Solo como excepción justificada:

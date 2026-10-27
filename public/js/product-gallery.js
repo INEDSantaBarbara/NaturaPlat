@@ -121,8 +121,6 @@ export function initProductGallery() {
     else pause();
   });
 
-  root.addEventListener('mouseenter', stop);
-  root.addEventListener('mouseleave', restart);
   root.addEventListener('focusin', stop);
   root.addEventListener('focusout', (event) => {
     if (!root.contains(event.relatedTarget)) restart();

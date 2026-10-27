@@ -80,16 +80,24 @@ test('la galería del producto cabe en las cinco medidas sin scroll interno', as
     const metrics = await page.evaluate(() => {
       const slide = document.getElementById('s-producto-detalle');
       const stage = document.querySelector('#productGallery .gallery-stage');
+      const media = stage.querySelector(
+        '.gallery-slide.is-active img, .gallery-slide.is-active video'
+      );
+      const box = media.getBoundingClientRect();
       return {
         overflow: slide.scrollHeight - slide.clientHeight,
         stageWidth: stage.getBoundingClientRect().width,
         slideWidth: slide.clientWidth,
+        fitX: Math.abs(box.width - stage.clientWidth),
+        fitY: Math.abs(box.height - stage.clientHeight),
       };
     });
     expect(metrics.overflow, `${size.width}x${size.height}`).toBeLessThanOrEqual(1);
     expect(metrics.stageWidth, `${size.width}x${size.height}`).toBeLessThanOrEqual(
       metrics.slideWidth
     );
+    expect(metrics.fitX, `${size.width}x${size.height}`).toBeLessThanOrEqual(1);
+    expect(metrics.fitY, `${size.width}x${size.height}`).toBeLessThanOrEqual(1);
   }
 });
 
